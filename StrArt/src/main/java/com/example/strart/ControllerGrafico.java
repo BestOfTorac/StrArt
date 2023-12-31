@@ -9,6 +9,6 @@ public class ControllerGrafico {
 
     @FXML
     protected void onHelloButtonClick() {
-        welcomeText.setText("Tu madre ");
+        welcomeText.setText("Tua madre ");
     }
 }
