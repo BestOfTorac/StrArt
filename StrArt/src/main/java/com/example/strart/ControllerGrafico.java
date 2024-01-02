@@ -8,7 +8,7 @@ public class ControllerGrafico {
     private Label welcomeText;
 
     @FXML
-    protected void onHelloButtonClick() {
+    protected void onHelloButtonClick(){
         welcomeText.setText("Tua madre ");
     }
 }
