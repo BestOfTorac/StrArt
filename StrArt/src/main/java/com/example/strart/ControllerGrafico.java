@@ -19,9 +19,11 @@ public class ControllerGrafico {
 
     @FXML
     private URL location;
-
+//non uso inizializazione
     @FXML
     void initialize() {
+
+        
 
     }
 
