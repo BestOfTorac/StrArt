@@ -1,19 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.gluonhq.charm.glisten.control.BottomNavigation?>
+<?import com.gluonhq.charm.glisten.control.BottomNavigationButton?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.strart.ControllerGrafico">
-    <TextField text="Inserisci indirizzo" />
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="790.0" prefWidth="413.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+    <children>
+        <TextField id="indirizzo"  layoutX="177.0" layoutY="246.0" prefHeight="26.0" prefWidth="198.0" promptText="indirizzo" styleClass="indirizzo" stylesheets="@Style.css" />
+        <TextField layoutX="177.0" layoutY="368.0" prefHeight="26.0" prefWidth="198.0" promptText="Ora dell'evento" />
+        <BottomNavigation layoutY="725.0" prefHeight="65.0" prefWidth="413.0">
+            <actionItems>
+                <BottomNavigationButton selected="true" text="SEGUITI" />
+                <BottomNavigationButton text="HOME" />
+                <BottomNavigationButton minWidth="44.0" prefHeight="88.0" prefWidth="143.0" text="ACCOUNT" />
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-
-</VBox>
+            </actionItems>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </BottomNavigation>
+        <Text layoutX="80.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="crea il tuo nuovo evento" textAlignment="CENTER" wrappingWidth="273.59823989868164">
+            <font>
+                <Font name="Niagara Solid" size="64.0" />
+            </font>
+        </Text>
+        <Text fontSmoothingType="LCD" layoutX="30.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Indirizzo di posta elettronica " wrappingWidth="122.8603515625">
+            <font>
+                <Font name="Niagara Solid" size="25.0" />
+            </font>
+        </Text>
+        <Text fontSmoothingType="LCD" layoutX="28.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Giorno dell'evento">
+            <font>
+                <Font name="Niagara Solid" size="27.0" />
+            </font>
+        </Text>
+        <Text fontSmoothingType="LCD" layoutX="28.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ora inizio evento">
+            <font>
+                <Font name="Niagara Solid" size="27.0" />
+            </font>
+        </Text>
+        <TextArea layoutX="176.0" layoutY="431.0" prefHeight="200.0" prefWidth="200.0" promptText="Descrizione" />
+        <Text fontSmoothingType="LCD" layoutX="16.0" layoutY="525.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrizione dell'evento" textAlignment="CENTER" wrappingWidth="137.66666666666663">
+            <font>
+                <Font name="Niagara Solid" size="27.0" />
+            </font>
+        </Text>
+        <DatePicker layoutX="177.0" layoutY="310.0" prefHeight="26.0" prefWidth="198.0" promptText="Data evento " />
+        <Button layoutX="155.0" layoutY="679.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="123.0" text="Crea Evento">
+            <font>
+                <Font name="Corbel Light" size="12.0" />
+            </font>
+        </Button>
+    </children>
+</Pane>
