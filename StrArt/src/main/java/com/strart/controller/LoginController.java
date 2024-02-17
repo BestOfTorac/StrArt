@@ -7,11 +7,9 @@ import com.strart.model.dao.LoginProcedureDAO;
 import com.strart.model.domain.ApplicazioneSrage;
 import com.strart.model.domain.Credentials;
 import com.strart.view.OttieniIndicazioniControllerGrafico;
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -26,9 +24,7 @@ public class LoginController{
 
         try {
             new LoginProcedureDAO().execute(cred);
-        } catch(DAOException e) {
-            throw new RuntimeException(e);
-        } catch (SQLException e) {
+        } catch(DAOException | SQLException e) {
             throw new RuntimeException(e);
         }
 
@@ -46,24 +42,11 @@ public class LoginController{
             controller.initMapAndControls();
             scene = new Scene(rootNode, 414, 795);
         }
-        System.out.println(cred.getRole());
-
 
         stage.setTitle("StrArt");
         stage.setScene(scene);
         stage.show();
 
     }
-
-    /*
-    public BeanEventi cercaEventi() throws DAOException {
-
-        ListEvento listEvento;
-        listEvento=new CercaEventiDAO().execute(indirizzo);
-
-
-    }
-
-     */
 
 }
