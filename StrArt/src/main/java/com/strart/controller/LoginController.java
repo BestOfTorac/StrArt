@@ -25,7 +25,7 @@ public class LoginController{
         try {
             new LoginProcedureDAO().execute(cred);
         } catch(DAOException | SQLException e) {
-            throw new RuntimeException(e);
+            throw new IllegalArgumentException(e);
         }
 
         FXMLLoader fxmlLoader;
