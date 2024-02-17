@@ -11,13 +11,13 @@ import java.sql.Types;
 
 public class LoginProcedureDAO{
 
-    public void execute(Object... params) throws DAOException {
+    public void execute(Object... params) throws DAOException, SQLException {
         Credentials cred= (Credentials) params[0];
         int role;
-
+        CallableStatement cs = null;
         try {
             Connection conn = ConnectionFactory.getConnection();
-            CallableStatement cs = conn.prepareCall("{call login(?,?,?)}");
+            cs = conn.prepareCall("{call login(?,?,?)}");
             cs.setString(1, cred.getUsername());
             cs.setString(2, cred.getPassword());
             cs.registerOutParameter(3, Types.NUMERIC);
@@ -26,6 +26,11 @@ public class LoginProcedureDAO{
             cred.setRole(Role.fromInt(role));
         } catch(SQLException e) {
             throw new DAOException("Login error: " + e.getMessage());
+        }finally {
+            if(cs!= null){
+                cs.close();
+            }
+
         }
 
     }

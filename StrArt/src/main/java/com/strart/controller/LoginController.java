@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class LoginController{
 
@@ -26,6 +27,8 @@ public class LoginController{
         try {
             new LoginProcedureDAO().execute(cred);
         } catch(DAOException e) {
+            throw new RuntimeException(e);
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
