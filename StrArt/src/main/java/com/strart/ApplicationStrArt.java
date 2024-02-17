@@ -11,7 +11,7 @@ import java.io.IOException;
 public class ApplicationStrArt extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        //FXMLLoader fxmlLoader1 = new FXMLLoader(ApplicationStrArt.class.getResource("hello-view.fxml"));
+
         new ApplicazioneSrage(stage);
         FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStrArt.class.getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 414, 795);

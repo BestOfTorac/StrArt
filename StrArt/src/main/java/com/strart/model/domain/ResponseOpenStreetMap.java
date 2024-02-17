@@ -1,6 +1,5 @@
 package com.strart.model.domain;
 
-import com.strart.model.domain.OpenStreetMapFeatures;
 
 public class ResponseOpenStreetMap {
     String type;

@@ -26,7 +26,7 @@ public class ConnectionFactory {
 
             connection = DriverManager.getConnection(connection_url, user, pass);
         } catch (IOException | SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -47,7 +47,7 @@ public class ConnectionFactory {
 
             connection = DriverManager.getConnection(connection_url, user, pass);
         } catch (IOException | SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 }

@@ -2,8 +2,8 @@ package com.strart.model.bean;
 
 public class CredentialsBean {
 
-        private final String username;
-        private final String password;
+        String username;
+        String password;
 
 
         public CredentialsBean(String username, String password) {

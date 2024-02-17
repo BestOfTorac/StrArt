@@ -3,7 +3,6 @@ package com.strart.view;
 import com.sothawo.mapjfx.*;
 import com.strart.model.domain.ResponseOpenStreetMap;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.io.BufferedReader;
@@ -17,8 +16,7 @@ import com.google.gson.Gson;
 
 
 public class OttieniIndicazioniControllerGrafico {
-    @FXML
-    private Label welcomeText;
+
 
     @FXML
     private TextField textField;
@@ -29,9 +27,7 @@ public class OttieniIndicazioniControllerGrafico {
     private static final int ZOOM_DEFAULT = 14;
     private static final Coordinate coordKarlsruheHarbour = new Coordinate(41.9028, 12.4964);
 
-    public OttieniIndicazioniControllerGrafico() {
 
-    }
 
     @FXML
     protected void onHelloButtonClick(){
