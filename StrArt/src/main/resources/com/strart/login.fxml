@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<?import javafx.scene.layout.VBox?>
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.strart.view.LoginGrafico">
+    <center>
+        <VBox fx:id="topControls" alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
+            <TextField fx:id="textFieldUsername" text="username" />
+            <TextField fx:id="textFieldPassword" text="password" />
+
+            <Button text="Login" onAction="#onHelloButtonClick"/>
+
+        </VBox>
+    </center>
+
+</BorderPane>
+

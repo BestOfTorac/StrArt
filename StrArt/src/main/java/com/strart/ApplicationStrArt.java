@@ -1,5 +1,6 @@
 package com.strart;
 
+import com.strart.model.domain.ApplicazioneSrage;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -10,7 +11,9 @@ import java.io.IOException;
 public class ApplicationStrArt extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStrArt.class.getResource("hello-view.fxml"));
+        //FXMLLoader fxmlLoader1 = new FXMLLoader(ApplicationStrArt.class.getResource("hello-view.fxml"));
+        new ApplicazioneSrage(stage);
+        FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStrArt.class.getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 414, 795);
         stage.setTitle("StrArt");
         stage.setScene(scene);
