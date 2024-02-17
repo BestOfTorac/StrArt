@@ -108,7 +108,7 @@ public class OttieniIndicazioniControllerGrafico {
             // Ora puoi utilizzare l'oggetto responseObject come desideri
             System.out.println(responseObject.toString());
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
