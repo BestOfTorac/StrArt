@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import com.sothawo.mapjfx.MapView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane  xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.strart.view.OttieniIndicazioniControllerGrafico">
+<top>
+
+    <HBox fx:id="topControls" alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
+        <TextField fx:id="textField" text="Inserisci indirizzo" />
+        <children>
+            <Button text="Hello!" onAction="#onHelloButtonClick"/>
+        </children>
+        <padding>
+            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
+        </padding>
+    </HBox>
+</top>
+<center>
+    <MapView fx:id="mapView" BorderPane.alignment="CENTER"/>
+</center>
+
+<bottom>
+
+    <HBox fx:id="bottomControls" alignment="CENTER" spacing="10.0" BorderPane.alignment="BOTTOM_CENTER">
+        <children>
+            <Button text="Hello!" onAction="#onHelloButtonClick"/>
+        </children>
+        <padding>
+            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
+        </padding>
+    </HBox>
+</bottom>
+
+</BorderPane>

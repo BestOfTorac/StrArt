@@ -1,4 +1,4 @@
-package com.example.strart;
+package com.strart;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
