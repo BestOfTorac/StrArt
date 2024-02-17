@@ -18,8 +18,6 @@ public class LoginGrafico {
     @FXML
     protected void onHelloButtonClick(){
         CredentialsBean credB;
-        System.out.println("Username = "+textFieldUsername.getText());
-        System.out.println("Password = "+textFieldPassword.getText());
 
         credB= new CredentialsBean(textFieldUsername.getText(), textFieldPassword.getText());
         try{

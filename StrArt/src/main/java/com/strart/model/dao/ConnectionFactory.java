@@ -13,7 +13,7 @@ public class ConnectionFactory {
     private static Connection connection;
 
     private ConnectionFactory() {}
-
+    // TODO: modificare questo statement in linea con il singleton
     static {
         // Does not work if generating a jar file
         try (InputStream input = new FileInputStream("resources/db.properties")) {

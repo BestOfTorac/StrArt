@@ -2,19 +2,19 @@ package com.strart.model.domain;
 
 public class Credentials {
 
-    String username;
-    String password;
-    Role role;
+    static String username;
+    static String password;
+    static Role role;
 
     public Credentials(String username, String password, Role role) {
-        this.username = username;
-        this.password = password;
-        this.role = role;
+        Credentials.username = username;
+        Credentials.password = password;
+        Credentials.role = role;
     }
 
     public Credentials(String username, String password) {
-        this.username = username;
-        this.password = password;
+        Credentials.username = username;
+        Credentials.password = password;
     }
 
     public String getUsername() {
@@ -29,6 +29,6 @@ public class Credentials {
         }
 
     public void setRole(Role role){
-        this.role=role;
+        Credentials.role=role;
     }
 }
