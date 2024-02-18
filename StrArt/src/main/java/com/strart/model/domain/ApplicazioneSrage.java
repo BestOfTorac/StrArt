@@ -7,8 +7,6 @@ public class ApplicazioneSrage {
 
     private static Stage stage;
 
-    public ApplicazioneSrage(){
-    }
 
     public static Stage getStage(){
         return stage;
