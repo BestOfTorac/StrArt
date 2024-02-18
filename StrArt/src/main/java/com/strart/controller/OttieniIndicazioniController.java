@@ -6,11 +6,13 @@ import com.strart.model.dao.CercaEventiDAO;
 import com.strart.model.domain.ListEvento;
 import com.strart.view.ApiControllerGrafico;
 
+import java.sql.SQLException;
+
 public class OttieniIndicazioniController {
 
     String indirizzo;
 
-    public BeanEventi cercaEventi(IndirizzoBean indirizzoB) throws DAOException {
+    public BeanEventi cercaEventi(IndirizzoBean indirizzoB) throws DAOException, SQLException {
         BeanEventi eventiB;
         Coordinate cordinate;
         ListEvento listEvento;

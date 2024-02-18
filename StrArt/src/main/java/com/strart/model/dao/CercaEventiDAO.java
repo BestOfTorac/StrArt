@@ -13,14 +13,14 @@ import java.sql.SQLException;
 public class CercaEventiDAO implements GenericDAO<ListEvento> {
 
     @Override
-    public ListEvento execute(Object... params) throws DAOException {
+    public ListEvento execute(Object... params) throws DAOException, SQLException {
 
         Coordinate coordinate = (Coordinate) params[0];
         ListEvento listEvento= new ListEvento();
-
+        CallableStatement cs = null;
         try {
             Connection conn = ConnectionFactory.getConnection();
-            CallableStatement cs = conn.prepareCall("{call crea_ordine(?,?)}");
+            cs = conn.prepareCall("{call cercaEventi(?,?)}");
             cs.setString(1, coordinate.getLongitudine());
             cs.setString(2,  coordinate.getLatitudine());
 
@@ -35,6 +35,11 @@ public class CercaEventiDAO implements GenericDAO<ListEvento> {
 
         } catch (SQLException e) {
             throw new DAOException("Listino eventi error: " + e.getMessage());
+        }finally {
+            if(cs!= null){
+                cs.close();
+            }
+
         }
 
 

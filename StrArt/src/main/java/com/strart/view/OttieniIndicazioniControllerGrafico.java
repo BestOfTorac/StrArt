@@ -16,6 +16,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.sql.SQLException;
+
 import com.google.gson.Gson;
 
 
@@ -45,6 +47,8 @@ public class OttieniIndicazioniControllerGrafico {
             eventiB=indicazioni.cercaEventi(indirizzoB);
         }catch (DAOException e){
             throw new IllegalArgumentException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
         initMapAndControls(eventiB.getCordinate().getLatitudine(), eventiB.getCordinate().getLongitudine(), eventiB.getCordinate().getType());
