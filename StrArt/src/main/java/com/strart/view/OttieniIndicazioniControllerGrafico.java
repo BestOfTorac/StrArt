@@ -37,8 +37,6 @@ public class OttieniIndicazioniControllerGrafico {
         initMapAndControls(eventiB.getCordinate().getLatitudine(), eventiB.getCordinate().getLongitudine(), eventiB.getCordinate().getType());
 
 
-
-        //callApi(textField.getText());
     }
 
     public void initMapAndControls(String lat, String lon, String type) {
