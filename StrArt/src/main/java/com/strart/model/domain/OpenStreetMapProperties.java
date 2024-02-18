@@ -2,7 +2,7 @@ package com.strart.model.domain;
 
 public class OpenStreetMapProperties {
 
-    public OpenStreetMapGeocoding geocoding;
+    OpenStreetMapGeocoding geocoding;
 
     public OpenStreetMapProperties(OpenStreetMapGeocoding geocoding){
         this.geocoding=geocoding;

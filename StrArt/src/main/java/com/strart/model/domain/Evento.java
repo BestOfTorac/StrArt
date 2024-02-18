@@ -6,7 +6,7 @@ import java.sql.Time;
 
 public class Evento {
 
-    String NomeArtista;
+    String nomeArtista;
     String descrizione;
     String latitudine;
     String longitudine;
@@ -15,8 +15,8 @@ public class Evento {
     Time orarioFine;
     Blob immagine;
 
-    public Evento(String NomeArtista, String descrizione,String latitudine, String longitudine, Date data, Time orarioInizio, Time orarioFine, Blob immagine){
-        this.NomeArtista=NomeArtista;
+    public Evento(String nomeArtista, String descrizione,String latitudine, String longitudine, Date data, Time orarioInizio, Time orarioFine, Blob immagine){
+        this.nomeArtista=nomeArtista;
         this.descrizione=descrizione;
         this.latitudine=latitudine;
         this.longitudine=longitudine;

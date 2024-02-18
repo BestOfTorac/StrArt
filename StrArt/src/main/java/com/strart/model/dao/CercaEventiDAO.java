@@ -29,7 +29,7 @@ public class CercaEventiDAO implements GenericDAO<ListEvento> {
                 ResultSet rs = cs.getResultSet();
                 if (rs.next()) {
                     Evento evento = new Evento(rs.getString(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getTime(6), rs.getTime(7), rs.getBlob(8));
-                    listEvento.addGiacenza(evento);
+                    listEvento.addEvento(evento);
                 }
             }
 

@@ -2,7 +2,7 @@ package com.strart.model.domain;
 
 public class OpenStreetMapGeocoding {
 
-    public String type;
+    String type;
 
     public OpenStreetMapGeocoding(String type){
         this.type=type;

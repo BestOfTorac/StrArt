@@ -54,7 +54,7 @@ public class ApiControllerGrafico {
             coordinateBean= new CoordinateBean(indirizzo,lon,lat, tipo);
 
         } catch (Exception e) {
-            System.out.println("Errore "+e);;
+            throw new IllegalArgumentException(e);
         }
 
 

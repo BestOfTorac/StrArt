@@ -23,10 +23,8 @@ public class LoginGrafico {
         try{
             LoginController loginController= new LoginController();
             loginController.start(credB);
-        }catch (DAOException e){
-            System.out.println("Credenziali non valide");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        }catch (DAOException | IOException e){
+            throw new IllegalArgumentException(e);
         }
 
     }
