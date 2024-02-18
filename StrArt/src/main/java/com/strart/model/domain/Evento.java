@@ -6,18 +6,20 @@ import java.sql.Time;
 
 public class Evento {
 
-    String idEvento;
+    String NomeArtista;
     String descrizione;
-    String indirizzo;
+    String latitudine;
+    String longitudine;
     Date data;
     Time orarioInizio;
     Time orarioFine;
     Blob immagine;
 
-    public Evento(String idEvento, String descrizione, String indirizzo, Date data, Time orarioInizio, Time orarioFine, Blob immagine){
-        this.idEvento=idEvento;
+    public Evento(String NomeArtista, String descrizione,String latitudine, String longitudine, Date data, Time orarioInizio, Time orarioFine, Blob immagine){
+        this.NomeArtista=NomeArtista;
         this.descrizione=descrizione;
-        this.indirizzo=indirizzo;
+        this.latitudine=latitudine;
+        this.longitudine=longitudine;
         this.data=data;
         this.orarioInizio=orarioInizio;
         this.orarioFine=orarioFine;

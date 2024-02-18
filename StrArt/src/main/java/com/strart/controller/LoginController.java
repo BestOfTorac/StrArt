@@ -39,7 +39,7 @@ public class LoginController{
             fxmlLoader = new FXMLLoader();
             Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
             final OttieniIndicazioniControllerGrafico controller = fxmlLoader.getController();
-            controller.initMapAndControls();
+            controller.initMapAndControls("41.9028","12.4964","city");
             scene = new Scene(rootNode, 414, 795);
         }
 

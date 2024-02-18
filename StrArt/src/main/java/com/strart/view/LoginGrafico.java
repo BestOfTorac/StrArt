@@ -29,7 +29,6 @@ public class LoginGrafico {
             throw new RuntimeException(e);
         }
 
-        //callApi(textField.getText());
     }
 
 }

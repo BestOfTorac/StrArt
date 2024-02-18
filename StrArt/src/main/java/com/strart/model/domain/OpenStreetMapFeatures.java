@@ -18,4 +18,8 @@ public class OpenStreetMapFeatures {
         return geometry;
     }
 
+    public OpenStreetMapProperties getOpenStreetMapProperties(){
+        return properties;
+    }
+
 }

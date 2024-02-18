@@ -1,6 +1,10 @@
 package com.strart.view;
 
 import com.sothawo.mapjfx.*;
+import com.strart.controller.OttieniIndicazioniController;
+import com.strart.exception.DAOException;
+import com.strart.model.bean.BeanEventi;
+import com.strart.model.bean.IndirizzoBean;
 import com.strart.model.domain.ResponseOpenStreetMap;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -24,33 +28,43 @@ public class OttieniIndicazioniControllerGrafico {
     @FXML
     private MapView mapView;
 
-    private static final int ZOOM_DEFAULT = 14;
-    private static final Coordinate coordKarlsruheHarbour = new Coordinate(41.9028, 12.4964);
+    //private static final int ZOOM_DEFAULT = 14;
+    //private static final Coordinate coordKarlsruheHarbour = new Coordinate(41.9028, 12.4964);
 
 
 
     @FXML
     protected void onHelloButtonClick(){
-        initMapAndControls();
 
         System.out.println("indirizzo = "+textField.getText());
-        callApi(textField.getText());
+        IndirizzoBean indirizzoB= new IndirizzoBean(textField.getText());
+        OttieniIndicazioniController indicazioni= new OttieniIndicazioniController();
+        BeanEventi eventiB;
+
+        try{
+            eventiB=indicazioni.cercaEventi(indirizzoB);
+        }catch (DAOException e){
+            throw new IllegalArgumentException(e);
+        }
+
+        initMapAndControls(eventiB.getCordinate().getLatitudine(), eventiB.getCordinate().getLongitudine(), eventiB.getCordinate().getType());
+
+
+
+        //callApi(textField.getText());
     }
 
-    public void initMapAndControls() {
+    public void initMapAndControls(String lat, String lon, String type) {
 
-        // watch the MapView's initialized property to finish initialization
-        /*
-        mapView.initializedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue) {
-                afterMapIsInitialized();
-            }
-        });
-         */
 
-        mapView.setZoom(ZOOM_DEFAULT);
-        mapView.setCenter(coordKarlsruheHarbour);
+        Coordinate coordinate = new Coordinate(Double.valueOf(lat), Double.valueOf(lon));
+        switch (type){
+            case "street"->mapView.setZoom(30);
+            case "city"->mapView.setZoom(14);
+            default->mapView.setZoom(16);
 
+        }
+        mapView.setCenter(coordinate);
         mapView.setMapType(MapType.OSM);
         mapView.initialize(Configuration.builder()
                 .projection(Projection.WEB_MERCATOR)
@@ -92,9 +106,11 @@ public class OttieniIndicazioniControllerGrafico {
 
             String lon = responseObject.getOpenStreetMapFeatures()[0].getOpenStreetMapGeometry().getcoordinates()[0];
             String lat = responseObject.getOpenStreetMapFeatures()[0].getOpenStreetMapGeometry().getcoordinates()[1];
+            String tipo=responseObject.getOpenStreetMapFeatures()[0].getOpenStreetMapProperties().getGeocoding().getType();
 
             System.out.println("lat "+lat);
             System.out.println("lon "+lon);
+            System.out.println("tipo "+tipo);
 
             Coordinate roma = new Coordinate(Double.valueOf(lat), Double.valueOf(lon));
 

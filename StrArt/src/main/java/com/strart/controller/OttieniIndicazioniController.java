@@ -1,21 +1,29 @@
 package com.strart.controller;
 
 import com.strart.exception.DAOException;
+import com.strart.model.bean.*;
 import com.strart.model.dao.CercaEventiDAO;
 import com.strart.model.domain.ListEvento;
+import com.strart.view.ApiControllerGrafico;
 
 public class OttieniIndicazioniController {
 
     String indirizzo;
-    /*
-    public BeanEventi cercaEventi() throws DAOException {
 
+    public BeanEventi cercaEventi(IndirizzoBean indirizzoB) throws DAOException {
+        BeanEventi eventiB;
+        Coordinate cordinate;
         ListEvento listEvento;
-        listEvento=new CercaEventiDAO().execute(indirizzo);
+        IndirizzoBeanAPI indirizzoBeanAPI= new IndirizzoBeanAPI(indirizzoB.getIndirizzo());
+        ApiControllerGrafico api= new ApiControllerGrafico();
+        CoordinateBean coordinateB =api.coordinateIndirizzo(indirizzoBeanAPI);
 
-
+        cordinate= new Coordinate(coordinateB.getIndirizzo(),coordinateB.getLongitudine(), coordinateB.getLatitudine(), coordinateB.getType());
+        listEvento=new CercaEventiDAO().execute(cordinate);
+        eventiB= new BeanEventi(listEvento,cordinate);
+        return eventiB;
     }
 
-     */
+
 
 }
