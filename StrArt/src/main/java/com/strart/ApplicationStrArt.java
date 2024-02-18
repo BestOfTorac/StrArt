@@ -12,7 +12,7 @@ public class ApplicationStrArt extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        new ApplicazioneSrage(stage);
+        ApplicazioneSrage.setStage(stage);
         FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStrArt.class.getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 414, 795);
         stage.setTitle("StrArt");
