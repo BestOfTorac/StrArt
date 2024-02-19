@@ -10,5 +10,9 @@ public class ListEvento {
         this.listaEvento.add(evento);
     }
 
+    public List<Evento> getListaEvento(){
+        return listaEvento;
+    }
+
 
 }

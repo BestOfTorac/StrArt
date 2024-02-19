@@ -8,8 +8,15 @@
             fx:controller="com.strart.view.LoginGrafico">
     <center>
         <VBox fx:id="topControls" alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
-            <TextField fx:id="textFieldUsername" text="username" />
-            <TextField fx:id="textFieldPassword" text="password" />
+
+            <VBox maxWidth="200">
+                <Label text="Username" />
+                <TextField fx:id="textFieldUsername" />
+            </VBox>
+            <VBox maxWidth="200">
+                <Label text="password" />
+                <PasswordField fx:id="textFieldPassword" />
+            </VBox>
 
             <Button text="Login" onAction="#onHelloButtonClick"/>
 

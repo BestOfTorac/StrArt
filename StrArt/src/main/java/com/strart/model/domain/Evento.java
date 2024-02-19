@@ -15,7 +15,9 @@ public class Evento {
     Time orarioFine;
     Blob immagine;
 
-    public Evento(String nomeArtista, String descrizione,String latitudine, String longitudine, Date data, Time orarioInizio, Time orarioFine, Blob immagine){
+    String stato;
+
+    public Evento(String nomeArtista, String descrizione,String latitudine, String longitudine, Date data, Time orarioInizio, Time orarioFine, Blob immagine, String stato){
         this.nomeArtista=nomeArtista;
         this.descrizione=descrizione;
         this.latitudine=latitudine;
@@ -24,7 +26,11 @@ public class Evento {
         this.orarioInizio=orarioInizio;
         this.orarioFine=orarioFine;
         this.immagine=immagine;
+        this.stato=stato;
     }
 
+    public String getNomeArtista(){
+        return nomeArtista;
+    }
 
 }

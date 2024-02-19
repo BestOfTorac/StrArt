@@ -35,7 +35,14 @@ public class LoginController{
             fxmlLoader = new FXMLLoader(ApplicationStrArt.class.getResource("login.fxml"));
             scene = new Scene(fxmlLoader.load(), 414, 795);
         }else{
-            String fxmlFile = "/com/strart/hello-view.fxml";
+            String fxmlFile;
+            if(cred.getRole().getId() == 1) {
+                System.out.println("Artistaa");
+                fxmlFile = "/com/strart/artistiview.fxml";
+            }else{
+                System.out.println("Spettatore");
+                fxmlFile = "/com/strart/hello-view.fxml";
+            }
             fxmlLoader = new FXMLLoader();
             Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
             final OttieniIndicazioniControllerGrafico controller = fxmlLoader.getController();

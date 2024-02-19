@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.image.ImageView?>
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.strart.view.CreaEventoControllerGrafico">
+    <center>
+        <VBox fx:id="topControls" alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
+            <TextArea fx:id="textArea" text="Descrizione dell'evento" />
+            <ImageView fx:id="imageView" fitWidth="200" fitHeight="200"/>
+            <Button text="Carica Immagine" onAction="#loadImage"/>
+            <TextField fx:id="textField" text="indirizzo" />
+            <DatePicker fx:id="dataEvento"/>
+            <Text  text="Inserisci l'orario:" />
+            <HBox>
+                <Spinner fx:id="hourSpinner"
+                         min="0"
+                         max="23"
+                         initialValue="0"
+                         editable="true"/>
+
+                <Spinner fx:id="minuteSpinner"
+                         min="0"
+                         max="59"
+                         initialValue="0"
+                         editable="true"/>
+            </HBox>
+            <Text  text="Seleziona la tipogia di evento" />
+            <ComboBox fx:id="selectionComboBox">
+                <!-- Aggiungi qui gli elementi della lista -->
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Musicale"/>
+                        <String fx:value="Teatrale"/>
+                        <String fx:value="Comico"/>
+                        <!-- Aggiungi altri elementi secondo necessità -->
+                    </FXCollections>
+                </items>
+            </ComboBox>
+
+
+
+            <Button text="Crea" onAction="#onHelloButtonClick"/>
+
+        </VBox>
+    </center>
+
+</BorderPane>
+

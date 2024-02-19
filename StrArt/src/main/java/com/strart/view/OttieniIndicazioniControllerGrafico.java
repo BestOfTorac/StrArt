@@ -1,12 +1,23 @@
 package com.strart.view;
 
 import com.sothawo.mapjfx.*;
+import com.sothawo.mapjfx.event.MapViewEvent;
 import com.strart.controller.OttieniIndicazioniController;
 import com.strart.exception.DAOException;
 import com.strart.model.bean.BeanEventi;
 import com.strart.model.bean.IndirizzoBean;
+import com.strart.model.domain.ApplicazioneSrage;
+import com.strart.model.domain.Evento;
+import javafx.animation.Transition;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+
+import java.io.IOException;
 import java.sql.SQLException;
 
 
@@ -18,6 +29,19 @@ public class OttieniIndicazioniControllerGrafico {
 
     @FXML
     private MapView mapView;
+
+    private Marker markerClick;
+
+    private boolean setMarker = false;
+
+    public OttieniIndicazioniControllerGrafico() {
+        // no position for click marker yet
+        markerClick = Marker.createProvided(Marker.Provided.ORANGE).setVisible(false);
+
+        MapLabel labelClick = new MapLabel("click!", 10, -10).setVisible(false).setCssClass("orange-label");
+
+        markerClick.attachLabel(labelClick);
+    }
 
 
     @FXML
@@ -34,9 +58,38 @@ public class OttieniIndicazioniControllerGrafico {
             throw new IllegalArgumentException(e);
         }
 
+        for(Evento evento: eventiB.getListEvento().getListaEvento()){
+            System.out.println(evento.getNomeArtista());
+        }
         initMapAndControls(eventiB.getCordinate().getLatitudine(), eventiB.getCordinate().getLongitudine(), eventiB.getCordinate().getType());
 
+        Coordinate cord = new Coordinate(Double.valueOf(eventiB.getCordinate().getLatitudine()), Double.valueOf(eventiB.getCordinate().getLongitudine()));
+        Marker marker = Marker.createProvided(Marker.Provided.BLUE).setPosition(cord).setVisible(true);
+        mapView.addMarker(marker);
 
+    }
+
+    private void animateClickMarker(Coordinate oldPosition, Coordinate newPosition) {
+        // animate the marker to the new position
+        final Transition transition = new Transition() {
+            private final Double oldPositionLongitude = oldPosition.getLongitude();
+            private final Double oldPositionLatitude = oldPosition.getLatitude();
+            private final double deltaLatitude = newPosition.getLatitude() - oldPositionLatitude;
+            private final double deltaLongitude = newPosition.getLongitude() - oldPositionLongitude;
+
+            {
+                setCycleDuration(Duration.seconds(1.0));
+                setOnFinished(evt -> markerClick.setPosition(newPosition));
+            }
+
+            @Override
+            protected void interpolate(double v) {
+                final double latitude = oldPosition.getLatitude() + v * deltaLatitude;
+                final double longitude = oldPosition.getLongitude() + v * deltaLongitude;
+                markerClick.setPosition(new Coordinate(latitude, longitude));
+            }
+        };
+        transition.play();
     }
 
     public void initMapAndControls(String lat, String lon, String type) {
@@ -44,7 +97,7 @@ public class OttieniIndicazioniControllerGrafico {
 
         Coordinate coordinate = new Coordinate(Double.valueOf(lat), Double.valueOf(lon));
         switch (type){
-            case "street"->mapView.setZoom(30);
+            case "street"->mapView.setZoom(18);
             case "city"->mapView.setZoom(14);
             default->mapView.setZoom(16);
 
@@ -55,6 +108,54 @@ public class OttieniIndicazioniControllerGrafico {
                 .projection(Projection.WEB_MERCATOR)
                 .showZoomControls(false)
                 .build());
+
+        // add an event handler for singleclicks, set the click marker to the new position when it's visible
+        mapView.addEventHandler(MapViewEvent.MAP_CLICKED, event -> {
+            event.consume();
+            System.out.println("setMarker: " + setMarker);
+            if (this.setMarker) {
+
+                final Coordinate newPosition = event.getCoordinate().normalize();
+                System.out.println("Event: map clicked at: " + newPosition);
+
+                markerClick.setVisible(true);
+                final Coordinate oldPosition = markerClick.getPosition();
+                if (oldPosition != null) {
+                    animateClickMarker(oldPosition, newPosition);
+                } else {
+                    markerClick.setPosition(newPosition);
+                    // adding can only be done after coordinate is set
+                    mapView.addMarker(markerClick);
+                }
+            }
+
+        });
+    }
+
+    public void creaEvento() throws IOException {
+
+        this.setMarker = true;
+
+        if (markerClick != null && markerClick.getPosition() != null) {
+            FXMLLoader fxmlLoader;
+            Stage stage = ApplicazioneSrage.getStage();
+            Scene scene;
+
+            String fxmlFile;
+
+            fxmlFile = "/com/strart/creaEvento.fxml";
+            fxmlLoader = new FXMLLoader();
+            Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
+            final CreaEventoControllerGrafico controller = fxmlLoader.getController();
+            controller.setFields(textField.getText(), markerClick.getPosition());
+            scene = new Scene(rootNode, 414, 795);
+
+
+            stage.setTitle("StrArt");
+            stage.setScene(scene);
+            stage.show();
+
+        }
     }
 
 
