@@ -58,11 +58,15 @@ public class OttieniIndicazioniControllerGrafico {
             throw new IllegalArgumentException(e);
         }
 
+
+        initMapAndControls(eventiB.getCordinate().getLatitudine(), eventiB.getCordinate().getLongitudine(), eventiB.getCordinate().getType());
         for(Evento evento: eventiB.getListEvento().getListaEvento()){
             System.out.println(evento.getNomeArtista());
-        }
-        initMapAndControls(eventiB.getCordinate().getLatitudine(), eventiB.getCordinate().getLongitudine(), eventiB.getCordinate().getType());
+            Coordinate cord = new Coordinate(Double.valueOf(eventiB.getCordinate().getLatitudine()), Double.valueOf(eventiB.getCordinate().getLongitudine()));
+            Marker marker = Marker.createProvided(Marker.Provided.RED).setPosition(cord).setVisible(true);
+            mapView.addMarker(marker);
 
+        }
         Coordinate cord = new Coordinate(Double.valueOf(eventiB.getCordinate().getLatitudine()), Double.valueOf(eventiB.getCordinate().getLongitudine()));
         Marker marker = Marker.createProvided(Marker.Provided.BLUE).setPosition(cord).setVisible(true);
         mapView.addMarker(marker);
