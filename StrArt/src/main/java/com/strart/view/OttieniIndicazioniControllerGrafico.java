@@ -32,6 +32,7 @@ public class OttieniIndicazioniControllerGrafico {
 
     private Marker markerClick;
 
+
     private boolean setMarker = false;
 
     public OttieniIndicazioniControllerGrafico() {
@@ -64,12 +65,18 @@ public class OttieniIndicazioniControllerGrafico {
             System.out.println(evento.getNomeArtista());
             Coordinate cord = new Coordinate(Double.valueOf(eventiB.getCordinate().getLatitudine()), Double.valueOf(eventiB.getCordinate().getLongitudine()));
             Marker marker = Marker.createProvided(Marker.Provided.RED).setPosition(cord).setVisible(true);
+
+
+            marker.visibleProperty();
             mapView.addMarker(marker);
+            System.out.println("Messo il marker"+ marker);
 
         }
-        Coordinate cord = new Coordinate(Double.valueOf(eventiB.getCordinate().getLatitudine()), Double.valueOf(eventiB.getCordinate().getLongitudine()));
-        Marker marker = Marker.createProvided(Marker.Provided.BLUE).setPosition(cord).setVisible(true);
-        mapView.addMarker(marker);
+        //markerRosso.visibleProperty();
+
+        //Coordinate cord = new Coordinate(Double.valueOf(eventiB.getCordinate().getLatitudine()), Double.valueOf(eventiB.getCordinate().getLongitudine()));
+        //Marker marker = Marker.createProvided(Marker.Provided.BLUE).setPosition(cord).setVisible(true);
+        //mapView.addMarker(marker);
 
     }
 
