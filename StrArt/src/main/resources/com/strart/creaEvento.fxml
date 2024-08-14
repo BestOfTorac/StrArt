@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.image.ImageView?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.strart.view.CreaEventoControllerGrafico">
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.strart.view.GestisciEventiControllerGrafico">
     <center>
         <VBox fx:id="topControls" alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
            <children>
@@ -24,14 +24,24 @@
                <Button onAction="#loadImage" style="-fx-background-color: #754343;" text="Carica Immagine" textFill="#1a1919" />
                <TextField fx:id="textField" text="indirizzo" />
                <DatePicker fx:id="dataEvento" />
-               <Text text="Inserisci l'orario:" />
+               <Text text="Inserisci l'orario di inizio:" />
                <HBox>
                   <children>
-                      <Spinner fx:id="hourSpinner" editable="true" initialValue="0" max="23" min="0" />
+                      <Spinner fx:id="hourSpinnerIn" editable="true" initialValue="0" max="23" min="0" />
       
-                      <Spinner fx:id="minuteSpinner" editable="true" initialValue="0" max="59" min="0" />
+                      <Spinner fx:id="minuteSpinnerIn" editable="true" initialValue="0" max="59" min="0" />
                   </children>
                </HBox>
+
+               <Text text="Inserisci l'orario di fine:" />
+               <HBox>
+                   <children>
+                       <Spinner fx:id="hourSpinnerOut" editable="true" initialValue="0" max="23" min="0" />
+
+                       <Spinner fx:id="minuteSpinnerOut" editable="true" initialValue="0" max="59" min="0" />
+                   </children>
+               </HBox>
+
                <Text text="Seleziona la tipogia di evento" />
                <ComboBox fx:id="selectionComboBox">
                    <!-- Aggiungi qui gli elementi della lista -->
@@ -44,10 +54,11 @@
                        </FXCollections>
                    </items>
                </ComboBox>
-   
-   
-   
-               <Button onAction="#onHelloButtonClick" text="Crea" />
+
+
+
+               <Button onAction="#goBack" text="Indietro" />
+               <Button onAction="#creaEvento" text="Crea" />
            </children>
 
         </VBox>

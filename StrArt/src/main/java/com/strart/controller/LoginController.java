@@ -3,9 +3,12 @@ package com.strart.controller;
 import com.strart.ApplicationStrArt;
 import com.strart.exception.DAOException;
 import com.strart.model.bean.CredentialsBean;
+import com.strart.model.dao.ConnectionFactory;
 import com.strart.model.dao.LoginProcedureDAO;
+import com.strart.model.dao.ProfileProcedureDAO;
 import com.strart.model.domain.ApplicazioneSrage;
 import com.strart.model.domain.Credentials;
+import com.strart.model.domain.Profile;
 import com.strart.view.OttieniIndicazioniControllerGrafico;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,6 +17,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+
+import static com.strart.model.dao.ConnectionFactory.changeRole;
 
 public class LoginController{
 
@@ -36,8 +41,22 @@ public class LoginController{
             scene = new Scene(fxmlLoader.load(), 414, 795);
         }else{
             String fxmlFile;
+
+            try {
+                ConnectionFactory.changeRole(cred.getRole());
+            } catch(SQLException e) {
+                throw new IllegalArgumentException(e);
+            }
+
             if(cred.getRole().getId() == 1) {
                 System.out.println("Artistaa");
+
+                try {
+                    new ProfileProcedureDAO().execute(cred);
+                } catch(DAOException | SQLException e) {
+                    throw new IllegalArgumentException(e);
+                }
+
                 fxmlFile = "/com/strart/artistiview.fxml";
             }else{
                 System.out.println("Spettatore");

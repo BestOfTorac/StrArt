@@ -143,22 +143,22 @@ public class OttieniIndicazioniControllerGrafico {
         });
     }
 
-    public void creaEvento() throws IOException {
+    public void gestisciEventi() throws IOException {
 
-        this.setMarker = true;
+        //this.setMarker = true;
 
-        if (markerClick != null && markerClick.getPosition() != null) {
+        //if (markerClick != null && markerClick.getPosition() != null) {
             FXMLLoader fxmlLoader;
             Stage stage = ApplicazioneSrage.getStage();
             Scene scene;
 
             String fxmlFile;
 
-            fxmlFile = "/com/strart/creaEvento.fxml";
+            fxmlFile = "/com/strart/GestisciEventi.fxml";
             fxmlLoader = new FXMLLoader();
             Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
-            final CreaEventoControllerGrafico controller = fxmlLoader.getController();
-            controller.setFields(textField.getText(), markerClick.getPosition());
+            //final GestisciEventiControllerGrafico controller = fxmlLoader.getController();
+            //controller.setFields(textField.getText() /*,markerClick.getPosition()*/);
             scene = new Scene(rootNode, 414, 795);
 
 
@@ -166,7 +166,7 @@ public class OttieniIndicazioniControllerGrafico {
             stage.setScene(scene);
             stage.show();
 
-        }
+        //}
     }
 
 

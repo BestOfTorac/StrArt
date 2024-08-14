@@ -3,6 +3,7 @@ package com.strart.model.dao;
 import com.strart.exception.DAOException;
 import com.strart.model.bean.Coordinate;
 import com.strart.model.domain.Evento;
+import com.strart.model.domain.FactoryEvento;
 import com.strart.model.domain.ListEvento;
 
 import java.sql.CallableStatement;
@@ -27,8 +28,22 @@ public class CercaEventiDAO implements GenericDAO<ListEvento> {
             boolean status = cs.execute();
             if(status) {
                 ResultSet rs = cs.getResultSet();
+                FactoryEvento factoryEvento= new FactoryEvento();
                 if (rs.next()) {
-                    Evento evento = new Evento(rs.getString(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getTime(6), rs.getTime(7), rs.getBlob(8),rs.getString(9));
+                    //Evento evento = new Evento(rs.getString(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getTime(6), rs.getTime(7), rs.getBlob(8),rs.getString(9));
+
+                    Evento evento= factoryEvento.createEvento(rs.getString(9));
+                    evento.setNomeArtista(rs.getString(1));
+                    evento.setDescrizione(rs.getString(2));
+                    evento.setLatitudine(rs.getString(3));
+                    evento.setLongitudine(rs.getString(4));
+                    evento.setData(rs.getDate(5));
+                    evento.setOrarioInizio(rs.getTime(6));
+                    evento.setOrarioFine(rs.getTime(7));
+                    evento.setImmagine(rs.getBlob(8));
+                    evento.setStato(rs.getString(10));
+
+
                     listEvento.addEvento(evento);
                 }
             }
