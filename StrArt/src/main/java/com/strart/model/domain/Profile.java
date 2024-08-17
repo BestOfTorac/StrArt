@@ -26,11 +26,11 @@ public class Profile{
         Profile.numEventi = numEventi;
     }
 
-    public void summaEvento(int num){
+    public static void summaEvento(int num){
         numEventi+=num;
     }
 
-    public void sottraiEvento(int num){
+    public static void sottraiEvento(int num){
         if(numEventi-num < 0){
             numEventi=0;
         }else{
@@ -38,5 +38,6 @@ public class Profile{
         }
 
     }
+
 
 }

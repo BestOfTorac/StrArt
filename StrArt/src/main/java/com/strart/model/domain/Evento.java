@@ -111,6 +111,8 @@ public abstract class Evento {
 
     public  abstract void aggiungiCaratteristiche(String car);
 
+    public abstract String getTipo();
+
 
     /*
     public Evento(String nomeArtista, String descrizione,String latitudine, String longitudine, Date data, Time orarioInizio, Time orarioFine, Blob immagine, String stato){

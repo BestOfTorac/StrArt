@@ -3,6 +3,8 @@ module com.strart {
     requires javafx.fxml;
     requires com.sothawo.mapjfx;
     requires com.google.gson;
+    requires javafx.swing;
+    requires java.sql.rowset;
 
 
     opens com.strart to javafx.fxml, com.google.gson;

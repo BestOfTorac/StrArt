@@ -33,6 +33,20 @@
             <version>${mapjfx.version}</version>
         </dependency>
 
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>17.0.2</version> <!-- O la versione di JavaFX che preferisci -->
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-swing</artifactId>
+            <version>17.0.2</version>
+        </dependency>
+
+
+
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>

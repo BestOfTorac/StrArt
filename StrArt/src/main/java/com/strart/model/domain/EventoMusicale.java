@@ -14,4 +14,9 @@ public class EventoMusicale extends Evento {
        caratteristiche=car;
     }
 
+    @Override
+    public String getTipo(){
+        return "musicale";
+    }
+
 }

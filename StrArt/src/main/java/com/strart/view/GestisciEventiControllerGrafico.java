@@ -3,8 +3,10 @@ package com.strart.view;
 import com.sothawo.mapjfx.*;
 import com.strart.controller.GestisciEventiiController;
 import com.strart.exception.DAOException;
+import com.strart.model.bean.BeanEventi;
 import com.strart.model.bean.BeanEvento;
 import com.strart.model.domain.ApplicazioneSrage;
+import com.strart.model.domain.Evento;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Blob;
@@ -22,6 +25,18 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.time.LocalTime;
+
+import javafx.embed.swing.SwingFXUtils;
+
+import javax.imageio.IIOImage;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.util.Iterator;
+import javax.imageio.ImageWriteParam;
+import javax.imageio.ImageWriter;
+import javax.imageio.stream.ImageOutputStream;
+import javax.sql.rowset.serial.SerialBlob;
+import javax.sql.rowset.serial.SerialException;
 
 
 public class GestisciEventiControllerGrafico {
@@ -51,6 +66,7 @@ public class GestisciEventiControllerGrafico {
     @FXML
     private MapView mapView;
 
+    private GestisciEventiiController gestEventi;
 
     private String indirizzo;
     private Coordinate coordinate;
@@ -99,8 +115,36 @@ public class GestisciEventiControllerGrafico {
         Time timeIn = Time.valueOf(localTimeIn);
         Time timeOut = Time.valueOf(localTimeOut);
 
-        BeanEvento beanEvento= new BeanEvento(textArea.getText(), (Blob) imageView.getImage(), textField.getText(), (Date) dataEvento.getUserData(), timeIn, timeOut, selectionComboBox.getValue().toString());
-        GestisciEventiiController gestEventi= new GestisciEventiiController();
+
+        // Convert0 l'immagine JavaFX in BufferedImage
+        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(imageView.getImage(), null);
+
+
+
+        byte[] compressedImageData;
+        try{
+
+            compressedImageData = compressImage(bufferedImage, 0.8f);
+        }catch ( IOException e){
+            throw new IllegalArgumentException(e);
+        }
+
+
+
+        Blob blob;
+        try{
+            // Crea un BLOB dall'array di byte
+            blob= new SerialBlob(compressedImageData);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println("Data di creazioneeeeGrafica: " + dataEvento.getValue());
+        BeanEvento beanEvento= new BeanEvento(textArea.getText(), blob, textField.getText(), Date.valueOf(dataEvento.getValue()), timeIn, timeOut, selectionComboBox.getValue().toString());
+
+        if(gestEventi == null) {
+            gestEventi = new GestisciEventiiController();
+        }
 
         try{
             gestEventi.creaEvento(beanEvento);
@@ -109,23 +153,12 @@ public class GestisciEventiControllerGrafico {
         }
 
 
-
-        /*
-        IndirizzoBean indirizzoB= new IndirizzoBean(textField.getText());
-        OttieniIndicazioniController indicazioni= new OttieniIndicazioniController();
-        BeanEventi eventiB;
-
         try{
-            eventiB=indicazioni.cercaEventi(indirizzoB);
-        }catch (DAOException | SQLException e){
+            this.goBack();
+        }catch (IOException e){
             throw new IllegalArgumentException(e);
         }
 
-        for(Evento evento: eventiB.getListEvento().getListaEvento()){
-            System.out.println(evento.getNomeArtista());
-        }
-        initMapAndControls(eventiB.getCordinate().getLatitudine(), eventiB.getCordinate().getLongitudine(), eventiB.getCordinate().getType());
-        */
 
     }
 
@@ -196,6 +229,21 @@ public class GestisciEventiControllerGrafico {
     @FXML
     protected void visualizzaEventi()throws IOException{
 
+        if(gestEventi == null) {
+            gestEventi = new GestisciEventiiController();
+        }
+        BeanEventi beanEventi;
+        try{
+            beanEventi=gestEventi.visualizzaEventi();
+        }catch (DAOException | SQLException e){
+            throw new IllegalArgumentException(e);
+        }
+
+        for (Evento evento: beanEventi.getListEvento().getListaEvento()) {
+            System.out.println("Descrizione: "+evento.getDescrizione()+"  Data: "+evento.getData());
+        }
+
+
     }
 
 
@@ -223,6 +271,18 @@ public class GestisciEventiControllerGrafico {
     }
     */
 
-
+    public byte[] compressImage(BufferedImage image, float quality) throws IOException {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ImageOutputStream ios = ImageIO.createImageOutputStream(baos);
+        Iterator<ImageWriter> writers = ImageIO.getImageWritersByFormatName("png");
+        ImageWriter writer = writers.next();
+        ImageWriteParam param = writer.getDefaultWriteParam();
+        param.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+        param.setCompressionQuality(quality); // 1 is max, 0 is min
+        writer.setOutput(ios);
+        writer.write(null, new IIOImage(image, null, null), param);
+        writer.dispose();
+        return baos.toByteArray();
+    }
 
 }

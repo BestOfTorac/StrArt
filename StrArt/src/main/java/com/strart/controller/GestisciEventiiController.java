@@ -4,6 +4,7 @@ import com.strart.exception.DAOException;
 import com.strart.model.bean.*;
 import com.strart.model.dao.CercaEventiDAO;
 import com.strart.model.domain.Evento;
+import com.strart.model.domain.FacadeEvento;
 import com.strart.model.domain.FactoryEvento;
 import com.strart.model.domain.ListEvento;
 import com.strart.view.ApiControllerGrafico;
@@ -13,6 +14,9 @@ import java.sql.SQLException;
 public class GestisciEventiiController {
 
     String indirizzo;
+    FacadeEvento facadeEvento;
+
+    ListEvento listEvento;
     /*
     public BeanEventi cercaEventi(IndirizzoBean indirizzoB) throws DAOException, SQLException {
         BeanEventi eventiB;
@@ -28,7 +32,9 @@ public class GestisciEventiiController {
         return eventiB;
     }
     */
-
+    public GestisciEventiiController(){
+        facadeEvento=new FacadeEvento();
+    }
     public void creaEvento(BeanEvento beanEvento) throws DAOException, SQLException{
 
         //verifica esistenza indirizzo e recupero delle coordinate
@@ -46,8 +52,26 @@ public class GestisciEventiiController {
         evento.setOrarioFine(beanEvento.getOrarioFine());
         evento.setImmagine(beanEvento.getImmagine());
 
+        //chiamo il facade per effettuare l'operazione di creazione dell'evento
+        facadeEvento.creaEvento(evento);
+
+        if(listEvento!=null){
+            listEvento.addEvento(evento);
+        }
+
+    }
+
+    public BeanEventi visualizzaEventi()throws DAOException, SQLException {
+
+        BeanEventi beanEventi;
+        if(listEvento==null) {
+            listEvento = facadeEvento.visualizzaEventi();
+        }
+
+        beanEventi= new BeanEventi(listEvento);
 
 
+        return beanEventi;
     }
 
 

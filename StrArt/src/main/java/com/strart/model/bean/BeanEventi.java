@@ -16,6 +16,10 @@ public class BeanEventi {
 
     }
 
+    public BeanEventi(ListEvento listEvento) {
+        this.listEvento = listEvento;
+    }
+
     public ListEvento getListEvento() {
             return listEvento;
         }
