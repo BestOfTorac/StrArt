@@ -22,10 +22,14 @@ public class LoginController{
 
     public void start(CredentialsBean credB) throws DAOException, IOException {
 
-        Credentials cred= new Credentials(credB.getUsername(),credB.getPassword());
+        //Credentials cred= new Credentials(credB.getUsername(),credB.getPassword());
+        Credentials.setUsername(credB.getUsername());
+        Credentials.setPassword(credB.getPassword());
+        Credentials.setRole(null);
+
 
         try {
-            new LoginProcedureDAO().execute(cred);
+            new LoginProcedureDAO().execute();
         } catch(DAOException | SQLException e) {
             throw new IllegalArgumentException(e);
         }
@@ -33,23 +37,23 @@ public class LoginController{
         FXMLLoader fxmlLoader;
         Stage stage = ApplicazioneStage.getStage();
         Scene scene;
-        if(cred.getRole() == null) {
+        if(Credentials.getRole() == null) {
             fxmlLoader = new FXMLLoader(ApplicationStrArt.class.getResource("login.fxml"));
             scene = new Scene(fxmlLoader.load(), 414, 795);
         }else{
             String fxmlFile;
 
             try {
-                ConnectionFactory.changeRole(cred.getRole());
+                ConnectionFactory.changeRole(Credentials.getRole());
             } catch(SQLException e) {
                 throw new IllegalArgumentException(e);
             }
 
-            if(cred.getRole().getId() == 1) {
+            if(Credentials.getRole().getId() == 1) {
 
 
                 try {
-                    new ProfileProcedureDAO().execute(cred);
+                    new ProfileProcedureDAO().execute();
                 } catch(DAOException | SQLException e) {
                     throw new IllegalArgumentException(e);
                 }

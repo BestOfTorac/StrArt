@@ -12,18 +12,17 @@ import java.sql.Types;
 public class LoginProcedureDAO{
 
     public void execute(Object... params) throws DAOException, SQLException {
-        Credentials cred= (Credentials) params[0];
         int role;
         CallableStatement cs = null;
         try {
             Connection conn = ConnectionFactory.getConnection();
             cs = conn.prepareCall("{call login(?,?,?)}");
-            cs.setString(1, cred.getUsername());
-            cs.setString(2, cred.getPassword());
+            cs.setString(1, Credentials.getUsername());
+            cs.setString(2, Credentials.getPassword());
             cs.registerOutParameter(3, Types.NUMERIC);
             cs.executeQuery();
             role = cs.getInt(3);
-            cred.setRole(Role.fromInt(role));
+            Credentials.setRole(Role.fromInt(role));
         } catch(SQLException e) {
             throw new DAOException("Login error: " + e.getMessage());
         }finally {

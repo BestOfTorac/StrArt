@@ -6,29 +6,28 @@ public class Credentials {
     static String password;
     static Role role;
 
-    public Credentials(String user, String password, Role role) {
-        username = user;
-        Credentials.password = password;
-        Credentials.role = role;
-    }
-
-    public Credentials(String username, String password) {
-        Credentials.username = username;
-        Credentials.password = password;
-    }
 
     public static String getUsername() {
             return username;
         }
-    public String getPassword() {
+    public static String getPassword() {
             return password;
         }
 
-    public Role getRole() {
+    public static Role getRole() {
             return role;
         }
 
-    public void setRole(Role role){
+    public static void setRole(Role role){
         Credentials.role=role;
     }
+
+    public static void setUsername(String use){
+        username=use;
+    }
+    public static void setPassword(String pas){
+        password=pas;
+    }
+
+
 }

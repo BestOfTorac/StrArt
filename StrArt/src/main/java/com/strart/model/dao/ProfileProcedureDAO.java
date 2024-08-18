@@ -8,12 +8,11 @@ import java.sql.*;
 public class ProfileProcedureDAO  {
 
     public void execute(Object... params) throws DAOException, SQLException {
-        Credentials cred = (Credentials) params[0];
         CallableStatement cs = null;
         try {
             Connection conn = ConnectionFactory.getConnection();
             cs = conn.prepareCall("{call recuperaProfilo(?)}");
-            cs.setString(1, cred.getUsername());
+            cs.setString(1, Credentials.getUsername());
 
             boolean status = cs.execute();
             if (status) {
