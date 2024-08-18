@@ -5,8 +5,9 @@ import com.sothawo.mapjfx.event.MapViewEvent;
 import com.strart.controller.OttieniIndicazioniController;
 import com.strart.exception.DAOException;
 import com.strart.model.bean.BeanEventi;
+import com.strart.model.bean.BeanEvento;
 import com.strart.model.bean.IndirizzoBean;
-import com.strart.model.domain.ApplicazioneSrage;
+import com.strart.model.domain.ApplicazioneStage;
 import com.strart.model.domain.Evento;
 import javafx.animation.Transition;
 import javafx.fxml.FXML;
@@ -52,6 +53,7 @@ public class OttieniIndicazioniControllerGrafico {
         IndirizzoBean indirizzoB= new IndirizzoBean(textField.getText());
         OttieniIndicazioniController indicazioni= new OttieniIndicazioniController();
         BeanEventi eventiB;
+        BeanEvento eventoBean = null;
 
         try{
             eventiB=indicazioni.cercaEventi(indirizzoB);
@@ -66,12 +68,33 @@ public class OttieniIndicazioniControllerGrafico {
             Coordinate cord = new Coordinate(Double.valueOf(eventiB.getCordinate().getLatitudine()), Double.valueOf(eventiB.getCordinate().getLongitudine()));
             Marker marker = Marker.createProvided(Marker.Provided.RED).setPosition(cord).setVisible(true);
 
-
+            /*
             marker.visibleProperty();
             mapView.addMarker(marker);
-            System.out.println("Messo il marker"+ marker);
+            System.out.println("Messo il marker"+ marker+"\n\n");
+
+             */
+
+
+
+
+
+            eventoBean=indicazioni.OttieniEvento(evento.getNomeArtista(), evento.getData(), evento.getOrarioInizio());
+            System.out.println(eventoBean.getNomeArtista()+" "+evento.getDescrizione()+"\n\n");
+
+
+
 
         }
+        try{
+            if(eventoBean!= null){
+                indicazioni.partecipaEvento(eventoBean);
+            }
+        }catch (DAOException | SQLException e){
+            throw new IllegalArgumentException(e);
+        }
+
+
         //markerRosso.visibleProperty();
 
         //Coordinate cord = new Coordinate(Double.valueOf(eventiB.getCordinate().getLatitudine()), Double.valueOf(eventiB.getCordinate().getLongitudine()));
@@ -149,7 +172,7 @@ public class OttieniIndicazioniControllerGrafico {
 
         //if (markerClick != null && markerClick.getPosition() != null) {
             FXMLLoader fxmlLoader;
-            Stage stage = ApplicazioneSrage.getStage();
+            Stage stage = ApplicazioneStage.getStage();
             Scene scene;
 
             String fxmlFile;

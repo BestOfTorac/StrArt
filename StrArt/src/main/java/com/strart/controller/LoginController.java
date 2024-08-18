@@ -6,9 +6,8 @@ import com.strart.model.bean.CredentialsBean;
 import com.strart.model.dao.ConnectionFactory;
 import com.strart.model.dao.LoginProcedureDAO;
 import com.strart.model.dao.ProfileProcedureDAO;
-import com.strart.model.domain.ApplicazioneSrage;
+import com.strart.model.domain.ApplicazioneStage;
 import com.strart.model.domain.Credentials;
-import com.strart.model.domain.Profile;
 import com.strart.view.OttieniIndicazioniControllerGrafico;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,8 +16,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
-
-import static com.strart.model.dao.ConnectionFactory.changeRole;
 
 public class LoginController{
 
@@ -34,7 +31,7 @@ public class LoginController{
         }
 
         FXMLLoader fxmlLoader;
-        Stage stage = ApplicazioneSrage.getStage();
+        Stage stage = ApplicazioneStage.getStage();
         Scene scene;
         if(cred.getRole() == null) {
             fxmlLoader = new FXMLLoader(ApplicationStrArt.class.getResource("login.fxml"));

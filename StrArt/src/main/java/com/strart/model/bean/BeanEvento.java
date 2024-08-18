@@ -6,7 +6,7 @@ import java.sql.Time;
 
 public class BeanEvento {
 
-
+    String nomeArtista;
     String descrizione;
     Blob immagine;
 
@@ -17,6 +17,18 @@ public class BeanEvento {
     Time orarioFine;
 
     String tipoEvento;
+
+    public BeanEvento(String nomeArtista, String descrizione, Blob immagine,  Date data, Time orarioInizio, Time orarioFine, String tipoEvento){
+        //TODO: fare i controlli dei dati (deescrizione almeno 10 caratteri, data maggiore uguale a quella di oggi, orario fine dopo orario inizio, ...)
+        this.nomeArtista=nomeArtista;
+        this.descrizione=descrizione;
+        this.immagine=immagine;
+        this.data=data;
+        this.orarioInizio=orarioInizio;
+        this.orarioFine=orarioFine;
+        this.tipoEvento=tipoEvento;
+
+    }
 
     public BeanEvento( String descrizione, Blob immagine, String indirizzo, Date data, Time orarioInizio, Time orarioFine, String tipoEvento){
         //TODO: fare i controlli dei dati (deescrizione almeno 10 caratteri, data maggiore uguale a quella di oggi, orario fine dopo orario inizio, ...)
@@ -30,6 +42,11 @@ public class BeanEvento {
 
     }
 
+
+    // Getter per il nome dell'artista
+    public String getNomeArtista() {
+        return nomeArtista;
+    }
 
     // Getter per descrizione
     public String getDescrizione() {

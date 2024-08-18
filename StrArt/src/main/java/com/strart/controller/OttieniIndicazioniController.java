@@ -3,19 +3,26 @@ package com.strart.controller;
 import com.strart.exception.DAOException;
 import com.strart.model.bean.*;
 import com.strart.model.dao.CercaEventiDAO;
+import com.strart.model.dao.PartecipaEventoDAO;
+import com.strart.model.domain.Credentials;
+import com.strart.model.domain.Evento;
+import com.strart.model.domain.FactoryEvento;
 import com.strart.model.domain.ListEvento;
 import com.strart.view.ApiControllerGrafico;
 
+import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Time;
 
 public class OttieniIndicazioniController {
 
     String indirizzo;
+    ListEvento listEvento;
 
     public BeanEventi cercaEventi(IndirizzoBean indirizzoB) throws DAOException, SQLException {
         BeanEventi eventiB;
         Coordinate cordinate;
-        ListEvento listEvento;
+
         IndirizzoBeanAPI indirizzoBeanAPI= new IndirizzoBeanAPI(indirizzoB.getIndirizzo());
         ApiControllerGrafico api= new ApiControllerGrafico();
         CoordinateBean coordinateB =api.coordinateIndirizzo(indirizzoBeanAPI);
@@ -24,6 +31,40 @@ public class OttieniIndicazioniController {
         listEvento=new CercaEventiDAO().execute(cordinate);
         eventiB= new BeanEventi(listEvento,cordinate);
         return eventiB;
+    }
+
+    public BeanEvento OttieniEvento(String nomeDArte, Date data, Time oraInizio){
+
+        BeanEvento beanEvento = null;
+
+        for(Evento evento: listEvento.getListaEvento()) {
+
+            if(evento.getNomeArtista().equals(nomeDArte) && evento.getData()==data && evento.getOrarioInizio()==oraInizio){
+                beanEvento=new BeanEvento(evento.getNomeArtista(), evento.getDescrizione(), evento.getImmagine(), evento.getData(), evento.getOrarioInizio(), evento.getOrarioFine(), evento.getTipo());
+            }
+
+        }
+
+
+
+
+        return beanEvento;
+    }
+
+    public void partecipaEvento(BeanEvento eventoBean)throws DAOException, SQLException{
+
+
+        FactoryEvento factoryEvento= new FactoryEvento();
+        Evento evento= factoryEvento.createEventoMusicale();
+        evento.setNomeArtista(eventoBean.getNomeArtista());
+        evento.setData(eventoBean.getData());
+        evento.setOrarioInizio(eventoBean.getOrarioInizio());
+
+        //TODO il facade si preoccuperà di recuperare il credential
+        new PartecipaEventoDAO().execute(evento, Credentials.getUsername());
+
+
+
     }
 
 

@@ -3,11 +3,11 @@ package com.strart.model.domain;
 import javafx.stage.Stage;
 
 
-public class ApplicazioneSrage {
+public class ApplicazioneStage {
 
     private static Stage stage;
 
-    private ApplicazioneSrage(){
+    private ApplicazioneStage(){
 
     }
     public static Stage getStage(){
@@ -15,7 +15,7 @@ public class ApplicazioneSrage {
     }
 
     public static void setStage(Stage stage){
-        ApplicazioneSrage.stage =stage;
+        ApplicazioneStage.stage =stage;
     }
 
 }

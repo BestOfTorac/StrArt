@@ -17,7 +17,7 @@ public class Credentials {
         Credentials.password = password;
     }
 
-    public String getUsername() {
+    public static String getUsername() {
             return username;
         }
     public String getPassword() {

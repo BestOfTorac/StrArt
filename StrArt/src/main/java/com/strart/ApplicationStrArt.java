@@ -1,6 +1,6 @@
 package com.strart;
 
-import com.strart.model.domain.ApplicazioneSrage;
+import com.strart.model.domain.ApplicazioneStage;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,7 +12,7 @@ public class ApplicationStrArt extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        ApplicazioneSrage.setStage(stage);
+        ApplicazioneStage.setStage(stage);
         FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStrArt.class.getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 414, 795);
         stage.setTitle("StrArt");

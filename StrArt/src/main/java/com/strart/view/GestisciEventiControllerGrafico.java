@@ -5,7 +5,7 @@ import com.strart.controller.GestisciEventiiController;
 import com.strart.exception.DAOException;
 import com.strart.model.bean.BeanEventi;
 import com.strart.model.bean.BeanEvento;
-import com.strart.model.domain.ApplicazioneSrage;
+import com.strart.model.domain.ApplicazioneStage;
 import com.strart.model.domain.Evento;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,7 +36,6 @@ import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;
 import javax.imageio.stream.ImageOutputStream;
 import javax.sql.rowset.serial.SerialBlob;
-import javax.sql.rowset.serial.SerialException;
 
 
 public class GestisciEventiControllerGrafico {
@@ -83,7 +82,7 @@ public class GestisciEventiControllerGrafico {
     @FXML
     protected void viewCreaEvento() throws IOException{
         FXMLLoader fxmlLoader;
-        Stage stage = ApplicazioneSrage.getStage();
+        Stage stage = ApplicazioneStage.getStage();
         Scene scene;
 
         String fxmlFile;
@@ -189,7 +188,7 @@ public class GestisciEventiControllerGrafico {
     @FXML
     protected void goHome() throws IOException{
         FXMLLoader fxmlLoader;
-        Stage stage = ApplicazioneSrage.getStage();
+        Stage stage = ApplicazioneStage.getStage();
         Scene scene;
 
         String fxmlFile;
@@ -210,7 +209,7 @@ public class GestisciEventiControllerGrafico {
     @FXML
     protected void goBack() throws IOException{
         FXMLLoader fxmlLoader;
-        Stage stage = ApplicazioneSrage.getStage();
+        Stage stage = ApplicazioneStage.getStage();
         Scene scene;
 
         String fxmlFile;
