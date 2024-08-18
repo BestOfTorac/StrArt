@@ -14,7 +14,7 @@ public class FacadeEvento {
     public void creaEvento(Evento evento)throws DAOException, SQLException {
 
         //Recupera il username dal profilo
-        String usernmae= Profile.username;
+        String usernmae= Profile.getUsername();
 
         //Istanzia il dao di creazione di un evento passandogli l'evento
         new CreaEventoDAO().execute(usernmae, evento);
@@ -29,12 +29,11 @@ public class FacadeEvento {
 
 
         //Recupera il username dal profilo
-        String usernmae= Profile.username;
+        String usernmae= Profile.getUsername();
 
         //Istanzia il dao di visualizzazione dei miei eventi
-        ListEvento listEvento=new VisualizzaEventiDAO().execute(usernmae);
 
-        return listEvento;
+        return new VisualizzaEventiDAO().execute(usernmae);
     }
 
 

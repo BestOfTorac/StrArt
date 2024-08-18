@@ -18,7 +18,20 @@ public class ProfileProcedureDAO  {
             if (status) {
                 ResultSet rs = cs.getResultSet();
                 if (rs.next()) {
-                    new Profile(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getString(5), rs.getString(6), rs.getFloat(7), rs.getInt(8));
+                    //new Profile(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDate(4), rs.getString(5), rs.getString(6), rs.getFloat(7), rs.getInt(8));
+
+                    Profile.setUsername(rs.getString(1));
+                    Profile.setNome(rs.getString(2));
+                    Profile.setCognome(rs.getString(3));
+                    Profile.setDataNascita(rs.getDate(4));
+                    Profile.setNomeDArte(rs.getString(5));
+                    Profile.setDescrizione(rs.getString(6));
+                    Profile.setValutazione(rs.getFloat(7));
+                    Profile.setNumEventi(rs.getInt(8));
+
+
+
+
 
                 }
             }
