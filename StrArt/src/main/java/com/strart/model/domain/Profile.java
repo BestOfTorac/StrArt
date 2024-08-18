@@ -15,6 +15,10 @@ public class Profile{
     private static float valutazione;
     private static int numEventi;
 
+
+    private Profile(){}
+
+
     public static void setUsername(String usernameV) {
         username = usernameV;
     }

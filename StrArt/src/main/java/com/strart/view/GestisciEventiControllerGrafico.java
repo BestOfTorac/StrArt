@@ -72,14 +72,6 @@ public class GestisciEventiControllerGrafico {
 
     private static final String NAMEAPP = "StrArt";
 
-    public void setFields(String indirizzo/*, Coordinate coordinate*/) {
-        this.indirizzo = indirizzo;
-        //this.coordinate = coordinate;
-        System.out.println("indirizzo: " + this.indirizzo);
-        //System.out.println("coordinate: " + this.coordinate.toString());
-
-        textField.setText(this.indirizzo);
-    }
 
     @FXML
     protected void viewCreaEvento() throws IOException{
@@ -137,7 +129,7 @@ public class GestisciEventiControllerGrafico {
             // Crea un BLOB dall'array di byte
             blob= new SerialBlob(compressedImageData);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new IllegalArgumentException(e);
         }
 
         System.out.println("Data di creazioneeeeGrafica: " + dataEvento.getValue());
@@ -173,7 +165,7 @@ public class GestisciEventiControllerGrafico {
                 Image image = new Image(selectedFile.toURI().toString());
                 imageView.setImage(image);
             } catch (Exception e) {
-                //e.printStackTrace();
+
                 showErrorAlert("Errore durante il caricamento dell'immagine.");
             }
         }
@@ -228,7 +220,7 @@ public class GestisciEventiControllerGrafico {
     }
 
     @FXML
-    protected void visualizzaEventi()throws IOException{
+    protected void visualizzaEventi(){
 
         if(gestEventi == null) {
             gestEventi = new GestisciEventiiController();
