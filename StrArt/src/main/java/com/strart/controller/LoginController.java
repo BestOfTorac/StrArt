@@ -46,7 +46,7 @@ public class LoginController{
             }
 
             if(cred.getRole().getId() == 1) {
-                System.out.println("Artistaa");
+
 
                 try {
                     new ProfileProcedureDAO().execute(cred);
@@ -56,7 +56,7 @@ public class LoginController{
 
                 fxmlFile = "/com/strart/artistiview.fxml";
             }else{
-                System.out.println("Spettatore");
+
                 fxmlFile = "/com/strart/hello-view.fxml";
             }
             fxmlLoader = new FXMLLoader();

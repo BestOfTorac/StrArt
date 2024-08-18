@@ -6,8 +6,8 @@ public class Credentials {
     static String password;
     static Role role;
 
-    public Credentials(String username, String password, Role role) {
-        Credentials.username = username;
+    public Credentials(String user, String password, Role role) {
+        username = user;
         Credentials.password = password;
         Credentials.role = role;
     }

@@ -33,7 +33,7 @@ public class OttieniIndicazioniController {
         return eventiB;
     }
 
-    public BeanEvento OttieniEvento(String nomeDArte, Date data, Time oraInizio){
+    public BeanEvento ottieniEvento(String nomeDArte, Date data, Time oraInizio){
 
         BeanEvento beanEvento = null;
 

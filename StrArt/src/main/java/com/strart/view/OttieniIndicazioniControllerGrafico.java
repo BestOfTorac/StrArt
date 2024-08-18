@@ -79,7 +79,7 @@ public class OttieniIndicazioniControllerGrafico {
 
 
 
-            eventoBean=indicazioni.OttieniEvento(evento.getNomeArtista(), evento.getData(), evento.getOrarioInizio());
+            eventoBean=indicazioni.ottieniEvento(evento.getNomeArtista(), evento.getData(), evento.getOrarioInizio());
             System.out.println(eventoBean.getNomeArtista()+" "+evento.getDescrizione()+"\n\n");
 
 

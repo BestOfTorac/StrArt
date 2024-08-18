@@ -19,7 +19,6 @@ public class CreaEventoDAO {
             cs = conn.prepareCall("{call creaEvento(?,?,?,?,?,?,?,?,?,?)}");
             cs.setString(1, username);
             cs.setDate(2, evento.getData());
-            System.out.println("Data di creazioneeeeDAO: " + evento.getData());
             cs.setTime(3, evento.getOrarioInizio());
             cs.setTime(4, evento.getOrarioFine());
             cs.setBlob(5, evento.getImmagine());

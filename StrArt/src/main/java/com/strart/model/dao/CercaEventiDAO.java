@@ -30,7 +30,6 @@ public class CercaEventiDAO implements GenericDAO<ListEvento> {
                 ResultSet rs = cs.getResultSet();
                 FactoryEvento factoryEvento= new FactoryEvento();
                 while (rs.next()) {
-                    //Evento evento = new Evento(rs.getString(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getDate(5), rs.getTime(6), rs.getTime(7), rs.getBlob(8),rs.getString(9));
 
                     Evento evento= factoryEvento.createEvento(rs.getString(9));
                     evento.setNomeArtista(rs.getString(1));
