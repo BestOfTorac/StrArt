@@ -7,7 +7,7 @@ import java.sql.*;
 
 public class ProfileProcedureDAO  {
 
-    public void execute(Object... params) throws DAOException, SQLException {
+    public void execute() throws DAOException, SQLException {
         CallableStatement cs = null;
         try {
             Connection conn = ConnectionFactory.getConnection();

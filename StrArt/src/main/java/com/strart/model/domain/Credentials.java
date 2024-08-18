@@ -7,6 +7,8 @@ public class Credentials {
     static Role role;
 
 
+    private Credentials(){}
+
     public static String getUsername() {
             return username;
         }
