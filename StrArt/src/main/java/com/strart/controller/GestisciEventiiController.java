@@ -2,7 +2,6 @@ package com.strart.controller;
 
 import com.strart.exception.DAOException;
 import com.strart.model.bean.*;
-import com.strart.model.dao.CercaEventiDAO;
 import com.strart.model.domain.Evento;
 import com.strart.model.domain.FacadeEvento;
 import com.strart.model.domain.FactoryEvento;
@@ -17,21 +16,7 @@ public class GestisciEventiiController {
     FacadeEvento facadeEvento;
 
     ListEvento listEvento;
-    /*
-    public BeanEventi cercaEventi(IndirizzoBean indirizzoB) throws DAOException, SQLException {
-        BeanEventi eventiB;
-        Coordinate cordinate;
-        ListEvento listEvento;
-        IndirizzoBeanAPI indirizzoBeanAPI= new IndirizzoBeanAPI(indirizzoB.getIndirizzo());
-        ApiControllerGrafico api= new ApiControllerGrafico();
-        CoordinateBean coordinateB =api.coordinateIndirizzo(indirizzoBeanAPI);
 
-        cordinate= new Coordinate(coordinateB.getIndirizzo(),coordinateB.getLongitudine(), coordinateB.getLatitudine(), coordinateB.getType());
-        listEvento=new CercaEventiDAO().execute(cordinate);
-        eventiB= new BeanEventi(listEvento,cordinate);
-        return eventiB;
-    }
-    */
     public GestisciEventiiController(){
         facadeEvento=new FacadeEvento();
     }

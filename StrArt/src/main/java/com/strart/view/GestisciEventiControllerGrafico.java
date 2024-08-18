@@ -246,29 +246,7 @@ public class GestisciEventiControllerGrafico {
     }
 
 
-    /*
-    public void creaEvento() throws IOException {
 
-        FXMLLoader fxmlLoader;
-        Stage stage = ApplicazioneSrage.getStage();
-        Scene scene;
-
-        String fxmlFile;
-
-        fxmlFile = "/com/strart/creaEvento.fxml";
-        fxmlLoader = new FXMLLoader();
-        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
-        final CreaEventoControllerGrafico controller = fxmlLoader.getController();
-        controller.initMapAndControls("41.9028","12.4964","city");
-        scene = new Scene(rootNode, 414, 795);
-
-        stage.setTitle("StrArt");
-        stage.setScene(scene);
-        stage.show();
-
-
-    }
-    */
 
     public byte[] compressImage(BufferedImage image, float quality) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();

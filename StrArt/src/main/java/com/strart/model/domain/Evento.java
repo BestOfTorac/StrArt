@@ -114,30 +114,4 @@ public abstract class Evento {
     public abstract String getTipo();
 
 
-    /*
-    public Evento(String nomeArtista, String descrizione,String latitudine, String longitudine, Date data, Time orarioInizio, Time orarioFine, Blob immagine, String stato){
-        this.nomeArtista=nomeArtista;
-        this.descrizione=descrizione;
-        this.latitudine=latitudine;
-        this.longitudine=longitudine;
-        this.data=data;
-        this.orarioInizio=orarioInizio;
-        this.orarioFine=orarioFine;
-        this.immagine=immagine;
-        this.stato=stato;
-    }
-
-    public Evento(String descrizione,String latitudine, String longitudine, Date data, Time orarioInizio, Time orarioFine, Blob immagine, String stato){
-        this.descrizione=descrizione;
-        this.latitudine=latitudine;
-        this.longitudine=longitudine;
-        this.data=data;
-        this.orarioInizio=orarioInizio;
-        this.orarioFine=orarioFine;
-        this.immagine=immagine;
-        this.stato=stato;
-    }*/
-
-
-
 }

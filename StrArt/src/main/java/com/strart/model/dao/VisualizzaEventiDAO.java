@@ -4,7 +4,6 @@ import com.strart.exception.DAOException;
 import com.strart.model.domain.Evento;
 import com.strart.model.domain.FactoryEvento;
 import com.strart.model.domain.ListEvento;
-import javafx.beans.binding.When;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;

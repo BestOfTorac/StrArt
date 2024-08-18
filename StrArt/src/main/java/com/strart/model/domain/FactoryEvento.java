@@ -1,8 +1,5 @@
 package com.strart.model.domain;
 
-import java.sql.Blob;
-import java.sql.Date;
-import java.sql.Time;
 
 public class FactoryEvento {
 
