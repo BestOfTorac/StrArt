@@ -70,6 +70,8 @@ public class GestisciEventiControllerGrafico {
     private String indirizzo;
     private Coordinate coordinate;
 
+    private static final String NAMEAPP = "StrArt";
+
     public void setFields(String indirizzo/*, Coordinate coordinate*/) {
         this.indirizzo = indirizzo;
         //this.coordinate = coordinate;
@@ -93,7 +95,7 @@ public class GestisciEventiControllerGrafico {
         scene = new Scene(rootNode, 414, 795);
 
 
-        stage.setTitle("StrArt");
+        stage.setTitle(NAMEAPP);
         stage.setScene(scene);
         stage.show();
     }
@@ -201,7 +203,7 @@ public class GestisciEventiControllerGrafico {
         scene = new Scene(rootNode, 414, 795);
 
 
-        stage.setTitle("StrArt");
+        stage.setTitle(NAMEAPP);
         stage.setScene(scene);
         stage.show();
     }
@@ -220,7 +222,7 @@ public class GestisciEventiControllerGrafico {
         scene = new Scene(rootNode, 414, 795);
 
 
-        stage.setTitle("StrArt");
+        stage.setTitle(NAMEAPP);
         stage.setScene(scene);
         stage.show();
     }
