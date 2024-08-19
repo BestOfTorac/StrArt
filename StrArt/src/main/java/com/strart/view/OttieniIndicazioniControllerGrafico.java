@@ -66,7 +66,7 @@ public class OttieniIndicazioniControllerGrafico {
         for(Evento evento: eventiB.getListEvento().getListaEvento()){
             System.out.println(evento.getNomeArtista());
             Coordinate cord = new Coordinate(Double.valueOf(eventiB.getCordinate().getLatitudine()), Double.valueOf(eventiB.getCordinate().getLongitudine()));
-            Marker marker = Marker.createProvided(Marker.Provided.RED).setPosition(cord).setVisible(true);
+            Marker marker = Marker.createProvided(Marker.Provided.RED);
 
             /*
             marker.visibleProperty();
@@ -86,6 +86,7 @@ public class OttieniIndicazioniControllerGrafico {
 
 
         }
+        /*
         try{
             if(eventoBean!= null){
                 indicazioni.partecipaEvento(eventoBean);
@@ -93,6 +94,8 @@ public class OttieniIndicazioniControllerGrafico {
         }catch (DAOException | SQLException e){
             throw new IllegalArgumentException(e);
         }
+
+         */
 
 
         //markerRosso.visibleProperty();
