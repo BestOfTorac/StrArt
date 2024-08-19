@@ -11,7 +11,7 @@
 <top>
 
     <HBox fx:id="topControls" alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
-        <TextField fx:id="textField" text="Inserisci indirizzo" />
+        <TextField fx:id="textField" text="via degli abeti 45 fonte nuova" />
         <children>
             <Button text="Cerca" onAction="#onHelloButtonClick"/>
         </children>

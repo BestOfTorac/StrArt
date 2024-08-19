@@ -11,11 +11,11 @@
 
             <VBox maxWidth="200">
                 <Label text="Username" />
-                <TextField fx:id="textFieldUsername" />
+                <TextField fx:id="textFieldUsername" text="Momo" />
             </VBox>
             <VBox maxWidth="200">
                 <Label text="password" />
-                <PasswordField fx:id="textFieldPassword" />
+                <PasswordField fx:id="textFieldPassword" text="Momo" />
             </VBox>
 
             <Button text="Login" onAction="#onHelloButtonClick"/>

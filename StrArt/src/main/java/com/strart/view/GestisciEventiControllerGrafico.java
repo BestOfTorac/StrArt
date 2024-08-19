@@ -7,6 +7,7 @@ import com.strart.model.bean.BeanEventi;
 import com.strart.model.bean.BeanEvento;
 import com.strart.model.domain.ApplicazioneStage;
 import com.strart.model.domain.Evento;
+import com.strart.utils.Utils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -84,7 +85,7 @@ public class GestisciEventiControllerGrafico {
         fxmlFile = "/com/strart/creaEvento.fxml";
         fxmlLoader = new FXMLLoader();
         Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
-        scene = new Scene(rootNode, 414, 795);
+        scene = new Scene(rootNode, Utils.SCENE_WIDTH, Utils.SCENE_HEIGTH);
 
 
         stage.setTitle(NAMEAPP);
@@ -108,26 +109,20 @@ public class GestisciEventiControllerGrafico {
         Time timeIn = Time.valueOf(localTimeIn);
         Time timeOut = Time.valueOf(localTimeOut);
 
-
         // Convert0 l'immagine JavaFX in BufferedImage
         BufferedImage bufferedImage = SwingFXUtils.fromFXImage(imageView.getImage(), null);
 
-
-
         byte[] compressedImageData;
-        try{
-
+        try {
             compressedImageData = compressImage(bufferedImage, 0.8f);
-        }catch ( IOException e){
+        } catch (IOException e){
             throw new IllegalArgumentException(e);
         }
 
-
-
         Blob blob;
-        try{
+        try {
             // Crea un BLOB dall'array di byte
-            blob= new SerialBlob(compressedImageData);
+            blob = new SerialBlob(compressedImageData);
         } catch (SQLException e) {
             throw new IllegalArgumentException(e);
         }
@@ -135,23 +130,18 @@ public class GestisciEventiControllerGrafico {
         System.out.println("Data di creazioneeeeGrafica: " + dataEvento.getValue());
         BeanEvento beanEvento= new BeanEvento(textArea.getText(), blob, textField.getText(), Date.valueOf(dataEvento.getValue()), timeIn, timeOut, selectionComboBox.getValue().toString());
 
-        if(gestEventi == null) {
+        if (gestEventi == null) {
             gestEventi = new GestisciEventiiController();
         }
 
-        try{
+        try {
             gestEventi.creaEvento(beanEvento);
-        }catch (DAOException | SQLException e){
-            throw new IllegalArgumentException(e);
-        }
-
-
-        try{
             this.goBack();
-        }catch (IOException e){
-            throw new IllegalArgumentException(e);
+        } catch (IllegalArgumentException e){
+            Utils.showErrorPopup(e.getMessage());
+        } catch (Exception e) {
+            Utils.showErrorPopup("Errore improvviso, riprova");
         }
-
 
     }
 
@@ -192,7 +182,7 @@ public class GestisciEventiControllerGrafico {
         Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
         final OttieniIndicazioniControllerGrafico controller = fxmlLoader.getController();
         controller.initMapAndControls("41.9028","12.4964","city");
-        scene = new Scene(rootNode, 414, 795);
+        scene = new Scene(rootNode, Utils.SCENE_WIDTH, Utils.SCENE_HEIGTH);
 
 
         stage.setTitle(NAMEAPP);
@@ -211,7 +201,7 @@ public class GestisciEventiControllerGrafico {
         fxmlFile = "/com/strart/GestisciEventi.fxml";
         fxmlLoader = new FXMLLoader();
         Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
-        scene = new Scene(rootNode, 414, 795);
+        scene = new Scene(rootNode, Utils.SCENE_WIDTH, Utils.SCENE_HEIGTH);
 
 
         stage.setTitle(NAMEAPP);
@@ -222,13 +212,14 @@ public class GestisciEventiControllerGrafico {
     @FXML
     protected void visualizzaEventi(){
 
-        if(gestEventi == null) {
+        if (gestEventi == null) {
             gestEventi = new GestisciEventiiController();
         }
+
         BeanEventi beanEventi;
-        try{
+        try {
             beanEventi=gestEventi.visualizzaEventi();
-        }catch (DAOException | SQLException e){
+        } catch (DAOException | SQLException e){
             throw new IllegalArgumentException(e);
         }
 
@@ -236,23 +227,11 @@ public class GestisciEventiControllerGrafico {
             System.out.println("Descrizione: "+evento.getDescrizione()+"  Data: "+evento.getData());
         }
 
-
     }
-
-
-
 
     public byte[] compressImage(BufferedImage image, float quality) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageOutputStream ios = ImageIO.createImageOutputStream(baos);
-        Iterator<ImageWriter> writers = ImageIO.getImageWritersByFormatName("png");
-        ImageWriter writer = writers.next();
-        ImageWriteParam param = writer.getDefaultWriteParam();
-        param.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
-        param.setCompressionQuality(quality); // 1 is max, 0 is min
-        writer.setOutput(ios);
-        writer.write(null, new IIOImage(image, null, null), param);
-        writer.dispose();
+        ImageIO.write(image, "png", baos);
         return baos.toByteArray();
     }
 

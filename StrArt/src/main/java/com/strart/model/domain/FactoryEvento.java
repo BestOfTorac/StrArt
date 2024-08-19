@@ -7,8 +7,8 @@ public class FactoryEvento {
     public Evento createEvento(String type) {
         switch (type)
         {
-            case "Musicale": return new EventoMusicale();
-            case "Teatrale": return new EventoTeatrale();
+            case "musicale": return new EventoMusicale();
+            case "teatrale": return new EventoTeatrale();
             default: return new EventoComico();
 
         }

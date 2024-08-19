@@ -8,6 +8,7 @@ import com.strart.model.dao.LoginProcedureDAO;
 import com.strart.model.dao.ProfileProcedureDAO;
 import com.strart.model.domain.ApplicazioneStage;
 import com.strart.model.domain.Credentials;
+import com.strart.utils.Utils;
 import com.strart.view.OttieniIndicazioniControllerGrafico;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -39,7 +40,7 @@ public class LoginController{
         Scene scene;
         if(Credentials.getRole() == null) {
             fxmlLoader = new FXMLLoader(ApplicationStrArt.class.getResource("login.fxml"));
-            scene = new Scene(fxmlLoader.load(), 414, 795);
+            scene = new Scene(fxmlLoader.load(), Utils.SCENE_WIDTH, Utils.SCENE_HEIGTH);
         }else{
             String fxmlFile;
 
@@ -67,7 +68,7 @@ public class LoginController{
             Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
             final OttieniIndicazioniControllerGrafico controller = fxmlLoader.getController();
             controller.initMapAndControls("41.9028","12.4964","city");
-            scene = new Scene(rootNode, 414, 795);
+            scene = new Scene(rootNode, Utils.SCENE_WIDTH, Utils.SCENE_HEIGTH);
         }
 
         stage.setTitle("StrArt");

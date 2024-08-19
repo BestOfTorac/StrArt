@@ -2,6 +2,7 @@ package com.strart.view;
 
 import com.sothawo.mapjfx.*;
 import com.sothawo.mapjfx.event.MapViewEvent;
+import com.sothawo.mapjfx.event.MarkerEvent;
 import com.strart.controller.OttieniIndicazioniController;
 import com.strart.exception.DAOException;
 import com.strart.model.bean.BeanEventi;
@@ -9,7 +10,9 @@ import com.strart.model.bean.BeanEvento;
 import com.strart.model.bean.IndirizzoBean;
 import com.strart.model.domain.ApplicazioneStage;
 import com.strart.model.domain.Evento;
+import com.strart.utils.Utils;
 import javafx.animation.Transition;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,86 +22,78 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
-
+import java.sql.Time;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class OttieniIndicazioniControllerGrafico {
-
-
     @FXML
     private TextField textField;
-
     @FXML
     private MapView mapView;
-
     private Marker markerClick;
-
-
     private boolean setMarker = false;
+    private static HashMap<Marker, HashMap<String, String>> markers = new HashMap<>();
+
+    private OttieniIndicazioniController indicazioni = null;
+
+    private static String NOME_ARTISTA_PROPERTY = "nomeArtista";
+    private static String DATA_PROPERTY = "data";
+    private static String ORARIO_INIZIO_PROPERTY = "orarioInizio";
 
     public OttieniIndicazioniControllerGrafico() {
         // no position for click marker yet
         markerClick = Marker.createProvided(Marker.Provided.ORANGE).setVisible(false);
-
-        MapLabel labelClick = new MapLabel("click!", 10, -10).setVisible(false).setCssClass("orange-label");
-
+        MapLabel labelClick = new MapLabel("click!", 10, -10)
+                .setVisible(false)
+                .setCssClass("orange-label");
         markerClick.attachLabel(labelClick);
     }
 
-
     @FXML
-    protected void onHelloButtonClick(){
+    protected void onHelloButtonClick() {
+        removeMarkers();
+        indicazioni = new OttieniIndicazioniController();
+        IndirizzoBean indirizzoB = new IndirizzoBean(textField.getText());
+        BeanEventi eventiB = null;
 
-
-        IndirizzoBean indirizzoB= new IndirizzoBean(textField.getText());
-        OttieniIndicazioniController indicazioni= new OttieniIndicazioniController();
-        BeanEventi eventiB;
-        BeanEvento eventoBean = null;
-
-        try{
-            eventiB=indicazioni.cercaEventi(indirizzoB);
-        }catch (DAOException | SQLException e){
-            throw new IllegalArgumentException(e);
+        try {
+            eventiB = indicazioni.cercaEventi(indirizzoB);
+        } catch (IllegalArgumentException e){
+            Utils.showErrorPopup(e.getMessage());
+        } catch (Exception e) {
+            Utils.showErrorPopup("Errore improvviso, riprova");
+            //throw new IllegalArgumentException(e);
         }
 
+        // condizione di controllo per evitare NPE
+        if (eventiB == null) return;
 
-        initMapAndControls(eventiB.getCordinate().getLatitudine(), eventiB.getCordinate().getLongitudine(), eventiB.getCordinate().getType());
-        for(Evento evento: eventiB.getListEvento().getListaEvento()){
-            System.out.println(evento.getNomeArtista());
-            Coordinate cord = new Coordinate(Double.valueOf(eventiB.getCordinate().getLatitudine()), Double.valueOf(eventiB.getCordinate().getLongitudine()));
-            Marker marker = Marker.createProvided(Marker.Provided.RED);
+        for (Evento evento: eventiB.getListEvento().getListaEvento()){
+            Coordinate cord = new Coordinate(
+                    Double.valueOf(evento.getLatitudine()),
+                    Double.valueOf(evento.getLongitudine()));
+            Marker marker = Marker.createProvided(Marker.Provided.RED)
+                    .setPosition(cord)
+                    .setVisible(true);
 
-            /*
-            marker.visibleProperty();
-            mapView.addMarker(marker);
-            System.out.println("Messo il marker"+ marker+"\n\n");
+            // creo una mappa dei valori importanti per il marker
+            HashMap<String, String> properties = new HashMap();
+            properties.put(NOME_ARTISTA_PROPERTY, evento.getNomeArtista());
+            properties.put(DATA_PROPERTY, evento.getData().toString());
+            properties.put(ORARIO_INIZIO_PROPERTY, evento.getOrarioInizio().toString());
 
-             */
-
-
-
-
-
-            eventoBean=indicazioni.ottieniEvento(evento.getNomeArtista(), evento.getData(), evento.getOrarioInizio());
-            System.out.println(eventoBean.getNomeArtista()+" "+evento.getDescrizione()+"\n\n");
-
-
-
-
-        }
-        /*
-        try{
-            if(eventoBean!= null){
-                indicazioni.partecipaEvento(eventoBean);
-            }
-        }catch (DAOException | SQLException e){
-            throw new IllegalArgumentException(e);
+            //mapView.addMarker(marker);
+            addMarker(mapView, marker, properties);
         }
 
-         */
-
-
-        //markerRosso.visibleProperty();
+        refreshMapAndControls(
+                eventiB.getCordinate().getLatitudine(),
+                eventiB.getCordinate().getLongitudine(),
+                eventiB.getCordinate().getType());
 
         //Coordinate cord = new Coordinate(Double.valueOf(eventiB.getCordinate().getLatitudine()), Double.valueOf(eventiB.getCordinate().getLongitudine()));
         //Marker marker = Marker.createProvided(Marker.Provided.BLUE).setPosition(cord).setVisible(true);
@@ -131,22 +126,55 @@ public class OttieniIndicazioniControllerGrafico {
 
     public void initMapAndControls(String lat, String lon, String type) {
 
-
         Coordinate coordinate = new Coordinate(Double.valueOf(lat), Double.valueOf(lon));
-        switch (type){
-            case "street"->mapView.setZoom(18);
-            case "city"->mapView.setZoom(14);
-            default->mapView.setZoom(16);
 
+        switch (type){
+            case "street" -> mapView.setZoom(18);
+            case "city" -> mapView.setZoom(14);
+            default -> mapView.setZoom(16);
         }
+
         mapView.setCenter(coordinate);
         mapView.setMapType(MapType.OSM);
         mapView.initialize(Configuration.builder()
                 .projection(Projection.WEB_MERCATOR)
-                .showZoomControls(false)
+                .showZoomControls(true)
                 .build());
 
+        mapView.addEventHandler(MapViewEvent.MAP_POINTER_MOVED, event -> updateMarkers(mapView));
+
+        // Aggiungi un EventHandler per il click sul Marker
+        mapView.addEventHandler(MarkerEvent.MARKER_CLICKED, event -> {
+            if (markers.get(event.getMarker()) != null) {
+                HashMap<String, String> markerProperty = markers.get(event.getMarker());
+
+                BeanEvento eventoBean = indicazioni.ottieniEvento(
+                        markerProperty.get(NOME_ARTISTA_PROPERTY),
+                        Date.valueOf(markerProperty.get(DATA_PROPERTY)),
+                        Time.valueOf(markerProperty.get(ORARIO_INIZIO_PROPERTY)));
+
+                EventHandler partecipaHandler = (partecipaEvent) -> {
+                    try {
+                        indicazioni.partecipaEvento(eventoBean);
+
+                        Utils.showNotify("Complimenti, la tua partecipazione è stata registrata");
+                    } catch (DAOException | SQLException e) {
+                        Utils.showErrorPopup("Stai già partecipando a questo evento");
+                    }
+                };
+
+                EventHandler indicazioniHandler = (indicazioniEvent) -> {
+                        Utils.showErrorPopup("Metodo non ancora implementato");
+                };
+
+                Utils.showEventDetailPopup(eventoBean, partecipaHandler, indicazioniHandler);
+            } else {
+                Utils.showErrorPopup("Errore nell'ottenere informazioni dell'evento");
+            }
+        });
+
         // add an event handler for singleclicks, set the click marker to the new position when it's visible
+        /*
         mapView.addEventHandler(MapViewEvent.MAP_CLICKED, event -> {
             event.consume();
             System.out.println("setMarker: " + setMarker);
@@ -167,6 +195,44 @@ public class OttieniIndicazioniControllerGrafico {
             }
 
         });
+        */
+    }
+
+    public void refreshMapAndControls(String lat, String lon, String type) {
+
+        Coordinate coordinate = new Coordinate(Double.valueOf(lat), Double.valueOf(lon));
+
+        switch (type){
+            case "street" -> mapView.setZoom(18);
+            case "city" -> mapView.setZoom(14);
+            default -> mapView.setZoom(16);
+        }
+
+        mapView.setCenter(coordinate);
+        mapView.setMapType(MapType.OSM);
+    }
+
+    private static void updateMarkers(MapView mapView) {
+        markers.keySet().forEach(marker -> mapView.addMarker(marker));
+    }
+
+    private static void addMarker(MapView mapView, Marker marker, HashMap properties) {
+        mapView.addMarker(marker);
+        //markers.add(marker);
+        if (markers.get(marker) != null) {
+
+            //markers2.get(marker)
+        } else{
+            markers.put(marker, properties);
+        }
+    }
+
+    private void removeMarkers() {
+        // Rimuovi tutti i marker dalla mappa
+        markers.keySet().forEach(marker -> mapView.removeMarker(marker));
+
+        // Pulisci la lista dei marker
+        markers.clear();
     }
 
     public void gestisciEventi() throws IOException {
@@ -185,7 +251,7 @@ public class OttieniIndicazioniControllerGrafico {
             Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
             //final GestisciEventiControllerGrafico controller = fxmlLoader.getController();
             //controller.setFields(textField.getText() /*,markerClick.getPosition()*/);
-            scene = new Scene(rootNode, 414, 795);
+            scene = new Scene(rootNode, Utils.SCENE_WIDTH, Utils.SCENE_HEIGTH);
 
 
             stage.setTitle("StrArt");
