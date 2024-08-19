@@ -8,6 +8,7 @@ import com.strart.model.domain.FactoryEvento;
 import com.strart.model.domain.ListEvento;
 import com.strart.view.ApiControllerGrafico;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class GestisciEventiiController {
@@ -20,12 +21,12 @@ public class GestisciEventiiController {
     public GestisciEventiiController(){
         facadeEvento=new FacadeEvento();
     }
-    public void creaEvento(BeanEvento beanEvento) throws DAOException, SQLException{
+    public void creaEvento(BeanEvento beanEvento) throws DAOException, SQLException, IOException {
 
         //verifica esistenza indirizzo e recupero delle coordinate
         IndirizzoBeanAPI indirizzoBeanAPI= new IndirizzoBeanAPI(beanEvento.getIndirizzo());
         ApiControllerGrafico api= new ApiControllerGrafico();
-        CoordinateBean coordinateB =api.coordinateIndirizzo(indirizzoBeanAPI);
+        CoordinateBean coordinateB = api.coordinateIndirizzo(indirizzoBeanAPI);
 
         FactoryEvento factoryEvento= new FactoryEvento();
         Evento evento= factoryEvento.createEvento(beanEvento.getTipoEvento());
