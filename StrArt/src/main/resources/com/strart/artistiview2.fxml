@@ -11,13 +11,9 @@
 <top>
 
     <HBox fx:id="topControls" alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
-        <TextField fx:id="textField" text="Inserisci indirizzo" />
         <children>
-            <Button text="Hello!" onAction="#onHelloButtonClick"/>
+            <Button text="Grafica" onAction="#cambiaGrafica"/>
         </children>
-        <padding>
-            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
-        </padding>
     </HBox>
 </top>
 <center>
@@ -26,14 +22,6 @@
 
 <bottom>
 
-    <HBox fx:id="bottomControls" alignment="CENTER" spacing="10.0" BorderPane.alignment="BOTTOM_CENTER">
-        <children>
-            <Button text="Hello!"/>
-        </children>
-        <padding>
-            <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
-        </padding>
-    </HBox>
 </bottom>
 
 </BorderPane>

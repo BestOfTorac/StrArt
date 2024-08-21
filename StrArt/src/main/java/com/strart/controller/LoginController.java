@@ -62,7 +62,7 @@ public class LoginController{
                 fxmlFile = "/com/strart/artistiview.fxml";
             }else{
 
-                fxmlFile = "/com/strart/hello-view.fxml";
+                fxmlFile = "/com/strart/utente-view.fxml";
             }
             fxmlLoader = new FXMLLoader();
             Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));

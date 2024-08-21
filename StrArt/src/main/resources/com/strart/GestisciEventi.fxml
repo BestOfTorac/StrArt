@@ -15,6 +15,7 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.image.ImageView?>
 
+<?import javafx.geometry.Insets?>
 <BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.strart.view.GestisciEventiControllerGrafico">
     <center>
         <VBox fx:id="topControls" alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
@@ -23,11 +24,26 @@
 
                <Button onAction="#visualizzaEventi" text="Visualizza i miei Eventi" />
                <Button onAction="#viewCreaEvento" text="Crea un evento" />
-               <Button onAction="#goHome" text="Home" />
+
 
            </children>
 
         </VBox>
     </center>
+
+
+    <bottom>
+
+        <HBox fx:id="bottomControls" alignment="CENTER" spacing="10.0" BorderPane.alignment="BOTTOM_CENTER">
+            <children>
+                <Button text="Profilo"/>
+                <Button onAction="#goHome" text="Home" />
+                <Button text="+Evento"/>
+            </children>
+            <padding>
+                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
+            </padding>
+        </HBox>
+    </bottom>
 
 </BorderPane>

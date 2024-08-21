@@ -1,10 +1,10 @@
 package com.strart.model.domain;
-
+import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Date;
 import java.sql.Time;
 
-public abstract class Evento {
+public abstract class Evento implements Serializable {
 
     String nomeArtista;
     String descrizione;

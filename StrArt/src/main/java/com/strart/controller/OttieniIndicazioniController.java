@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.util.List;
 
 public class OttieniIndicazioniController {
 
@@ -30,7 +31,17 @@ public class OttieniIndicazioniController {
 
         cordinate = new Coordinate(coordinateB.getIndirizzo(),coordinateB.getLongitudine(), coordinateB.getLatitudine(), coordinateB.getType());
         listEvento = new CercaEventiDAO().execute(cordinate);
-        eventiB = new BeanEventi(listEvento,cordinate);
+
+
+        eventiB = new BeanEventi(cordinate.getLongitudine(), cordinate.getLatitudine(), cordinate.getType());
+
+        for(Evento evento: listEvento.getListaEvento()) {
+            BeanEvento beanEvento= new BeanEvento(evento.getNomeArtista(), evento.getDescrizione(), evento.getImmagine(), evento.getData(), evento.getOrarioInizio(), evento.getOrarioFine(),evento.getStato(), evento.getTipo(), evento.getLatitudine(), evento.getLongitudine());
+            eventiB.addEvento(beanEvento);
+        }
+
+
+
         return eventiB;
     }
 

@@ -47,9 +47,9 @@
                    <!-- Aggiungi qui gli elementi della lista -->
                    <items>
                        <FXCollections fx:factory="observableArrayList">
-                           <String fx:value="Musicale" />
-                           <String fx:value="Teatrale" />
-                           <String fx:value="Comico" />
+                           <String fx:value="musicale" />
+                           <String fx:value="teatrale" />
+                           <String fx:value="comico" />
                            <!-- Aggiungi altri elementi secondo necessità -->
                        </FXCollections>
                    </items>

@@ -1,31 +1,52 @@
 package com.strart.model.bean;
 
+import com.strart.model.domain.Evento;
 import com.strart.model.domain.ListEvento;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BeanEventi {
 
-    ListEvento listEvento;
+    List<BeanEvento> listEvento;
 
-    Coordinate cordinate;
+    String longitudine;
+
+    String latitudine;
+
+    String type;
 
 
 
-    public BeanEventi(ListEvento listEvento, Coordinate cordinate) {
-        this.listEvento = listEvento;
-        this.cordinate = cordinate;
+
+    public BeanEventi(String longitudine, String latitudine, String type) {
+        this.listEvento = new ArrayList<>();
+        this.longitudine=longitudine;
+        this.latitudine=latitudine;
+        this.type=type;
 
     }
 
-    public BeanEventi(ListEvento listEvento) {
-        this.listEvento = listEvento;
+    public BeanEventi() {
+        this.listEvento = new ArrayList<>();
     }
 
-    public ListEvento getListEvento() {
+    public List<BeanEvento> getListEvento() {
             return listEvento;
         }
 
-    public Coordinate getCordinate() {
-        return cordinate;
+    public String getLongitudine() {
+        return longitudine;
+    }
+    public String getLatitudine() {
+        return latitudine;
+    }
+    public String getType() {
+        return type;
+    }
+
+    public void addEvento(BeanEvento beanEvento){
+        listEvento.add(beanEvento);
     }
 
 

@@ -36,6 +36,8 @@ public class Utils {
     public static double SCENE_WIDTH = 414;
     public static double SCENE_HEIGTH = 695;
 
+    private static int grafica=0;
+
     public static void showNotify(String message) {
         // Crea il popup
         Popup popup = new Popup();
@@ -158,17 +160,22 @@ public class Utils {
 
         HBox img = new HBox();
         // Converti il Blob in un InputStream
-        try {
-            InputStream inputStream = eventoBean.getImmagine().getBinaryStream();
-            Image image = new Image(inputStream);
 
-            ImageView imageView = new ImageView(image);
-            //imageView.setFitWidth(200);
-            imageView.setFitHeight(200);
-            imageView.setPreserveRatio(true);
+        if(eventoBean.getImmagine() != null) {
+            try {
+                InputStream inputStream = eventoBean.getImmagine().getBinaryStream();
+                Image image = new Image(inputStream);
 
-            img = new HBox(imageView);
-        } catch (SQLException e) {
+                ImageView imageView = new ImageView(image);
+                //imageView.setFitWidth(200);
+                imageView.setFitHeight(200);
+                imageView.setPreserveRatio(true);
+
+                img = new HBox(imageView);
+            } catch (SQLException e) {
+                img = new HBox(new Text("IMG NON PRESENTE"));
+            }
+        }else{
             img = new HBox(new Text("IMG NON PRESENTE"));
         }
 
@@ -222,4 +229,21 @@ public class Utils {
         // Mostra il popup
         popup.show(owner);
     }
+
+    public static int getGrafica() {
+        return grafica;
+    }
+
+    public static void setGrafica(int grafica) {
+        Utils.grafica = grafica;
+    }
+
+    public static void switchGrafica(){
+        if(grafica==0){
+            grafica=1;
+        }else{
+            grafica=0;
+        }
+    }
+
 }

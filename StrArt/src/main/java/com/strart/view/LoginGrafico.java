@@ -17,7 +17,7 @@ public class LoginGrafico {
     private PasswordField textFieldPassword;
 
     @FXML
-    protected void onHelloButtonClick(){
+    protected void login(){
         CredentialsBean credB;
 
         credB= new CredentialsBean(textFieldUsername.getText(), textFieldPassword.getText());

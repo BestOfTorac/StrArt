@@ -9,6 +9,7 @@ import com.strart.model.bean.BeanEventi;
 import com.strart.model.bean.BeanEvento;
 import com.strart.model.bean.IndirizzoBean;
 import com.strart.model.domain.ApplicazioneStage;
+import com.strart.model.domain.Credentials;
 import com.strart.model.domain.Evento;
 import com.strart.utils.Utils;
 import javafx.animation.Transition;
@@ -54,7 +55,7 @@ public class OttieniIndicazioniControllerGrafico {
     }
 
     @FXML
-    protected void onHelloButtonClick() {
+    protected void ottieniIndicazioni() {
         removeMarkers();
         indicazioni = new OttieniIndicazioniController();
         IndirizzoBean indirizzoB = new IndirizzoBean(textField.getText());
@@ -72,13 +73,21 @@ public class OttieniIndicazioniControllerGrafico {
         // condizione di controllo per evitare NPE
         if (eventiB == null) return;
 
-        for (Evento evento: eventiB.getListEvento().getListaEvento()){
+        for (BeanEvento evento: eventiB.getListEvento()){
             Coordinate cord = new Coordinate(
                     Double.valueOf(evento.getLatitudine()),
                     Double.valueOf(evento.getLongitudine()));
-            Marker marker = Marker.createProvided(Marker.Provided.RED)
-                    .setPosition(cord)
-                    .setVisible(true);
+
+            Marker marker;
+            if(evento.getStato().equals("iniziato")) {
+                marker= Marker.createProvided(Marker.Provided.RED)
+                        .setPosition(cord)
+                        .setVisible(true);
+            }else{
+                marker = Marker.createProvided(Marker.Provided.BLUE)
+                        .setPosition(cord)
+                        .setVisible(true);
+            }
 
             // creo una mappa dei valori importanti per il marker
             HashMap<String, String> properties = new HashMap();
@@ -91,9 +100,9 @@ public class OttieniIndicazioniControllerGrafico {
         }
 
         refreshMapAndControls(
-                eventiB.getCordinate().getLatitudine(),
-                eventiB.getCordinate().getLongitudine(),
-                eventiB.getCordinate().getType());
+                eventiB.getLatitudine(),
+                eventiB.getLongitudine(),
+                eventiB.getType());
 
         //Coordinate cord = new Coordinate(Double.valueOf(eventiB.getCordinate().getLatitudine()), Double.valueOf(eventiB.getCordinate().getLongitudine()));
         //Marker marker = Marker.createProvided(Marker.Provided.BLUE).setPosition(cord).setVisible(true);
@@ -237,28 +246,68 @@ public class OttieniIndicazioniControllerGrafico {
 
     public void gestisciEventi() throws IOException {
 
-        //this.setMarker = true;
 
-        //if (markerClick != null && markerClick.getPosition() != null) {
-            FXMLLoader fxmlLoader;
-            Stage stage = ApplicazioneStage.getStage();
-            Scene scene;
+        FXMLLoader fxmlLoader;
+        Stage stage = ApplicazioneStage.getStage();
+        Scene scene;
 
-            String fxmlFile;
+        String fxmlFile;
 
+        if(Utils.getGrafica()==0) {
             fxmlFile = "/com/strart/GestisciEventi.fxml";
-            fxmlLoader = new FXMLLoader();
-            Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
-            //final GestisciEventiControllerGrafico controller = fxmlLoader.getController();
-            //controller.setFields(textField.getText() /*,markerClick.getPosition()*/);
-            scene = new Scene(rootNode, Utils.SCENE_WIDTH, Utils.SCENE_HEIGTH);
+        }else{
+            fxmlFile = "/com/strart/GestisciEventi2.fxml";
+        }
+
+        fxmlLoader = new FXMLLoader();
+        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
+        //final GestisciEventiControllerGrafico controller = fxmlLoader.getController();
+        //controller.setFields(textField.getText() /*,markerClick.getPosition()*/);
+        scene = new Scene(rootNode, Utils.SCENE_WIDTH, Utils.SCENE_HEIGTH);
 
 
-            stage.setTitle("StrArt");
-            stage.setScene(scene);
-            stage.show();
+        stage.setTitle("StrArt");
+        stage.setScene(scene);
+        stage.show();
 
-        //}
+    }
+    public void cambiaGrafica()throws IOException{
+
+        Utils.switchGrafica();
+
+        FXMLLoader fxmlLoader;
+        Stage stage = ApplicazioneStage.getStage();
+        Scene scene;
+
+        String fxmlFile;
+        if(Utils.getGrafica()==0){
+            if(Credentials.getRole().getId() == 1) {
+                fxmlFile = "/com/strart/artistiview.fxml";
+            }else{
+                fxmlFile = "/com/strart/utente-view.fxml";
+            }
+
+        }else{
+            if(Credentials.getRole().getId() == 1) {
+                fxmlFile = "/com/strart/artistiview2.fxml";
+            }else{
+                fxmlFile = "/com/strart/utente-view2.fxml";
+            }
+        }
+
+        fxmlLoader = new FXMLLoader();
+        Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
+        final OttieniIndicazioniControllerGrafico controller = fxmlLoader.getController();
+        controller.initMapAndControls("41.9028","12.4964","city");
+        scene = new Scene(rootNode, Utils.SCENE_WIDTH, Utils.SCENE_HEIGTH);
+
+
+        stage.setTitle("StrArt");
+        stage.setScene(scene);
+        stage.show();
+
+
+
     }
 
 

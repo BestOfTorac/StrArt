@@ -1,15 +1,15 @@
 package com.strart.view;
 
 import com.sothawo.mapjfx.*;
-import com.strart.controller.GestisciEventiiController;
+import com.strart.controller.GestisciEventiController;
 import com.strart.exception.DAOException;
 import com.strart.model.bean.BeanEventi;
 import com.strart.model.bean.BeanEvento;
 import com.strart.model.domain.ApplicazioneStage;
-import com.strart.model.domain.Evento;
 import com.strart.utils.Utils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.LoadException;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -29,13 +29,8 @@ import java.time.LocalTime;
 
 import javafx.embed.swing.SwingFXUtils;
 
-import javax.imageio.IIOImage;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.util.Iterator;
-import javax.imageio.ImageWriteParam;
-import javax.imageio.ImageWriter;
-import javax.imageio.stream.ImageOutputStream;
 import javax.sql.rowset.serial.SerialBlob;
 
 
@@ -66,7 +61,7 @@ public class GestisciEventiControllerGrafico {
     @FXML
     private MapView mapView;
 
-    private GestisciEventiiController gestEventi;
+    private GestisciEventiController gestEventi;
 
     private String indirizzo;
     private Coordinate coordinate;
@@ -81,8 +76,11 @@ public class GestisciEventiControllerGrafico {
         Scene scene;
 
         String fxmlFile;
-
-        fxmlFile = "/com/strart/creaEvento.fxml";
+        if(Utils.getGrafica()==0) {
+            fxmlFile = "/com/strart/creaEvento.fxml";
+        }else{
+            fxmlFile = "/com/strart/creaEvento2.fxml";
+        }
         fxmlLoader = new FXMLLoader();
         Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
         scene = new Scene(rootNode, Utils.SCENE_WIDTH, Utils.SCENE_HEIGTH);
@@ -109,40 +107,65 @@ public class GestisciEventiControllerGrafico {
         Time timeIn = Time.valueOf(localTimeIn);
         Time timeOut = Time.valueOf(localTimeOut);
 
+        Blob blob = null;
         // Convert0 l'immagine JavaFX in BufferedImage
-        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(imageView.getImage(), null);
+        if (imageView.getImage() != null) {
+            BufferedImage bufferedImage = SwingFXUtils.fromFXImage(imageView.getImage(), null);
 
-        byte[] compressedImageData;
-        try {
-            compressedImageData = compressImage(bufferedImage, 0.8f);
-        } catch (IOException e){
-            throw new IllegalArgumentException(e);
+            byte[] compressedImageData;
+            try {
+                compressedImageData = compressImage(bufferedImage, 0.8f);
+            } catch (IOException e) {
+                throw new IllegalArgumentException(e);
+            }
+
+
+            try {
+                // Crea un BLOB dall'array di byte
+                blob = new SerialBlob(compressedImageData);
+            } catch (SQLException e) {
+                throw new IllegalArgumentException(e);
+            }
         }
 
-        Blob blob;
-        try {
-            // Crea un BLOB dall'array di byte
-            blob = new SerialBlob(compressedImageData);
-        } catch (SQLException e) {
-            throw new IllegalArgumentException(e);
+        if (textArea.getText().equals("")) {
+            Utils.showErrorPopup("Mancato inserimento della descrizione dell'evento");
+        } else if (textField.getText().equals("")) {
+            Utils.showErrorPopup("Mancato inserimento dell'indirizzo dell'evento");
+        }else if (dataEvento.getValue() == null) {
+            Utils.showErrorPopup("Mancato inserimento della data dell'evento");
+        }else if (selectionComboBox.getValue() == null) {
+            Utils.showErrorPopup("Mancato scelta della tipologia di evento");
+        }else  {
+
+            System.out.println("\nData di creazioneeeeGrafica: " + dataEvento.getValue());
+
+            BeanEvento beanEvento= null;
+            try {
+                beanEvento = new BeanEvento(textArea.getText(), blob, textField.getText(), Date.valueOf(dataEvento.getValue()), timeIn, timeOut, selectionComboBox.getValue().toString());
+
+
+                if (gestEventi == null) {
+                    gestEventi = new GestisciEventiController();
+                }
+
+                try {
+                    gestEventi.creaEvento(beanEvento);
+                    Utils.showNotify("Eveno creato correttamente");
+                    this.goBack();
+                } catch (IllegalArgumentException e){
+                    Utils.showErrorPopup(e.getMessage());
+                } catch (Exception e) {
+                    Utils.showErrorPopup("Errore improvviso, riprova");
+                }
+
+
+            } catch (IllegalArgumentException | LoadException e) {
+                Utils.showErrorPopup(e.getMessage());
+            }
+
+
         }
-
-        System.out.println("Data di creazioneeeeGrafica: " + dataEvento.getValue());
-        BeanEvento beanEvento= new BeanEvento(textArea.getText(), blob, textField.getText(), Date.valueOf(dataEvento.getValue()), timeIn, timeOut, selectionComboBox.getValue().toString());
-
-        if (gestEventi == null) {
-            gestEventi = new GestisciEventiiController();
-        }
-
-        try {
-            gestEventi.creaEvento(beanEvento);
-            this.goBack();
-        } catch (IllegalArgumentException e){
-            Utils.showErrorPopup(e.getMessage());
-        } catch (Exception e) {
-            Utils.showErrorPopup("Errore improvviso, riprova");
-        }
-
     }
 
     @FXML
@@ -176,8 +199,11 @@ public class GestisciEventiControllerGrafico {
         Scene scene;
 
         String fxmlFile;
-
-        fxmlFile = "/com/strart/artistiview.fxml";
+        if(Utils.getGrafica()==0) {
+            fxmlFile = "/com/strart/artistiview.fxml";
+        }else{
+            fxmlFile = "/com/strart/artistiview2.fxml";
+        }
         fxmlLoader = new FXMLLoader();
         Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
         final OttieniIndicazioniControllerGrafico controller = fxmlLoader.getController();
@@ -197,8 +223,11 @@ public class GestisciEventiControllerGrafico {
         Scene scene;
 
         String fxmlFile;
-
-        fxmlFile = "/com/strart/GestisciEventi.fxml";
+        if(Utils.getGrafica()==0) {
+            fxmlFile = "/com/strart/GestisciEventi.fxml";
+        }else{
+            fxmlFile = "/com/strart/GestisciEventi2.fxml";
+        }
         fxmlLoader = new FXMLLoader();
         Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
         scene = new Scene(rootNode, Utils.SCENE_WIDTH, Utils.SCENE_HEIGTH);
@@ -213,7 +242,7 @@ public class GestisciEventiControllerGrafico {
     protected void visualizzaEventi(){
 
         if (gestEventi == null) {
-            gestEventi = new GestisciEventiiController();
+            gestEventi = new GestisciEventiController();
         }
 
         BeanEventi beanEventi;
@@ -223,8 +252,12 @@ public class GestisciEventiControllerGrafico {
             throw new IllegalArgumentException(e);
         }
 
-        for (Evento evento: beanEventi.getListEvento().getListaEvento()) {
-            System.out.println("Descrizione: "+evento.getDescrizione()+"  Data: "+evento.getData());
+        if(beanEventi.getListEvento().size()!=0) {
+            for (BeanEvento evento : beanEventi.getListEvento()) {
+                System.out.println("Descrizione: " + evento.getDescrizione() + "  Data: " + evento.getData()+" Tipologia: "+evento.getTipoEvento());
+            }
+        }else{
+            Utils.showErrorPopup("Non hai nessun evento creato");
         }
 
     }

@@ -11,14 +11,13 @@ import com.strart.view.ApiControllerGrafico;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class GestisciEventiiController {
+public class GestisciEventiController {
 
-    String indirizzo;
     FacadeEvento facadeEvento;
 
     ListEvento listEvento;
 
-    public GestisciEventiiController(){
+    public GestisciEventiController(){
         facadeEvento=new FacadeEvento();
     }
     public void creaEvento(BeanEvento beanEvento) throws DAOException, SQLException, IOException {
@@ -54,7 +53,13 @@ public class GestisciEventiiController {
             listEvento = facadeEvento.visualizzaEventi();
         }
 
-        beanEventi= new BeanEventi(listEvento);
+
+        beanEventi = new BeanEventi();
+
+        for(Evento evento: listEvento.getListaEvento()) {
+            BeanEvento beanEvento= new BeanEvento(evento.getNomeArtista(), evento.getDescrizione(), evento.getImmagine(), evento.getData(), evento.getOrarioInizio(), evento.getOrarioFine(),evento.getStato(), evento.getTipo(), evento.getLatitudine(), evento.getLongitudine());
+            beanEventi.addEvento(beanEvento);
+        }
 
 
         return beanEventi;

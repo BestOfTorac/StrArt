@@ -14,9 +14,9 @@
         <children>
             <Button text="Grafica" onAction="#cambiaGrafica"/>
         </children>
-        <TextField fx:id="textField" text="via degli abeti 45 fonte nuova" />
+        <TextField fx:id="textField" text="Inserisci indirizzo" />
         <children>
-            <Button text="Cerca" onAction="#ottieniIndicazioni"/>
+            <Button text="Hello!" onAction="#ottieniIndicazioni"/>
         </children>
         <padding>
             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
@@ -31,9 +31,7 @@
 
     <HBox fx:id="bottomControls" alignment="CENTER" spacing="10.0" BorderPane.alignment="BOTTOM_CENTER">
         <children>
-            <Button text="Profilo"/>
-            <Button text="Home" />
-            <Button text="+Evento" onAction="#gestisciEventi"/>
+            <Button text="Hello!"/>
         </children>
         <padding>
             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0"/>
