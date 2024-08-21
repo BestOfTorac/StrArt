@@ -23,7 +23,7 @@ public class LoginController{
 
     public void start(CredentialsBean credB) throws DAOException, IOException {
 
-        //Credentials cred= new Credentials(credB.getUsername(),credB.getPassword());
+
         Credentials.setUsername(credB.getUsername());
         Credentials.setPassword(credB.getPassword());
         Credentials.setRole(null);
