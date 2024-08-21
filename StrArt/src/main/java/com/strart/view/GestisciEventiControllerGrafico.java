@@ -83,7 +83,7 @@ public class GestisciEventiControllerGrafico {
         }
         fxmlLoader = new FXMLLoader();
         Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
-        scene = new Scene(rootNode, Utils.SCENE_WIDTH, Utils.SCENE_HEIGTH);
+        scene = new Scene(rootNode, Utils.SCENEW, Utils.SCENEH);
 
 
         stage.setTitle(NAMEAPP);
@@ -208,7 +208,7 @@ public class GestisciEventiControllerGrafico {
         Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
         final OttieniIndicazioniControllerGrafico controller = fxmlLoader.getController();
         controller.initMapAndControls("41.9028","12.4964","city");
-        scene = new Scene(rootNode, Utils.SCENE_WIDTH, Utils.SCENE_HEIGTH);
+        scene = new Scene(rootNode, Utils.SCENEW, Utils.SCENEH);
 
 
         stage.setTitle(NAMEAPP);
@@ -230,7 +230,7 @@ public class GestisciEventiControllerGrafico {
         }
         fxmlLoader = new FXMLLoader();
         Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
-        scene = new Scene(rootNode, Utils.SCENE_WIDTH, Utils.SCENE_HEIGTH);
+        scene = new Scene(rootNode, Utils.SCENEW, Utils.SCENEH);
 
 
         stage.setTitle(NAMEAPP);

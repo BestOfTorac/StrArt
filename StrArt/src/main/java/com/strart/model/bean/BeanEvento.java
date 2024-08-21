@@ -25,7 +25,7 @@ public class BeanEvento {
     String tipoEvento;
 
     public BeanEvento(String nomeArtista, String descrizione, Blob immagine,  Date data, Time orarioInizio, Time orarioFine, String stato, String tipoEvento, String latitudine, String longitudine){
-        //TODO: fare i controlli dei dati (deescrizione almeno 10 caratteri, data maggiore uguale a quella di oggi, orario fine dopo orario inizio, ...)
+
         this.nomeArtista=nomeArtista;
         this.descrizione=descrizione;
         this.immagine=immagine;
@@ -40,7 +40,7 @@ public class BeanEvento {
     }
 
     public BeanEvento(String nomeArtista, String descrizione, Blob immagine,  Date data, Time orarioInizio, Time orarioFine, String tipoEvento){
-        //TODO: fare i controlli dei dati (deescrizione almeno 10 caratteri, data maggiore uguale a quella di oggi, orario fine dopo orario inizio, ...)
+
         this.nomeArtista=nomeArtista;
         this.descrizione=descrizione;
         this.immagine=immagine;
@@ -52,14 +52,14 @@ public class BeanEvento {
     }
 
     public BeanEvento( String descrizione, Blob immagine, String indirizzo, Date data, Time orarioInizio, Time orarioFine, String tipoEvento)throws LoadException {
-        //TODO: fare i controlli dei dati (deescrizione almeno 10 caratteri, data maggiore uguale a quella di oggi, orario fine dopo orario inizio, ...)
+
 
         if(descrizione.length() < 15){
             throw new IllegalArgumentException("La lunghezza della descrizionee deve essere maggiore di 15 caratteri");
         }
 
         LocalDate currentDate = LocalDate.now();
-        java.util.Date currentDateAsDate =  Date.from(currentDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        java.util.Date currentDateAsDate =  java.util.Date.from(currentDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
         if(data.before(currentDateAsDate)){
             throw new IllegalArgumentException("La data inserita deve essere successiva alla data odierna");
         }

@@ -13,7 +13,7 @@ public abstract class Evento implements Serializable {
     Date data;
     Time orarioInizio;
     Time orarioFine;
-    Blob immagine;
+    transient Blob immagine;
 
     String stato;
 

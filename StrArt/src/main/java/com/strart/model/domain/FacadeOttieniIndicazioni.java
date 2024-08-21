@@ -3,9 +3,7 @@ package com.strart.model.domain;
 import com.strart.exception.DAOException;
 import com.strart.model.bean.Coordinate;
 import com.strart.model.dao.CercaEventiDAO;
-import com.strart.model.dao.CreaEventoDAO;
 import com.strart.model.dao.PartecipaEventoDAO;
-import com.strart.model.dao.VisualizzaEventiDAO;
 
 import java.sql.SQLException;
 
@@ -24,8 +22,6 @@ public class FacadeOttieniIndicazioni {
 
         } else if (!this.cordinate.getLatitudine().equals(cordinate.getLatitudine()) || !this.cordinate.getLongitudine().equals(cordinate.getLongitudine())) {
             listEvento= new CercaEventiDAO().execute(cordinate);
-        }else {
-            System.out.println("Sono uguali le coordinate\n\n");
         }
 
         this.cordinate=cordinate;

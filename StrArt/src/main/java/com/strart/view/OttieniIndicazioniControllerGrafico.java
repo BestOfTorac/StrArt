@@ -10,7 +10,6 @@ import com.strart.model.bean.BeanEvento;
 import com.strart.model.bean.IndirizzoBean;
 import com.strart.model.domain.ApplicazioneStage;
 import com.strart.model.domain.Credentials;
-import com.strart.model.domain.Evento;
 import com.strart.utils.Utils;
 import javafx.animation.Transition;
 import javafx.event.EventHandler;
@@ -27,8 +26,6 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 
 public class OttieniIndicazioniControllerGrafico {
     @FXML
@@ -263,7 +260,7 @@ public class OttieniIndicazioniControllerGrafico {
         Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
         //final GestisciEventiControllerGrafico controller = fxmlLoader.getController();
         //controller.setFields(textField.getText() /*,markerClick.getPosition()*/);
-        scene = new Scene(rootNode, Utils.SCENE_WIDTH, Utils.SCENE_HEIGTH);
+        scene = new Scene(rootNode, Utils.SCENEW, Utils.SCENEH);
 
 
         stage.setTitle("StrArt");
@@ -299,7 +296,7 @@ public class OttieniIndicazioniControllerGrafico {
         Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
         final OttieniIndicazioniControllerGrafico controller = fxmlLoader.getController();
         controller.initMapAndControls("41.9028","12.4964","city");
-        scene = new Scene(rootNode, Utils.SCENE_WIDTH, Utils.SCENE_HEIGTH);
+        scene = new Scene(rootNode, Utils.SCENEW, Utils.SCENEH);
 
 
         stage.setTitle("StrArt");

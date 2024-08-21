@@ -1,8 +1,4 @@
 package com.strart.model.bean;
-
-import com.strart.model.domain.Evento;
-import com.strart.model.domain.ListEvento;
-
 import java.util.ArrayList;
 import java.util.List;
 

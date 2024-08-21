@@ -2,7 +2,6 @@ package com.strart.model.domain;
 
 import com.strart.exception.DAOException;
 import com.strart.model.dao.CreaEventoDAO;
-import com.strart.model.dao.CreaEventoFileSystem;
 import com.strart.model.dao.VisualizzaEventiDAO;
 import com.strart.model.dao.VisualizzaEventiFileSystem;
 

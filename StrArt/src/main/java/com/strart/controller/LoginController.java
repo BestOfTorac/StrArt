@@ -40,7 +40,7 @@ public class LoginController{
         Scene scene;
         if(Credentials.getRole() == null) {
             fxmlLoader = new FXMLLoader(ApplicationStrArt.class.getResource("login.fxml"));
-            scene = new Scene(fxmlLoader.load(), Utils.SCENE_WIDTH, Utils.SCENE_HEIGTH);
+            scene = new Scene(fxmlLoader.load(), Utils.SCENEW, Utils.SCENEH);
         }else{
             String fxmlFile;
 
@@ -68,7 +68,7 @@ public class LoginController{
             Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
             final OttieniIndicazioniControllerGrafico controller = fxmlLoader.getController();
             controller.initMapAndControls("41.9028","12.4964","city");
-            scene = new Scene(rootNode, Utils.SCENE_WIDTH, Utils.SCENE_HEIGTH);
+            scene = new Scene(rootNode, Utils.SCENEW, Utils.SCENEH);
         }
 
         stage.setTitle("StrArt");

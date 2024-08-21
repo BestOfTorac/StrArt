@@ -3,7 +3,6 @@ package com.strart.utils;
 import com.strart.model.bean.BeanEvento;
 import com.strart.model.domain.ApplicazioneStage;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -12,7 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -23,20 +21,20 @@ import javafx.scene.text.Text;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
-import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.sql.Blob;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Utils {
-    public static double SCENE_WIDTH = 414;
-    public static double SCENE_HEIGTH = 695;
+    public static final double SCENEW = 414;
+    public static final double SCENEH = 695;
 
     private static int grafica=0;
+
+
+    private Utils(){}
 
     public static void showNotify(String message) {
         // Crea il popup

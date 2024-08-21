@@ -12,7 +12,7 @@ public class CreaEventoFileSystem {
         try (FileOutputStream fos = new FileOutputStream(nomeFile);
              ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             oos.writeObject(evento);
-            System.out.println("Evento salvato con successo nel file " + nomeFile);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

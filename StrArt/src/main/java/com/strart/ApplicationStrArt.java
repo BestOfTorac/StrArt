@@ -15,7 +15,7 @@ public class ApplicationStrArt extends Application {
 
         ApplicazioneStage.setStage(stage);
         FXMLLoader fxmlLoader = new FXMLLoader(ApplicationStrArt.class.getResource("login.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), Utils.SCENE_WIDTH, Utils.SCENE_HEIGTH);
+        Scene scene = new Scene(fxmlLoader.load(), Utils.SCENEW, Utils.SCENEH);
         stage.setTitle("StrArt");
         stage.setScene(scene);
         stage.show();

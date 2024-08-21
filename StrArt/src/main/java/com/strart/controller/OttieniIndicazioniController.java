@@ -2,8 +2,6 @@ package com.strart.controller;
 
 import com.strart.exception.DAOException;
 import com.strart.model.bean.*;
-import com.strart.model.dao.CercaEventiDAO;
-import com.strart.model.dao.PartecipaEventoDAO;
 import com.strart.model.domain.*;
 import com.strart.view.ApiControllerGrafico;
 
@@ -33,7 +31,7 @@ public class OttieniIndicazioniController {
         CoordinateBean coordinateB = api.coordinateIndirizzo(indirizzoBeanAPI);
 
         cordinate = new Coordinate(coordinateB.getIndirizzo(),coordinateB.getLongitudine(), coordinateB.getLatitudine(), coordinateB.getType());
-        listEvento = facadeOttieniIndicazioni.cercaEventi(cordinate);//new CercaEventiDAO().execute(cordinate);
+        listEvento = facadeOttieniIndicazioni.cercaEventi(cordinate);
 
 
         eventiB = new BeanEventi(cordinate.getLongitudine(), cordinate.getLatitudine(), cordinate.getType());
@@ -70,11 +68,6 @@ public class OttieniIndicazioniController {
         evento.setOrarioInizio(eventoBean.getOrarioInizio());
 
         facadeOttieniIndicazioni.partecipaEvento(evento);
-        //new PartecipaEventoDAO().execute(evento, Credentials.getUsername());
-
-
-
-
 
     }
 
