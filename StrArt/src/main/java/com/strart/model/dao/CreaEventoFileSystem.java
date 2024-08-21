@@ -14,7 +14,7 @@ public class CreaEventoFileSystem {
             oos.writeObject(evento);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new IllegalArgumentException(e);
         }
     }
 
