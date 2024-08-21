@@ -115,15 +115,9 @@ public class GestisciEventiControllerGrafico {
             byte[] compressedImageData;
             try {
                 compressedImageData = compressImage(bufferedImage, 0.8f);
-            } catch (IOException e) {
-                throw new IllegalArgumentException(e);
-            }
-
-
-            try {
                 // Crea un BLOB dall'array di byte
                 blob = new SerialBlob(compressedImageData);
-            } catch (SQLException e) {
+            } catch (SQLException | IOException e) {
                 throw new IllegalArgumentException(e);
             }
         }
@@ -149,19 +143,17 @@ public class GestisciEventiControllerGrafico {
                     gestEventi = new GestisciEventiController();
                 }
 
-                try {
-                    gestEventi.creaEvento(beanEvento);
-                    Utils.showNotify("Eveno creato correttamente");
-                    this.goBack();
-                } catch (IllegalArgumentException e){
-                    Utils.showErrorPopup(e.getMessage());
-                } catch (Exception e) {
-                    Utils.showErrorPopup("Errore improvviso, riprova");
-                }
+
+                gestEventi.creaEvento(beanEvento);
+                Utils.showNotify("Evento creato correttamente");
+                this.goBack();
+
 
 
             } catch (IllegalArgumentException | LoadException e) {
                 Utils.showErrorPopup(e.getMessage());
+            } catch (Exception e) {
+                Utils.showErrorPopup("Errore improvviso, riprova");
             }
 
 
