@@ -38,7 +38,7 @@ public class OttieniIndicazioniControllerGrafico {
 
     private OttieniIndicazioniController indicazioni = null;
 
-    private static String NOME_ARTISTA_PROPERTY = "nomeArtista";
+    private static final String NOME_ARTISTA_PROPERTY = "nomeArtista";
     private static String DATA_PROPERTY = "data";
     private static String ORARIO_INIZIO_PROPERTY = "orarioInizio";
 
