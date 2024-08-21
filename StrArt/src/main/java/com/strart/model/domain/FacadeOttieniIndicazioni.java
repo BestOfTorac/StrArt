@@ -17,13 +17,9 @@ public class FacadeOttieniIndicazioni {
 
 
 
-        if (this.cordinate == null) {
-            listEvento= new CercaEventiDAO().execute(cordinate);
-
-        } else if (!this.cordinate.getLatitudine().equals(cordinate.getLatitudine()) || !this.cordinate.getLongitudine().equals(cordinate.getLongitudine())) {
-            listEvento= new CercaEventiDAO().execute(cordinate);
+        if (this.cordinate == null || (!this.cordinate.getLatitudine().equals(cordinate.getLatitudine()) || !this.cordinate.getLongitudine().equals(cordinate.getLongitudine()))) {
+            listEvento = new CercaEventiDAO().execute(cordinate);
         }
-
         this.cordinate=cordinate;
 
         return listEvento;

@@ -258,8 +258,6 @@ public class OttieniIndicazioniControllerGrafico {
 
         fxmlLoader = new FXMLLoader();
         Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
-        //final GestisciEventiControllerGrafico controller = fxmlLoader.getController();
-        //controller.setFields(textField.getText() /*,markerClick.getPosition()*/);
         scene = new Scene(rootNode, Utils.SCENEW, Utils.SCENEH);
 
 

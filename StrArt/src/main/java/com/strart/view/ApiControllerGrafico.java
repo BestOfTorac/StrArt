@@ -19,7 +19,6 @@ public class ApiControllerGrafico {
 
     public CoordinateBean coordinateIndirizzo(IndirizzoBeanAPI indirizzoAPI) throws IOException {
 
-        CoordinateBean coordinateBean = null;
         String indirizzo=indirizzoAPI.getIndirizzo();
 
         String indirizzoEcoded = encodeValue(indirizzo);

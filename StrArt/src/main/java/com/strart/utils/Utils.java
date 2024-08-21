@@ -31,6 +31,8 @@ public class Utils {
     public static final double SCENEW = 414;
     public static final double SCENEH = 695;
 
+    private static final String SETTING1 = "-fx-alignment: center;";
+
     private static int grafica=0;
 
 
@@ -53,7 +55,7 @@ public class Utils {
 
         Text title = new Text("Notifica \t");
         title.setFont(Font.font("Verdana", FontWeight.BOLD, 18));
-        title.setStyle("-fx-alignment: center;");
+        title.setStyle(SETTING1);
 
         HBox header = new HBox(10, title, closeButton);
         header.setAlignment(Pos.CENTER);
@@ -73,7 +75,7 @@ public class Utils {
 
         // Aggiungi l'overlay e il contenuto al popup
         StackPane popupRoot = new StackPane(overlay, popupContent);
-        popupRoot.setStyle("-fx-alignment: center;"); // Centra il contenuto del popup
+        popupRoot.setStyle(SETTING1); // Centra il contenuto del popup
         popup.getContent().add(popupRoot);
 
         // Mostra il popup
@@ -106,7 +108,7 @@ public class Utils {
 
         Text title = new Text("Attenzione \t");
         title.setFont(Font.font("Verdana", FontWeight.BOLD, 18));
-        title.setStyle("-fx-alignment: center;");
+        title.setStyle(SETTING1);
 
         HBox header = new HBox(10, title, closeButton);
         header.setAlignment(Pos.CENTER);
@@ -126,7 +128,7 @@ public class Utils {
 
         // Aggiungi l'overlay e il contenuto al popup
         StackPane popupRoot = new StackPane(overlay, popupContent);
-        popupRoot.setStyle("-fx-alignment: center;"); // Centra il contenuto del popup
+        popupRoot.setStyle(SETTING1); // Centra il contenuto del popup
         popup.getContent().add(popupRoot);
 
         // Mostra il popup
@@ -151,7 +153,7 @@ public class Utils {
 
         Text title = new Text("Dettagli Evento \t");
         title.setFont(Font.font("Verdana", FontWeight.BOLD, 18));
-        title.setStyle("-fx-alignment: center;");
+        title.setStyle(SETTING1);
 
         HBox header = new HBox(10, title, closeButton);
         header.setAlignment(Pos.CENTER);
@@ -165,7 +167,7 @@ public class Utils {
                 Image image = new Image(inputStream);
 
                 ImageView imageView = new ImageView(image);
-                //imageView.setFitWidth(200);
+
                 imageView.setFitHeight(200);
                 imageView.setPreserveRatio(true);
 
@@ -221,7 +223,7 @@ public class Utils {
 
         // Aggiungi l'overlay e il contenuto al popup
         StackPane popupRoot = new StackPane(overlay, popupContent);
-        popupRoot.setStyle("-fx-alignment: center;"); // Centra il contenuto del popup
+        popupRoot.setStyle(SETTING1); // Centra il contenuto del popup
         popup.getContent().add(popupRoot);
 
         // Mostra il popup
