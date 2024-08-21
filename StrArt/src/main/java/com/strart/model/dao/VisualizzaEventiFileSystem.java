@@ -22,7 +22,7 @@ public class VisualizzaEventiFileSystem {
         } catch (EOFException | FileNotFoundException e) {
             // La EOFException è normale, significa che siamo alla fine del file
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            throw new IllegalArgumentException(e);
         }
 
         return eventi;
