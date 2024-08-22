@@ -15,17 +15,23 @@ import javafx.animation.Transition;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.util.HashMap;
+import java.util.ResourceBundle;
 
 public class OttieniIndicazioniControllerGrafico {
     @FXML
@@ -41,6 +47,8 @@ public class OttieniIndicazioniControllerGrafico {
     private static final String NOME_ARTISTA_PROPERTY = "nomeArtista";
     private static String DATA_PROPERTY = "data";
     private static String ORARIO_INIZIO_PROPERTY = "orarioInizio";
+
+    public static Insets paddingButtons = new Insets(10, 10.0, 10, 0.0);
 
     public OttieniIndicazioniControllerGrafico() {
         // no position for click marker yet
@@ -296,14 +304,8 @@ public class OttieniIndicazioniControllerGrafico {
         controller.initMapAndControls("41.9028","12.4964","city");
         scene = new Scene(rootNode, Utils.SCENEW, Utils.SCENEH);
 
-
         stage.setTitle("StrArt");
         stage.setScene(scene);
         stage.show();
-
-
-
     }
-
-
 }

@@ -69,6 +69,9 @@ public class LoginController{
             final OttieniIndicazioniControllerGrafico controller = fxmlLoader.getController();
             controller.initMapAndControls("41.9028","12.4964","city");
             scene = new Scene(rootNode, Utils.SCENEW, Utils.SCENEH);
+
+            // Rimuovere il focus dal TextField
+            scene.getRoot().requestFocus();
         }
 
         stage.setTitle("StrArt");

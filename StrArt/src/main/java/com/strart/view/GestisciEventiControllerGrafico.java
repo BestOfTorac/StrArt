@@ -9,18 +9,23 @@ import com.strart.model.domain.ApplicazioneStage;
 import com.strart.utils.Utils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.fxml.LoadException;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Blob;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -31,13 +36,16 @@ import javafx.embed.swing.SwingFXUtils;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.util.ResourceBundle;
 import javax.sql.rowset.serial.SerialBlob;
 
 
-public class GestisciEventiControllerGrafico {
+public class GestisciEventiControllerGrafico implements Initializable {
 
     @FXML
     private TextArea textArea;
+    @FXML
+    private Text pageTitle;
 
     @FXML
     private ImageView imageView;
@@ -67,6 +75,14 @@ public class GestisciEventiControllerGrafico {
     private Coordinate coordinate;
 
     private static final String NAMEAPP = "StrArt";
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        if (pageTitle != null) {
+            pageTitle.setFont(Font.font("Verdana", FontWeight.BOLD, 20)); // Font Verdana, Bold, 18px
+        }
+
+    }
 
 
     @FXML
@@ -202,6 +218,8 @@ public class GestisciEventiControllerGrafico {
         controller.initMapAndControls("41.9028","12.4964","city");
         scene = new Scene(rootNode, Utils.SCENEW, Utils.SCENEH);
 
+        // Rimuovere il focus dal TextField
+        scene.getRoot().requestFocus();
 
         stage.setTitle(NAMEAPP);
         stage.setScene(scene);
@@ -259,5 +277,4 @@ public class GestisciEventiControllerGrafico {
         ImageIO.write(image, "png", baos);
         return baos.toByteArray();
     }
-
 }
