@@ -18,7 +18,7 @@
                 <Image url="@/CambiaGraficaPiena.png"/>
             </ImageView>
 
-            <TextField fx:id="textField" promptText="Inserisci l'indirizzo" HBox.hgrow="ALWAYS"  />
+            <TextField fx:id="indirizzo" promptText="Inserisci l'indirizzo" HBox.hgrow="ALWAYS" onAction="#handleEnter" />
 
             <ImageView fitHeight="25.0" fitWidth="25.0"  pickOnBounds="true" preserveRatio="true" onMouseClicked="#ottieniIndicazioni">
                 <Image url="@/Search.png"/>

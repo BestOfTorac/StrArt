@@ -241,7 +241,7 @@ public class Utils {
     public static void switchGrafica(){
         if(grafica==0){
             grafica=1;
-            SCENEW = 1000;
+            SCENEW = 1200;
             SCENEH = 700;
         }else{
             grafica=0;

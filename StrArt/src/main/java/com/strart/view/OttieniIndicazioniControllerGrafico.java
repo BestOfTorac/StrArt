@@ -35,9 +35,17 @@ import java.util.ResourceBundle;
 
 public class OttieniIndicazioniControllerGrafico {
     @FXML
-    private TextField textField;
+    private TextField indirizzo;
     @FXML
     private MapView mapView;
+
+    @FXML
+    private TextField numCivico;
+
+    @FXML
+    private TextField cap;
+
+
     private Marker markerClick;
     private boolean setMarker = false;
     private static HashMap<Marker, HashMap<String, String>> markers = new HashMap<>();
@@ -63,7 +71,86 @@ public class OttieniIndicazioniControllerGrafico {
     protected void ottieniIndicazioni() {
         removeMarkers();
         indicazioni = new OttieniIndicazioniController();
-        IndirizzoBean indirizzoB = new IndirizzoBean(textField.getText());
+
+        if(indirizzo.getText().equals("")){
+            Utils.showErrorPopup("Inserisci un indirizzo");
+        }else {
+            IndirizzoBean indirizzoB = new IndirizzoBean(indirizzo.getText());
+            ottieniIndicazioniGen(indirizzoB);
+        }
+
+
+    }
+
+    @FXML
+    protected void ottieniIndicazioni2() {
+        removeMarkers();
+        indicazioni = new OttieniIndicazioniController();
+        if(indirizzo.getText().equals("") || numCivico.getText().equals("") || cap.getText().equals("")){
+            Utils.showErrorPopup("L'indirizzo non è completo");
+        }else {
+            String ind = indirizzo.getText() + " " + numCivico.getText() + " " + cap.getText();
+            IndirizzoBean indirizzoB = new IndirizzoBean(ind);
+
+            ottieniIndicazioniGen(indirizzoB);
+        }
+        /*
+
+        BeanEventi eventiB = null;
+
+        try {
+            eventiB = indicazioni.cercaEventi(indirizzoB);
+        } catch (IllegalArgumentException e){
+            Utils.showErrorPopup(e.getMessage());
+        } catch (Exception e) {
+            Utils.showErrorPopup("Errore improvviso, riprova");
+            //throw new IllegalArgumentException(e);
+        }
+
+        // condizione di controllo per evitare NPE
+        if (eventiB == null) return;
+
+        for (BeanEvento evento: eventiB.getListEvento()){
+            Coordinate cord = new Coordinate(
+                    Double.valueOf(evento.getLatitudine()),
+                    Double.valueOf(evento.getLongitudine()));
+
+            Marker marker;
+            if(evento.getStato().equals("iniziato")) {
+                marker= Marker.createProvided(Marker.Provided.RED)
+                        .setPosition(cord)
+                        .setVisible(true);
+            }else{
+                marker = Marker.createProvided(Marker.Provided.BLUE)
+                        .setPosition(cord)
+                        .setVisible(true);
+            }
+
+            // creo una mappa dei valori importanti per il marker
+            HashMap<String, String> properties = new HashMap();
+            properties.put(NOME_ARTISTA_PROPERTY, evento.getNomeArtista());
+            properties.put(DATA_PROPERTY, evento.getData().toString());
+            properties.put(ORARIO_INIZIO_PROPERTY, evento.getOrarioInizio().toString());
+
+            //mapView.addMarker(marker);
+            addMarker(mapView, marker, properties);
+        }
+
+        refreshMapAndControls(
+                eventiB.getLatitudine(),
+                eventiB.getLongitudine(),
+                eventiB.getType());
+
+        //Coordinate cord = new Coordinate(Double.valueOf(eventiB.getCordinate().getLatitudine()), Double.valueOf(eventiB.getCordinate().getLongitudine()));
+        //Marker marker = Marker.createProvided(Marker.Provided.BLUE).setPosition(cord).setVisible(true);
+        //mapView.addMarker(marker);
+
+         */
+
+    }
+
+    public void ottieniIndicazioniGen(IndirizzoBean indirizzoB){
+
         BeanEventi eventiB = null;
 
         try {
@@ -114,6 +201,7 @@ public class OttieniIndicazioniControllerGrafico {
         //mapView.addMarker(marker);
 
     }
+
 
     private void animateClickMarker(Coordinate oldPosition, Coordinate newPosition) {
         // animate the marker to the new position
@@ -302,9 +390,20 @@ public class OttieniIndicazioniControllerGrafico {
         final OttieniIndicazioniControllerGrafico controller = fxmlLoader.getController();
         controller.initMapAndControls("41.9028","12.4964","city");
         scene = new Scene(rootNode, Utils.SCENEW, Utils.SCENEH);
+        scene.getRoot().requestFocus();
 
         stage.setTitle("StrArt");
         stage.setScene(scene);
+        stage.centerOnScreen();
         stage.show();
     }
+
+
+    public void handleEnter(){
+        ottieniIndicazioni();
+    }
+    public void handleEnter2(){
+        ottieniIndicazioni2();
+    }
+
 }
