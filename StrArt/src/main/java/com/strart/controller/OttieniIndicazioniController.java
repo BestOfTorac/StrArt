@@ -71,6 +71,15 @@ public class OttieniIndicazioniController {
 
     }
 
+    public void ottieniIndicazioni(String lat, String lon) throws DAOException, SQLException, IOException {
+
+        ApiControllerGrafico api = new ApiControllerGrafico();
+        CoordinateBean coordinateB = api.routesEvento("12.5492675","41.9578954", lat, lon);
+
+
+
+    }
+
 
 
 }

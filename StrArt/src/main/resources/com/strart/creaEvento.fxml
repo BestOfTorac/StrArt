@@ -8,7 +8,9 @@
 <?import javafx.scene.control.*?>
 
 <?import javafx.geometry.Insets?>
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.strart.view.GestisciEventiControllerGrafico">
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.strart.view.GestisciEventiControllerGrafico">
+
     <top>
         <HBox alignment="CENTER_LEFT" spacing="10.0" BorderPane.alignment="CENTER_LEFT">
             <padding>
@@ -27,99 +29,87 @@
         </HBox>
     </top>
     <center>
-
-        <VBox fx:id="topControls" spacing="10.0">
+        <VBox fx:id="topControls2" spacing="10.0">
             <padding>
-                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                <Insets bottom="10.0" left="15.0" right="15.0" top="10.0"/>
             </padding>
-           <children>
-               <HBox spacing="10.0" >
-                   <padding>
-                       <Insets bottom="10.0" left="20.0" right="20.0" top="10.0"/>
-                   </padding>
-                   <Text text="Inserisci indirizzo:" />
-                   <TextField fx:id="textField" />
-               </HBox>
+            <GridPane hgap="10" vgap="10">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="40"/>
+                    <ColumnConstraints percentWidth="60"/>
+                </columnConstraints>
 
-               <HBox spacing="10.0" >
-                   <padding>
-                       <Insets bottom="10.0" left="20.0" right="20.0" top="10.0"/>
-                   </padding>
-                   <Text text="Seleziona data:" />
-                   <DatePicker fx:id="dataEvento" />
-               </HBox>
+                <!-- Prima riga -->
+                <Label text="Inserisci indirizzo:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="textField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-               <HBox spacing="10.0" >
-                   <padding>
-                       <Insets bottom="10.0" left="20.0" right="20.0" top="10.0"/>
-                   </padding>
-                   <Text text="Inserisci l'orario di inizio:" />
-                   <HBox>
-                       <children>
-                           <Spinner fx:id="hourSpinnerIn" editable="true" initialValue="0" max="23" min="0" />
+                <!-- Seconda riga -->
+                <Label text="Seleziona data:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <DatePicker fx:id="dataEvento" prefWidth="300" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-                           <Spinner fx:id="minuteSpinnerIn" editable="true" initialValue="0" max="59" min="0" />
-                       </children>
-                   </HBox>
-               </HBox>
+                <!-- Terza riga -->
+                <Label text="Inserisci l'orario di inizio:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <HBox GridPane.rowIndex="2" GridPane.columnIndex="1" spacing="10.0">
+                    <children>
+                        <Spinner fx:id="hourSpinnerIn" editable="true" initialValue="0" max="23" min="0" />
 
-               <HBox spacing="10.0" >
-                   <padding>
-                       <Insets bottom="10.0" left="20.0" right="20.0" top="10.0"/>
-                   </padding>
-                   <Text text="Inserisci l'orario di fine:" />
-                   <HBox>
-                       <children>
-                           <Spinner fx:id="hourSpinnerOut" editable="true" initialValue="0" max="23" min="0" />
+                        <Spinner fx:id="minuteSpinnerIn" editable="true" initialValue="0" max="59" min="0" />
+                    </children>
+                </HBox>
 
-                           <Spinner fx:id="minuteSpinnerOut" editable="true" initialValue="0" max="59" min="0" />
-                       </children>
-                   </HBox>
-               </HBox>
+                <!-- Quarta riga -->
+                <Label text="Inserisci l'orario di fine:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+                <HBox GridPane.rowIndex="3" GridPane.columnIndex="1" spacing="10.0" >
+                    <children>
+                        <Spinner fx:id="hourSpinnerOut" editable="true" initialValue="0" max="23" min="0" />
 
-               <HBox spacing="10.0" >
-                   <padding>
-                       <Insets bottom="10.0" left="20.0" right="20.0" top="10.0"/>
-                   </padding>
-                   <TextArea fx:id="textArea" text="Descrizione dell'evento" />
-                    <HBox spacing="10.0" HBox.hgrow="ALWAYS" >
-                        <Button HBox.hgrow="ALWAYS" onAction="#loadImage" style="-fx-background-color: #754343;" text="Carica Immagine" textFill="#1a1919" />
-                        <ImageView fx:id="imageView" fitHeight="200" fitWidth="200" />
-                   </HBox>
-               </HBox>
+                        <Spinner fx:id="minuteSpinnerOut" editable="true" initialValue="0" max="59" min="0" />
+                    </children>
+                </HBox>
 
+                <!-- Quinta riga -->
+                <Label text="Seleziona tipologia evento:" GridPane.rowIndex="4" GridPane.columnIndex="0" />
+                <ComboBox fx:id="selectionComboBox" GridPane.rowIndex="4" GridPane.columnIndex="1" >
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="musicale" />
+                            <String fx:value="teatrale" />
+                            <String fx:value="comico" />
+                        </FXCollections>
+                    </items>
+                    <value>
+                        musicale
+                    </value>
+                </ComboBox>
 
+                <!-- Sesta riga -->
+                <Label text="Dove memorizzare l'evento:" GridPane.rowIndex="5" GridPane.columnIndex="0" />
+                <ComboBox fx:id="comboBoxPersistenza" GridPane.rowIndex="5" GridPane.columnIndex="1">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Database" />
+                            <String fx:value="FileSystem" />
+                        </FXCollections>
+                    </items>
+                    <value>
+                        Database
+                    </value>
+                </ComboBox>
 
+                <Label text="Descrizione evento:" GridPane.rowIndex="6" GridPane.columnIndex="0" />
+                <TextArea fx:id="textArea" GridPane.rowIndex="6" GridPane.columnIndex="1" prefHeight="100.0" wrapText="true" />
 
+                <Button GridPane.rowIndex="7" GridPane.columnIndex="0" onAction="#loadImage" style="-fx-background-color: #0056b3;-fx-text-fill: white;" text="Carica Immagine" textFill="#1a1919" />
+                <ImageView GridPane.rowIndex="7" GridPane.columnIndex="1" fx:id="imageView" fitHeight="200" preserveRatio="true" />
 
+            </GridPane>
 
-
-               <Text text="Seleziona la tipogia di evento" />
-               <ComboBox fx:id="selectionComboBox">
-                   <!-- Aggiungi qui gli elementi della lista -->
-                   <items>
-                       <FXCollections fx:factory="observableArrayList">
-                           <String fx:value="musicale" />
-                           <String fx:value="teatrale" />
-                           <String fx:value="comico" />
-                           <!-- Aggiungi altri elementi secondo necessità -->
-                       </FXCollections>
-                   </items>
-               </ComboBox>
-
-
-               <Text text="Seleziona dove memorizzare l'evento" />
-               <ComboBox fx:id="comboBoxPersistenza">
-                   <items>
-                       <FXCollections fx:factory="observableArrayList">
-                           <String fx:value="Database" />
-                           <String fx:value="FileSystem" />
-                       </FXCollections>
-                   </items>
-               </ComboBox>
-
-               <Button onAction="#creaEvento" text="Crea" />
-           </children>
+            <HBox alignment="CENTER" spacing="10.0">
+                <padding>
+                    <Insets bottom="0.0" left="15.0" right="15.0" top="20.0"/>
+                </padding>
+                <Button onAction="#creaEvento" text="Crea" style="-fx-background-color: #0056b3; -fx-text-fill: white;-fx-font-size: 16px;" />
+            </HBox>
 
         </VBox>
     </center>
