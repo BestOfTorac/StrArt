@@ -162,10 +162,9 @@ public class OttieniIndicazioniControllerGrafico {
             if (markers.get(event.getMarker()) != null) {
                 HashMap<String, String> markerProperty = markers.get(event.getMarker());
 
-                BeanEvento eventoBean = indicazioni.ottieniEvento(
-                        markerProperty.get(NOME_ARTISTA_PROPERTY),
-                        Date.valueOf(markerProperty.get(DATA_PROPERTY)),
-                        Time.valueOf(markerProperty.get(ORARIO_INIZIO_PROPERTY)));
+                BeanEvento propieta= new BeanEvento(markerProperty.get(NOME_ARTISTA_PROPERTY), Date.valueOf(markerProperty.get(DATA_PROPERTY)), Time.valueOf(markerProperty.get(ORARIO_INIZIO_PROPERTY)));
+
+                BeanEvento eventoBean = indicazioni.ottieniEvento(propieta);
 
                 EventHandler partecipaHandler = (partecipaEvent) -> {
                     try {

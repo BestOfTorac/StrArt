@@ -67,6 +67,9 @@ public class GestisciEventiControllerGrafico implements Initializable {
     private ComboBox selectionComboBox;
 
     @FXML
+    private ComboBox comboBoxPersistenza;
+
+    @FXML
     private MapView mapView;
 
     private GestisciEventiController gestEventi;
@@ -146,13 +149,15 @@ public class GestisciEventiControllerGrafico implements Initializable {
             Utils.showErrorPopup("Mancato inserimento della data dell'evento");
         }else if (selectionComboBox.getValue() == null) {
             Utils.showErrorPopup("Mancato scelta della tipologia di evento");
+        }else if (comboBoxPersistenza.getValue() == null) {
+            Utils.showErrorPopup("Mancato scelta della persistenza dell' evento");
         }else  {
 
             System.out.println("\nData di creazioneeeeGrafica: " + dataEvento.getValue());
 
             BeanEvento beanEvento= null;
             try {
-                beanEvento = new BeanEvento(textArea.getText(), blob, textField.getText(), Date.valueOf(dataEvento.getValue()), timeIn, timeOut, selectionComboBox.getValue().toString());
+                beanEvento = new BeanEvento(textArea.getText(), blob, textField.getText(), Date.valueOf(dataEvento.getValue()), timeIn, timeOut, selectionComboBox.getValue().toString(), selectionComboBox.getValue().toString());
 
 
                 if (gestEventi == null) {

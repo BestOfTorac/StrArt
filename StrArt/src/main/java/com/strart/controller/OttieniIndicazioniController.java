@@ -46,12 +46,12 @@ public class OttieniIndicazioniController {
         return eventiB;
     }
 
-    public BeanEvento ottieniEvento(String nomeDArte, Date data, Time oraInizio){
+    public BeanEvento ottieniEvento(BeanEvento propieta){
 
         BeanEvento beanEvento = null;
 
         for(Evento evento: listEvento.getListaEvento()) {
-            if(nomeDArte.equals(evento.getNomeArtista()) && data.equals(evento.getData()) && oraInizio.equals(evento.getOrarioInizio())){
+            if(propieta.getNomeArtista().equals(evento.getNomeArtista()) && propieta.getData().equals(evento.getData()) && propieta.getOrarioInizio().equals(evento.getOrarioInizio())){
                 beanEvento = new BeanEvento(evento.getNomeArtista(), evento.getDescrizione(), evento.getImmagine(), evento.getData(), evento.getOrarioInizio(), evento.getOrarioFine(), evento.getTipo());
             }
         }

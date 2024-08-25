@@ -108,8 +108,16 @@
                </ComboBox>
 
 
+               <Text text="Seleziona dove memorizzare l'evento" />
+               <ComboBox fx:id="comboBoxPersistenza">
+                   <items>
+                       <FXCollections fx:factory="observableArrayList">
+                           <String fx:value="Database" />
+                           <String fx:value="FileSystem" />
+                       </FXCollections>
+                   </items>
+               </ComboBox>
 
-               <Button onAction="#goBack" text="Indietro" />
                <Button onAction="#creaEvento" text="Crea" />
            </children>
 

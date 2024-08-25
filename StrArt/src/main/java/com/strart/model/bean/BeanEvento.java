@@ -24,6 +24,8 @@ public class BeanEvento {
     String stato;
     String tipoEvento;
 
+    String persistenza;
+
     public BeanEvento(String nomeArtista, String descrizione, Blob immagine,  Date data, Time orarioInizio, Time orarioFine, String stato, String tipoEvento, String latitudine, String longitudine){
 
         this.nomeArtista=nomeArtista;
@@ -51,7 +53,7 @@ public class BeanEvento {
 
     }
 
-    public BeanEvento( String descrizione, Blob immagine, String indirizzo, Date data, Time orarioInizio, Time orarioFine, String tipoEvento)throws LoadException {
+    public BeanEvento( String descrizione, Blob immagine, String indirizzo, Date data, Time orarioInizio, Time orarioFine, String tipoEvento, String persistenza)throws LoadException {
 
 
         if(descrizione.length() < 15){
@@ -77,6 +79,15 @@ public class BeanEvento {
         this.orarioInizio=orarioInizio;
         this.orarioFine=orarioFine;
         this.tipoEvento=tipoEvento;
+        this.persistenza=persistenza;
+
+    }
+
+    public BeanEvento(String nomeArtista, Date data, Time orarioInizio){
+
+        this.nomeArtista=nomeArtista;
+        this.data=data;
+        this.orarioInizio=orarioInizio;
 
     }
 
@@ -134,6 +145,11 @@ public class BeanEvento {
     // Getter per la longitudine
     public String getLongitudine() {
         return longitudine;
+    }
+
+    // Getter per la persistenza
+    public String getPersistenza() {
+        return persistenza;
     }
 
 

@@ -27,6 +27,9 @@ public class GestisciEventiController {
         ApiControllerGrafico api= new ApiControllerGrafico();
         CoordinateBean coordinateB = api.coordinateIndirizzo(indirizzoBeanAPI);
 
+        //recupero della località della persistenza
+        String persistenza= beanEvento.getPersistenza();
+
         FactoryEvento factoryEvento= new FactoryEvento();
         Evento evento= factoryEvento.createEvento(beanEvento.getTipoEvento());
         evento.setDescrizione(beanEvento.getDescrizione());
@@ -38,7 +41,7 @@ public class GestisciEventiController {
         evento.setImmagine(beanEvento.getImmagine());
 
         //chiamo il facade per effettuare l'operazione di creazione dell'evento
-        facadeEvento.creaEvento(evento);
+        facadeEvento.creaEvento(evento, persistenza);
 
         if(listEvento!=null){
             listEvento.addEvento(evento);
