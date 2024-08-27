@@ -50,7 +50,7 @@ public class BeanEvento {
 
     }
 
-    public BeanEvento( String descrizione, Blob immagine, String indirizzo, Date data, Time orarioInizio, Time orarioFine, String tipoEvento, String persistenza)throws LoadException {
+    public BeanEvento( String descrizione, Blob immagine, String indirizzo, Date data, Time orarioInizio, Time orarioFine, String tipoEvento)throws LoadException {
 
 
         if(descrizione.length() < 15){
@@ -76,7 +76,6 @@ public class BeanEvento {
         this.orarioInizio=orarioInizio;
         this.orarioFine=orarioFine;
         this.tipoEvento=tipoEvento;
-        this.persistenza=persistenza;
 
     }
 
@@ -158,6 +157,10 @@ public class BeanEvento {
     }
     public void setLongitudine(String longitudine) {
         this.longitudine=longitudine;
+    }
+
+    public void setPersistenza(String persistenza) {
+        this.persistenza=persistenza;
     }
 
 

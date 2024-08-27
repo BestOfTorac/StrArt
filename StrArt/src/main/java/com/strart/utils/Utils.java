@@ -28,8 +28,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Utils {
-    public static double SCENEW = 414;
-    public static double SCENEH = 695;
+    public static double sceneW = 414;
+    public static double sceneH = 695;
 
     private static final String SETTING1 = "-fx-alignment: center;";
 
@@ -241,12 +241,12 @@ public class Utils {
     public static void switchGrafica(){
         if(grafica==0){
             grafica=1;
-            SCENEW = 1200;
-            SCENEH = 700;
+            sceneW = 1200;
+            sceneH = 700;
         }else{
             grafica=0;
-            SCENEW = 414;
-            SCENEH = 695;
+            sceneW = 414;
+            sceneH = 695;
         }
     }
 

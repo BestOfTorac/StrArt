@@ -15,23 +15,18 @@ import javafx.animation.Transition;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.util.HashMap;
-import java.util.ResourceBundle;
 
 public class OttieniIndicazioniControllerGrafico {
     @FXML
@@ -353,7 +348,7 @@ public class OttieniIndicazioniControllerGrafico {
 
         fxmlLoader = new FXMLLoader();
         Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
-        scene = new Scene(rootNode, Utils.SCENEW, Utils.SCENEH);
+        scene = new Scene(rootNode, Utils.sceneW, Utils.sceneH);
 
 
         stage.setTitle("StrArt");
@@ -389,7 +384,7 @@ public class OttieniIndicazioniControllerGrafico {
         Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
         final OttieniIndicazioniControllerGrafico controller = fxmlLoader.getController();
         controller.initMapAndControls("41.9028","12.4964","city");
-        scene = new Scene(rootNode, Utils.SCENEW, Utils.SCENEH);
+        scene = new Scene(rootNode, Utils.sceneW, Utils.sceneH);
         scene.getRoot().requestFocus();
 
         stage.setTitle("StrArt");

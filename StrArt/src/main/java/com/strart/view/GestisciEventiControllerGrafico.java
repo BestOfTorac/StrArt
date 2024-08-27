@@ -113,7 +113,7 @@ public class GestisciEventiControllerGrafico implements Initializable {
         }
         fxmlLoader = new FXMLLoader();
         Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
-        scene = new Scene(rootNode, Utils.SCENEW, Utils.SCENEH);
+        scene = new Scene(rootNode, Utils.sceneW, Utils.sceneH);
 
         stage.setTitle(NAMEAPP);
         stage.setScene(scene);
@@ -165,7 +165,8 @@ public class GestisciEventiControllerGrafico implements Initializable {
 
             BeanEvento beanEvento= null;
             try {
-                beanEvento = new BeanEvento(descrizioneEvento.getText(), blob, indirizzoEvento.getText(), Date.valueOf(dataEvento.getValue()), timeIn, timeOut, tipologiaEvento.getValue().toString(), persistenzaEvento.getValue().toString());
+                beanEvento = new BeanEvento(descrizioneEvento.getText(), blob, indirizzoEvento.getText(), Date.valueOf(dataEvento.getValue()), timeIn, timeOut, tipologiaEvento.getValue().toString());
+                beanEvento.setPersistenza(persistenzaEvento.getValue().toString());
 
                 if (gestEventi == null) {
                     gestEventi = new GestisciEventiController();
@@ -225,7 +226,7 @@ public class GestisciEventiControllerGrafico implements Initializable {
         Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
         final OttieniIndicazioniControllerGrafico controller = fxmlLoader.getController();
         controller.initMapAndControls("41.9028","12.4964","city");
-        scene = new Scene(rootNode, Utils.SCENEW, Utils.SCENEH);
+        scene = new Scene(rootNode, Utils.sceneW, Utils.sceneH);
 
         // Rimuovere il focus dal TextField
         scene.getRoot().requestFocus();
@@ -249,7 +250,7 @@ public class GestisciEventiControllerGrafico implements Initializable {
         }
         fxmlLoader = new FXMLLoader();
         Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
-        scene = new Scene(rootNode, Utils.SCENEW, Utils.SCENEH);
+        scene = new Scene(rootNode, Utils.sceneW, Utils.sceneH);
 
 
         stage.setTitle(NAMEAPP);
@@ -272,7 +273,7 @@ public class GestisciEventiControllerGrafico implements Initializable {
         }
         fxmlLoader = new FXMLLoader();
         Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
-        scene = new Scene(rootNode, Utils.SCENEW, Utils.SCENEH);
+        scene = new Scene(rootNode, Utils.sceneW, Utils.sceneH);
 
         stage.setTitle(NAMEAPP);
         stage.setScene(scene);
