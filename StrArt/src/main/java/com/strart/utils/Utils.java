@@ -32,6 +32,9 @@ public class Utils {
     private static double sceneH = 695;
 
     private static final String SETTING1 = "-fx-alignment: center;";
+    private static final String SETTING2 = "-fx-alignment: center-right;";
+    private static final String SETTING3 = "Verdana";
+    private static final String SETTING4 = "-fx-background-color: white; -fx-padding: 20px; -fx-margin: 20px; ";
 
     private static int grafica=0;
 
@@ -51,10 +54,10 @@ public class Utils {
         // Crea il pulsante di chiusura
         Button closeButton = new Button("X");
         closeButton.setOnAction(e -> popup.hide());
-        closeButton.setStyle("-fx-alignment: center-right;");
+        closeButton.setStyle(SETTING2);
 
         Text title = new Text("Notifica \t");
-        title.setFont(Font.font("Verdana", FontWeight.BOLD, 18));
+        title.setFont(Font.font(SETTING3, FontWeight.BOLD, 18));
         title.setStyle(SETTING1);
 
         HBox header = new HBox(10, title, closeButton);
@@ -71,7 +74,7 @@ public class Utils {
         popupContent.setFillWidth(true);
         popupContent.setMaxWidth(owner.getWidth() - 200);
         popupContent.setMaxHeight(owner.getHeight() - 600);
-        popupContent.setStyle("-fx-background-color: white; -fx-padding: 20px; -fx-margin: 20px; ");
+        popupContent.setStyle(SETTING4);
 
         // Aggiungi l'overlay e il contenuto al popup
         StackPane popupRoot = new StackPane(overlay, popupContent);
@@ -104,10 +107,10 @@ public class Utils {
         // Crea il pulsante di chiusura
         Button closeButton = new Button("X");
         closeButton.setOnAction(e -> popup.hide());
-        closeButton.setStyle("-fx-alignment: center-right;");
+        closeButton.setStyle(SETTING2);
 
         Text title = new Text("Attenzione \t");
-        title.setFont(Font.font("Verdana", FontWeight.BOLD, 18));
+        title.setFont(Font.font(SETTING3, FontWeight.BOLD, 18));
         title.setStyle(SETTING1);
 
         HBox header = new HBox(10, title, closeButton);
@@ -124,7 +127,7 @@ public class Utils {
         popupContent.setFillWidth(true);
         popupContent.setMaxWidth(owner.getWidth() - 200);
         popupContent.setMaxHeight(owner.getHeight() - 600);
-        popupContent.setStyle("-fx-background-color: white; -fx-padding: 20px; -fx-margin: 20px; ");
+        popupContent.setStyle(SETTING4);
 
         // Aggiungi l'overlay e il contenuto al popup
         StackPane popupRoot = new StackPane(overlay, popupContent);
@@ -149,10 +152,10 @@ public class Utils {
         // Crea il pulsante di chiusura
         Button closeButton = new Button("X");
         closeButton.setOnAction(e -> popup.hide());
-        closeButton.setStyle("-fx-alignment: center-right;");
+        closeButton.setStyle(SETTING2);
 
         Text title = new Text("Dettagli Evento \t");
-        title.setFont(Font.font("Verdana", FontWeight.BOLD, 18));
+        title.setFont(Font.font(SETTING3, FontWeight.BOLD, 18));
         title.setStyle(SETTING1);
 
         HBox header = new HBox(10, title, closeButton);
@@ -180,7 +183,7 @@ public class Utils {
         }
 
         Text nomeArtista = new Text(eventoBean.getNomeArtista());
-        nomeArtista.setFont(Font.font("Verdana", FontWeight.BOLD, 13));
+        nomeArtista.setFont(Font.font(SETTING3, FontWeight.BOLD, 13));
 
         HBox nome = new HBox(nomeArtista);
         nome.setPadding(new Insets(5, 0.0, 5, 0.0));
@@ -219,7 +222,7 @@ public class Utils {
         popupContent.setFillWidth(true);
         popupContent.setMaxWidth(owner.getWidth() - 200);
         popupContent.setMaxHeight(owner.getHeight() - 300);
-        popupContent.setStyle("-fx-background-color: white; -fx-padding: 20px; -fx-margin: 20px; ");
+        popupContent.setStyle(SETTING4);
 
         // Aggiungi l'overlay e il contenuto al popup
         StackPane popupRoot = new StackPane(overlay, popupContent);
