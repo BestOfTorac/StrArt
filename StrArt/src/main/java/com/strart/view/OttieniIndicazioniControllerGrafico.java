@@ -210,10 +210,10 @@ public class OttieniIndicazioniControllerGrafico {
         markers.keySet().forEach(marker -> mapView.addMarker(marker));
     }
 
-    private static void addMarker(MapView mapView, Marker marker, HashMap properties) {
+    private static void addMarker(MapView mapView, Marker marker, HashMap<String, String> properties) {
         mapView.addMarker(marker);
         if (markers.get(marker) != null) {
-            
+
         } else{
             markers.put(marker, properties);
         }
