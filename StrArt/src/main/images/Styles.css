@@ -1,0 +1,70 @@
+.root {
+    -fx-background-color: #f4f4f4;
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.header {
+    -fx-background-color: #3498db;
+    -fx-alignment: center-left;
+}
+
+.back-button {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+.back-button:hover {
+    -fx-opacity: 0.8;
+}
+
+.title-label {
+    -fx-text-fill: white;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.content-pane {
+    -fx-background-color: white;
+}
+
+.form-container {
+    -fx-max-width: 850px;
+    alignment: center;
+}
+
+.form-field {
+    -fx-spacing: 5;
+}
+
+.field-label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.text-field, .date-picker, .combo-box, .text-area, .time-spinner {
+    -fx-pref-height: 35px;
+    -fx-background-color: #f8f8f8;
+    -fx-border-color: #ddd;
+    -fx-border-radius: 4px;
+}
+
+.text-area {
+    -fx-pref-height: 100px;
+}
+
+.load-image-button, .create-button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-cursor: hand;
+}
+
+.load-image-button:hover, .create-button:hover {
+    -fx-background-color: #2980b9;
+}
+
+.create-button {
+    -fx-pref-width: 200px;
+    -fx-alignment: center;
+}

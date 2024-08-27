@@ -8,120 +8,114 @@
 <?import javafx.scene.control.*?>
 
 <?import javafx.geometry.Insets?>
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.strart.view.GestisciEventiControllerGrafico">
-    <top>
-        <HBox alignment="CENTER_LEFT" spacing="10.0" BorderPane.alignment="CENTER_LEFT">
-            <padding>
-                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-            </padding>
-            <ImageView fitHeight="25.0" fitWidth="25.0"  pickOnBounds="true" preserveRatio="true" onMouseClicked="#goBack">
-                <Image url="@/BackArrow.png"/>
-            </ImageView>
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.strart.view.GestisciEventiControllerGrafico"
+            stylesheets="/Styles.css">
 
-            <HBox>
-                <padding>
-                    <Insets bottom="0.0" left="35.0" right="0.0" top="2.0"/>
-                </padding>
-                <Text fx:id="pageTitle" text="Creazione dell'evento" VBox.vgrow="ALWAYS" />
+    <top>
+        <HBox alignment="CENTER" spacing="20.0" styleClass="header">
+            <padding>
+                <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+            </padding>
+            <HBox alignment="CENTER_LEFT">
+                <Button onAction="#goBack" styleClass="back-button">
+                    <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0">
+                            <Image url="@/BackArrow.png"/>
+                        </ImageView>
+                    </graphic>
+                </Button>
+            </HBox>
+            <HBox HBox.hgrow="ALWAYS" alignment="CENTER">
+                <Label text="Creazione dell'evento" styleClass="title-label"/>
             </HBox>
         </HBox>
     </top>
+
     <center>
+        <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="content-pane">
+            <VBox spacing="20.0" styleClass="form-container" VBox.vgrow="ALWAYS">
+                <padding>
+                    <Insets top="30.0" right="30.0" bottom="30.0" left="30.0"/>
+                </padding>
 
-        <VBox fx:id="topControls" spacing="10.0">
-            <padding>
-                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-            </padding>
-           <children>
-               <HBox spacing="10.0" >
-                   <padding>
-                       <Insets bottom="10.0" left="20.0" right="20.0" top="10.0"/>
-                   </padding>
-                   <Text text="Inserisci indirizzo:" />
-                   <TextField fx:id="indirizzoEvento" />
-               </HBox>
+                <VBox spacing="10.0" styleClass="form-field" VBox.vgrow="NEVER">
+                    <Label text="Indirizzo" styleClass="field-label"/>
+                    <TextField fx:id="indirizzoEvento" promptText="Inserisci l'indirizzo dell'evento"/>
+                </VBox>
 
-               <HBox spacing="10.0" >
-                   <padding>
-                       <Insets bottom="10.0" left="20.0" right="20.0" top="10.0"/>
-                   </padding>
-                   <Text text="Seleziona data:" />
-                   <DatePicker fx:id="dataEvento" />
-               </HBox>
+                <HBox spacing="40.0" VBox.vgrow="NEVER">
+                    <VBox spacing="10.0" styleClass="form-field" HBox.hgrow="ALWAYS">
+                        <Label text="Data" styleClass="field-label"/>
+                        <DatePicker fx:id="dataEvento" promptText="Seleziona la data" HBox.hgrow="ALWAYS"/>
+                    </VBox>
 
-               <HBox spacing="10.0" >
-                   <padding>
-                       <Insets bottom="10.0" left="20.0" right="20.0" top="10.0"/>
-                   </padding>
-                   <Text text="Inserisci l'orario di inizio:" />
-                   <HBox>
-                       <children>
-                           <Spinner fx:id="oraInizio" editable="true" initialValue="0" max="23" min="0" />
+                    <VBox spacing="10.0" styleClass="form-field" HBox.hgrow="ALWAYS">
+                        <Label text="Orario di inizio" styleClass="field-label"/>
+                        <HBox spacing="20.0">
+                            <Spinner fx:id="oraInizio" editable="true" styleClass="time-spinner" initialValue="0" max="23" min="0" HBox.hgrow="ALWAYS"/>
+                            <Spinner fx:id="minutiInizio" editable="true" styleClass="time-spinner" initialValue="0" max="59" min="0" HBox.hgrow="ALWAYS"/>
+                        </HBox>
+                    </VBox>
 
-                           <Spinner fx:id="minutiInizio" editable="true" initialValue="0" max="59" min="0" />
-                       </children>
-                   </HBox>
-               </HBox>
+                    <VBox spacing="10.0" styleClass="form-field" HBox.hgrow="ALWAYS">
+                        <Label text="Orario di fine" styleClass="field-label"/>
+                        <HBox spacing="20.0">
+                            <Spinner fx:id="oraFine" editable="true" styleClass="time-spinner" initialValue="0" max="23" min="0" HBox.hgrow="ALWAYS"/>
+                            <Spinner fx:id="minutiFine" editable="true" styleClass="time-spinner" initialValue="0" max="59" min="0" HBox.hgrow="ALWAYS"/>
+                        </HBox>
+                    </VBox>
+                </HBox>
 
-               <HBox spacing="10.0" >
-                   <padding>
-                       <Insets bottom="10.0" left="20.0" right="20.0" top="10.0"/>
-                   </padding>
-                   <Text text="Inserisci l'orario di fine:" />
-                   <HBox>
-                       <children>
-                           <Spinner fx:id="oraFine" editable="true" initialValue="0" max="23" min="0" />
+                <HBox spacing="20.0" VBox.vgrow="NEVER">
+                    <VBox spacing="10.0" styleClass="form-field" HBox.hgrow="ALWAYS">
+                        <Label text="Tipologia evento" styleClass="field-label"/>
+                        <ComboBox fx:id="tipologiaEvento" promptText="Seleziona la tipologia" HBox.hgrow="ALWAYS">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Musicale"/>
+                                    <String fx:value="Teatrale"/>
+                                    <String fx:value="Comico"/>
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                    </VBox>
 
-                           <Spinner fx:id="minutiFine" editable="true" initialValue="0" max="59" min="0" />
-                       </children>
-                   </HBox>
-               </HBox>
+                    <VBox spacing="10.0" styleClass="form-field" HBox.hgrow="ALWAYS">
+                        <Label text="Memorizzazione evento" styleClass="field-label"/>
+                        <ComboBox fx:id="persistenzaEvento" promptText="Seleziona dove memorizzare" HBox.hgrow="ALWAYS">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Database"/>
+                                    <String fx:value="FileSystem"/>
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+                    </VBox>
+                </HBox>
 
-               <HBox spacing="10.0" >
-                   <padding>
-                       <Insets bottom="10.0" left="20.0" right="20.0" top="10.0"/>
-                   </padding>
-                   <TextArea fx:id="descrizioneEvento" text="Descrizione dell'evento" />
-                    <HBox spacing="10.0" HBox.hgrow="ALWAYS" >
-                        <Button HBox.hgrow="ALWAYS" onAction="#loadImage" style="-fx-background-color: #754343;" text="Carica Immagine" textFill="#1a1919" />
-                        <ImageView fx:id="immagineEvento" fitHeight="200" fitWidth="200" />
-                   </HBox>
-               </HBox>
+                <VBox spacing="10.0" styleClass="form-field" VBox.vgrow="ALWAYS">
+                    <Label text="Descrizione evento" styleClass="field-label"/>
+                    <TextArea fx:id="descrizioneEvento" promptText="Inserisci la descrizione dell'evento" wrapText="true" VBox.vgrow="ALWAYS"/>
+                </VBox>
 
-
-
-
-
-
-
-               <Text text="Seleziona la tipogia di evento" />
-               <ComboBox fx:id="tipologiaEvento">
-                   <!-- Aggiungi qui gli elementi della lista -->
-                   <items>
-                       <FXCollections fx:factory="observableArrayList">
-                           <String fx:value="musicale" />
-                           <String fx:value="teatrale" />
-                           <String fx:value="comico" />
-                           <!-- Aggiungi altri elementi secondo necessità -->
-                       </FXCollections>
-                   </items>
-               </ComboBox>
-
-
-               <Text text="Seleziona dove memorizzare l'evento" />
-               <ComboBox fx:id="persistenzaEvento">
-                   <items>
-                       <FXCollections fx:factory="observableArrayList">
-                           <String fx:value="Database" />
-                           <String fx:value="FileSystem" />
-                       </FXCollections>
-                   </items>
-               </ComboBox>
-
-               <Button onAction="#creaEvento" text="Crea" />
-           </children>
-
-        </VBox>
+                <VBox spacing="10.0" styleClass="form-field" VBox.vgrow="NEVER">
+                    <Label text="Immagine evento" styleClass="field-label"/>
+                    <HBox spacing="10.0" alignment="CENTER_LEFT">
+                        <Button onAction="#loadImage" text="Carica Immagine" styleClass="load-image-button"/>
+                        <ImageView fx:id="immagineEvento" fitHeight="100" preserveRatio="true"/>
+                    </HBox>
+                </VBox>
+            </VBox>
+        </ScrollPane>
     </center>
 
+    <bottom>
+        <HBox alignment="CENTER">
+            <Button onAction="#creaEvento" text="Crea Evento" styleClass="create-button"/>
+            <padding>
+                <Insets top="20.0" right="0.0" bottom="30.0" left="0.0"/>
+            </padding>
+        </HBox>
+    </bottom>
 </BorderPane>

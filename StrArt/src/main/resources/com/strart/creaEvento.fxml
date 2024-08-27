@@ -28,10 +28,10 @@
             </HBox>
         </HBox>
     </top>
-    <center>
-        <VBox fx:id="topControls2" spacing="10.0">
+    <center >
+        <VBox alignment="CENTER" fx:id="topControls2" spacing="50.0">
             <padding>
-                <Insets bottom="10.0" left="15.0" right="15.0" top="10.0"/>
+                <Insets bottom="10.0" left="15.0" right="40.0" top="10.0"/>
             </padding>
             <GridPane hgap="10" vgap="10">
                 <columnConstraints>

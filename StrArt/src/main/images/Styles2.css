@@ -1,0 +1,34 @@
+.root {
+    -fx-background-color: #f0f0f0; /* Colore di sfondo leggero */
+    -fx-padding: 0px; /* Margine interno per l'intero layout */
+}
+
+/* Stile per il titolo */
+.title-label {
+    -fx-font-size: 30px; /* Dimensione del font del titolo */
+    -fx-font-weight: bold; /* Font in grassetto */
+    -fx-text-fill: #333333; /* Colore del testo grigio scuro */
+
+}
+
+/* Stile per i bottoni centrali */
+.button {
+    -fx-background-color: #0078d7; /* Colore blu per i bottoni */
+    -fx-text-fill: white; /* Colore del testo bianco */
+    -fx-font-size: 16px; /* Dimensione del font */
+    -fx-padding: 10px 20px; /* Spaziatura interna per i bottoni */
+    -fx-cursor: hand; /* Cursore a mano al passaggio */
+}
+
+.button:hover {
+    -fx-background-color: #005fa3; /* Colore più scuro al passaggio */
+}
+
+/* Stile per le descrizioni */
+.label {
+    -fx-text-fill: #333333; /* Colore del testo grigio scuro */
+    -fx-font-size: 17px; /* Dimensione del font */
+    -fx-padding: 10px 0; /* Margine superiore e inferiore */
+    -fx-text-alignment: justify; /* Testo centrato */
+    -fx-max-width: 400px; /* Larghezza massima */
+}
