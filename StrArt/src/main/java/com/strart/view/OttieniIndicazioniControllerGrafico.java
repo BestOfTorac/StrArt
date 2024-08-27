@@ -212,10 +212,8 @@ public class OttieniIndicazioniControllerGrafico {
 
     private static void addMarker(MapView mapView, Marker marker, HashMap properties) {
         mapView.addMarker(marker);
-        //markers.add(marker);
         if (markers.get(marker) != null) {
-
-            //markers2.get(marker)
+            
         } else{
             markers.put(marker, properties);
         }
