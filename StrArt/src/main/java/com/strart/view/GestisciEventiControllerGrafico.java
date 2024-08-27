@@ -85,11 +85,12 @@ public class GestisciEventiControllerGrafico implements Initializable {
     private VBox cardContainer;  // Contenitore per le card
     private static final String NAMEAPP = "StrArt";
 
+    private static final String SETTING1 = "-fx-font-weight: bold; -fx-font-size: 12px;";
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("initialize");
         if (pageTitle != null) {
-            System.out.println("pageTitle");
+
             pageTitle.setFont(Font.font("Verdana", FontWeight.BOLD, 20)); // Font Verdana, Bold, 18px
         }
 
@@ -337,23 +338,23 @@ public class GestisciEventiControllerGrafico implements Initializable {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Text dataText = new Text("Data: " );
         Text dataText2 = new Text(formatter.format(eventoBean.getData()));
-        dataText.setStyle("-fx-font-weight: bold; -fx-font-size: 12px;");
+        dataText.setStyle(SETTING1);
         HBox data = new HBox(dataText, dataText2);
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
 
         Text orarioText = new Text("Orario: " );
-        orarioText.setStyle("-fx-font-weight: bold; -fx-font-size: 12px;");
+        orarioText.setStyle(SETTING1);
         Text orarioText2 = new Text( sdf.format(eventoBean.getOrarioInizio()) + " - " + sdf.format(eventoBean.getOrarioFine()));
         HBox orario = new HBox(orarioText, orarioText2);
 
         Text tipologiaText = new Text("Tipologia: " );
         Text tipologiaText2 = new Text(eventoBean.getTipoEvento());
-        tipologiaText.setStyle("-fx-font-weight: bold; -fx-font-size: 12px;");
+        tipologiaText.setStyle(SETTING1);
         HBox tipologia = new HBox(tipologiaText, tipologiaText2);
 
         Text statoText = new Text("Stato: " );
         Text statoText2 = new Text(eventoBean.getStato());
-        statoText.setStyle("-fx-font-weight: bold; -fx-font-size: 12px;");
+        statoText.setStyle(SETTING1);
         HBox stato = new HBox(statoText, statoText2);
 
         Label descrizioneText = new Label(eventoBean.getDescrizione());

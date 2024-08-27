@@ -78,9 +78,11 @@ public class ApiControllerGrafico {
 
         // Utilizzo di Gson per deserializzare la risposta JSON in un oggetto Java
         Gson gson = new Gson();
-        Routes routes = gson.fromJson(response.toString(), Routes.class);
 
-        System.out.println("routes.getCode() " + routes.getRoutes().get(0).getDistance());
+        //questa funzione ritona un tipo di dato Routes
+        gson.fromJson(response.toString(), Routes.class);
+
+
 
         return null;
     }

@@ -51,7 +51,7 @@ public class OttieniIndicazioniControllerGrafico {
     private static final String DATA_PROPERTY = "data";
     private static final String ORARIO_INIZIO_PROPERTY = "orarioInizio";
 
-    public static Insets paddingButtons = new Insets(10, 10.0, 10, 0.0);
+
 
     public OttieniIndicazioniControllerGrafico() {
         // no position for click marker yet
@@ -125,12 +125,12 @@ public class OttieniIndicazioniControllerGrafico {
             }
 
             // creo una mappa dei valori importanti per il marker
-            HashMap<String, String> properties = new HashMap();
+            HashMap<String, String> properties = new HashMap<String, String>();
             properties.put(NOME_ARTISTA_PROPERTY, evento.getNomeArtista());
             properties.put(DATA_PROPERTY, evento.getData().toString());
             properties.put(ORARIO_INIZIO_PROPERTY, evento.getOrarioInizio().toString());
 
-            //mapView.addMarker(marker);
+
             addMarker(mapView, marker, properties);
         }
 
@@ -138,36 +138,8 @@ public class OttieniIndicazioniControllerGrafico {
                 eventiB.getLatitudine(),
                 eventiB.getLongitudine(),
                 eventiB.getType());
-
-        //Coordinate cord = new Coordinate(Double.valueOf(eventiB.getCordinate().getLatitudine()), Double.valueOf(eventiB.getCordinate().getLongitudine()));
-        //Marker marker = Marker.createProvided(Marker.Provided.BLUE).setPosition(cord).setVisible(true);
-        //mapView.addMarker(marker);
-
     }
 
-
-    private void animateClickMarker(Coordinate oldPosition, Coordinate newPosition) {
-        // animate the marker to the new position
-        final Transition transition = new Transition() {
-            private final Double oldPositionLongitude = oldPosition.getLongitude();
-            private final Double oldPositionLatitude = oldPosition.getLatitude();
-            private final double deltaLatitude = newPosition.getLatitude() - oldPositionLatitude;
-            private final double deltaLongitude = newPosition.getLongitude() - oldPositionLongitude;
-
-            {
-                setCycleDuration(Duration.seconds(1.0));
-                setOnFinished(evt -> markerClick.setPosition(newPosition));
-            }
-
-            @Override
-            protected void interpolate(double v) {
-                final double latitude = oldPosition.getLatitude() + v * deltaLatitude;
-                final double longitude = oldPosition.getLongitude() + v * deltaLongitude;
-                markerClick.setPosition(new Coordinate(latitude, longitude));
-            }
-        };
-        transition.play();
-    }
 
     public void initMapAndControls(String lat, String lon, String type) {
 
@@ -217,29 +189,7 @@ public class OttieniIndicazioniControllerGrafico {
             }
         });
 
-        // add an event handler for singleclicks, set the click marker to the new position when it's visible
-        /*
-        mapView.addEventHandler(MapViewEvent.MAP_CLICKED, event -> {
-            event.consume();
-            System.out.println("setMarker: " + setMarker);
-            if (this.setMarker) {
 
-                final Coordinate newPosition = event.getCoordinate().normalize();
-                System.out.println("Event: map clicked at: " + newPosition);
-
-                markerClick.setVisible(true);
-                final Coordinate oldPosition = markerClick.getPosition();
-                if (oldPosition != null) {
-                    animateClickMarker(oldPosition, newPosition);
-                } else {
-                    markerClick.setPosition(newPosition);
-                    // adding can only be done after coordinate is set
-                    mapView.addMarker(markerClick);
-                }
-            }
-
-        });
-        */
     }
 
     public void refreshMapAndControls(String lat, String lon, String type) {
