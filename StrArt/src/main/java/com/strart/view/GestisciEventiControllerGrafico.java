@@ -293,7 +293,7 @@ public class GestisciEventiControllerGrafico implements Initializable {
             throw new IllegalArgumentException(e);
         }
 
-        if (beanEventi.getListEvento().size() != 0) {
+        if (!beanEventi.getListEvento().isEmpty()) {
             for (BeanEvento evento : beanEventi.getListEvento()) {
                 BorderPane card = createCard(evento);
                 cardContainer.getChildren().add(card);

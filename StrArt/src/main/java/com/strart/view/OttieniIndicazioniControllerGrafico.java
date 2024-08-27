@@ -89,58 +89,7 @@ public class OttieniIndicazioniControllerGrafico {
 
             ottieniIndicazioniGen(indirizzoB);
         }
-        /*
 
-        BeanEventi eventiB = null;
-
-        try {
-            eventiB = indicazioni.cercaEventi(indirizzoB);
-        } catch (IllegalArgumentException e){
-            Utils.showErrorPopup(e.getMessage());
-        } catch (Exception e) {
-            Utils.showErrorPopup("Errore improvviso, riprova");
-            //throw new IllegalArgumentException(e);
-        }
-
-        // condizione di controllo per evitare NPE
-        if (eventiB == null) return;
-
-        for (BeanEvento evento: eventiB.getListEvento()){
-            Coordinate cord = new Coordinate(
-                    Double.valueOf(evento.getLatitudine()),
-                    Double.valueOf(evento.getLongitudine()));
-
-            Marker marker;
-            if(evento.getStato().equals("iniziato")) {
-                marker= Marker.createProvided(Marker.Provided.RED)
-                        .setPosition(cord)
-                        .setVisible(true);
-            }else{
-                marker = Marker.createProvided(Marker.Provided.BLUE)
-                        .setPosition(cord)
-                        .setVisible(true);
-            }
-
-            // creo una mappa dei valori importanti per il marker
-            HashMap<String, String> properties = new HashMap();
-            properties.put(NOME_ARTISTA_PROPERTY, evento.getNomeArtista());
-            properties.put(DATA_PROPERTY, evento.getData().toString());
-            properties.put(ORARIO_INIZIO_PROPERTY, evento.getOrarioInizio().toString());
-
-            //mapView.addMarker(marker);
-            addMarker(mapView, marker, properties);
-        }
-
-        refreshMapAndControls(
-                eventiB.getLatitudine(),
-                eventiB.getLongitudine(),
-                eventiB.getType());
-
-        //Coordinate cord = new Coordinate(Double.valueOf(eventiB.getCordinate().getLatitudine()), Double.valueOf(eventiB.getCordinate().getLongitudine()));
-        //Marker marker = Marker.createProvided(Marker.Provided.BLUE).setPosition(cord).setVisible(true);
-        //mapView.addMarker(marker);
-
-         */
 
     }
 
@@ -154,7 +103,6 @@ public class OttieniIndicazioniControllerGrafico {
             Utils.showErrorPopup(e.getMessage());
         } catch (Exception e) {
             Utils.showErrorPopup("Errore improvviso, riprova");
-            //throw new IllegalArgumentException(e);
         }
 
         // condizione di controllo per evitare NPE

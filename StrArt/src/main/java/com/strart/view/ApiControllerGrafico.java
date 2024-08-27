@@ -82,16 +82,6 @@ public class ApiControllerGrafico {
 
         System.out.println("routes.getCode() " + routes.getRoutes().get(0).getDistance());
 
-        /*
-        if (responseObject.getOpenStreetMapFeatures() == null || responseObject.getOpenStreetMapFeatures().length == 0) {
-            throw new IllegalArgumentException("L'indirizzo inserito non è valido");
-        }
-
-        String lon = responseObject.getOpenStreetMapFeatures()[0].getOpenStreetMapGeometry().getcoordinates()[0];
-        String lat = responseObject.getOpenStreetMapFeatures()[0].getOpenStreetMapGeometry().getcoordinates()[1];
-        String tipo=responseObject.getOpenStreetMapFeatures()[0].getOpenStreetMapProperties().getGeocoding().getType();
-
-         */
         return null;
     }
 
