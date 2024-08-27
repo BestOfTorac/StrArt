@@ -29,7 +29,6 @@
 
 .form-container {
     -fx-max-width: 850px;
-    alignment: center;
 }
 
 .form-field {
