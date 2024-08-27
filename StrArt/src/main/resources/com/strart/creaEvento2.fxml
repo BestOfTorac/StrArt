@@ -38,7 +38,7 @@
                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0"/>
                    </padding>
                    <Text text="Inserisci indirizzo:" />
-                   <TextField fx:id="textField" />
+                   <TextField fx:id="indirizzoEvento" />
                </HBox>
 
                <HBox spacing="10.0" >
@@ -56,9 +56,9 @@
                    <Text text="Inserisci l'orario di inizio:" />
                    <HBox>
                        <children>
-                           <Spinner fx:id="hourSpinnerIn" editable="true" initialValue="0" max="23" min="0" />
+                           <Spinner fx:id="oraInizio" editable="true" initialValue="0" max="23" min="0" />
 
-                           <Spinner fx:id="minuteSpinnerIn" editable="true" initialValue="0" max="59" min="0" />
+                           <Spinner fx:id="minutiInizio" editable="true" initialValue="0" max="59" min="0" />
                        </children>
                    </HBox>
                </HBox>
@@ -70,9 +70,9 @@
                    <Text text="Inserisci l'orario di fine:" />
                    <HBox>
                        <children>
-                           <Spinner fx:id="hourSpinnerOut" editable="true" initialValue="0" max="23" min="0" />
+                           <Spinner fx:id="oraFine" editable="true" initialValue="0" max="23" min="0" />
 
-                           <Spinner fx:id="minuteSpinnerOut" editable="true" initialValue="0" max="59" min="0" />
+                           <Spinner fx:id="minutiFine" editable="true" initialValue="0" max="59" min="0" />
                        </children>
                    </HBox>
                </HBox>
@@ -81,10 +81,10 @@
                    <padding>
                        <Insets bottom="10.0" left="20.0" right="20.0" top="10.0"/>
                    </padding>
-                   <TextArea fx:id="textArea" text="Descrizione dell'evento" />
+                   <TextArea fx:id="descrizioneEvento" text="Descrizione dell'evento" />
                     <HBox spacing="10.0" HBox.hgrow="ALWAYS" >
                         <Button HBox.hgrow="ALWAYS" onAction="#loadImage" style="-fx-background-color: #754343;" text="Carica Immagine" textFill="#1a1919" />
-                        <ImageView fx:id="imageView" fitHeight="200" fitWidth="200" />
+                        <ImageView fx:id="immagineEvento" fitHeight="200" fitWidth="200" />
                    </HBox>
                </HBox>
 
@@ -95,7 +95,7 @@
 
 
                <Text text="Seleziona la tipogia di evento" />
-               <ComboBox fx:id="selectionComboBox">
+               <ComboBox fx:id="tipologiaEvento">
                    <!-- Aggiungi qui gli elementi della lista -->
                    <items>
                        <FXCollections fx:factory="observableArrayList">
@@ -109,7 +109,7 @@
 
 
                <Text text="Seleziona dove memorizzare l'evento" />
-               <ComboBox fx:id="comboBoxPersistenza">
+               <ComboBox fx:id="persistenzaEvento">
                    <items>
                        <FXCollections fx:factory="observableArrayList">
                            <String fx:value="Database" />

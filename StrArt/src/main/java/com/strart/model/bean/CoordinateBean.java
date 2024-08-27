@@ -2,11 +2,11 @@ package com.strart.model.bean;
 
 public class CoordinateBean {
 
-    String indirizzo;
-    String longitudine;
-    String latitudine;
+    private String indirizzo;
+    private String longitudine;
+    private String latitudine;
 
-    String type;
+    private String type;
 
 
     public CoordinateBean(String indirizzo, String longitudine, String latitudine, String type) {

@@ -1,4 +1,4 @@
-package com.strart.model.bean;
+package com.strart.model.domain;
 
 public class Coordinate {
 

@@ -1,7 +1,6 @@
 package com.strart.model.domain;
 
 import com.strart.exception.DAOException;
-import com.strart.model.bean.Coordinate;
 import com.strart.model.dao.CercaEventiDAO;
 import com.strart.model.dao.PartecipaEventoDAO;
 

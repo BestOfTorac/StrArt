@@ -1,8 +1,13 @@
 package com.strart.model.domain;
 
+import java.util.List;
+
 public class EventoMusicale extends Evento {
 
-    String caratteristiche;
+    private String caratteristiche;
+    private String genereMusicale;
+    private List<String> elencoCanzoni;
+    private String strumentazione;
 
     @Override
     public  String visualizzaEvento(){

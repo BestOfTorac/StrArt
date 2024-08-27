@@ -4,13 +4,13 @@ import java.util.List;
 
 public class BeanEventi {
 
-    List<BeanEvento> listEvento;
+    private List<BeanEvento> listEvento;
 
-    String longitudine;
+    private String longitudine;
 
-    String latitudine;
+    private String latitudine;
 
-    String type;
+    private String type;
 
 
 

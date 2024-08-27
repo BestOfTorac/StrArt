@@ -2,7 +2,11 @@ package com.strart.model.domain;
 
 public class EventoTeatrale extends Evento {
 
-    String caratteristiche;
+    private String caratteristiche;
+    private String genere;
+    private Boolean attoUnico;
+    private int numeroAtti;
+    private String compagniaTeatrale;
 
     @Override
     public  String visualizzaEvento(){

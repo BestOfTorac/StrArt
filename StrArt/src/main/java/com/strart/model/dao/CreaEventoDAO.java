@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class CreaEventoDAO {
 
-    public void execute(Object... params) throws DAOException, SQLException {
+    public void creaEventoOnDB(Object... params) throws DAOException, SQLException {
         String username= (String) params[0];
         Evento evento= (Evento) params[1];
 

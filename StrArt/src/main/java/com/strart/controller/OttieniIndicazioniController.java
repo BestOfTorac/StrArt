@@ -6,9 +6,7 @@ import com.strart.model.domain.*;
 import com.strart.view.ApiControllerGrafico;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.sql.Time;
 
 
 public class OttieniIndicazioniController {
@@ -71,7 +69,7 @@ public class OttieniIndicazioniController {
 
     }
 
-    public void ottieniIndicazioni(String lat, String lon) throws DAOException, SQLException, IOException {
+    public void indicazioniEvento(String lat, String lon) throws DAOException, SQLException, IOException {
 
         ApiControllerGrafico api = new ApiControllerGrafico();
         CoordinateBean coordinateB = api.routesEvento("12.5492675","41.9578954", lat, lon);

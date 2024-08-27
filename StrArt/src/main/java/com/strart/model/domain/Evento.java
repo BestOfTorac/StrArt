@@ -6,16 +6,16 @@ import java.sql.Time;
 
 public abstract class Evento implements Serializable {
 
-    String nomeArtista;
-    String descrizione;
-    String latitudine;
-    String longitudine;
-    Date data;
-    Time orarioInizio;
-    Time orarioFine;
-    transient Blob immagine;
+    protected String nomeArtista;
+    protected String descrizione;
+    protected String latitudine;
+    protected String longitudine;
+    protected Date data;
+    protected Time orarioInizio;
+    protected Time orarioFine;
+    protected transient Blob immagine;
 
-    String stato;
+    protected String stato;
 
     // Setter per nomeArtista
     public void setNomeArtista(String nomeArtista) {

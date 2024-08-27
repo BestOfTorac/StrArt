@@ -12,7 +12,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.fxml.LoadException;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -43,7 +42,6 @@ import javafx.embed.swing.SwingFXUtils;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.util.List;
 import java.util.ResourceBundle;
 import javax.sql.rowset.serial.SerialBlob;
 
@@ -51,39 +49,37 @@ import javax.sql.rowset.serial.SerialBlob;
 public class GestisciEventiControllerGrafico implements Initializable {
 
     @FXML
-    private TextArea textArea;
+    private TextArea descrizioneEvento;
     @FXML
     private Text pageTitle;
 
     @FXML
-    private ImageView imageView;
+    private ImageView immagineEvento;
 
     @FXML
-    private TextField textField;
+    private TextField indirizzoEvento;
 
     @FXML
     private DatePicker dataEvento;
     @FXML
-    private Spinner hourSpinnerIn;
+    private Spinner oraInizio;
     @FXML
-    private Spinner minuteSpinnerIn;
+    private Spinner minutiInizio;
     @FXML
-    private Spinner hourSpinnerOut;
+    private Spinner oraFine;
     @FXML
-    private Spinner minuteSpinnerOut;
+    private Spinner minutiFine;
     @FXML
-    private ComboBox selectionComboBox;
+    private ComboBox tipologiaEvento;
 
     @FXML
-    private ComboBox comboBoxPersistenza;
+    private ComboBox persistenzaEvento;
 
     @FXML
     private MapView mapView;
 
     private GestisciEventiController gestEventi;
 
-    private String indirizzo;
-    private Coordinate coordinate;
 
     @FXML
     private VBox cardContainer;  // Contenitore per le card
@@ -104,7 +100,7 @@ public class GestisciEventiControllerGrafico implements Initializable {
 
 
     @FXML
-    protected void viewCreaEvento() throws IOException{
+    public void viewCreaEvento() throws IOException{
         FXMLLoader fxmlLoader;
         Stage stage = ApplicazioneStage.getStage();
         Scene scene;
@@ -125,12 +121,12 @@ public class GestisciEventiControllerGrafico implements Initializable {
     }
 
     @FXML
-    protected void creaEvento(){
+    public void creaEvento(){
 
-        int hoursIn = (int) hourSpinnerIn.getValue();
-        int minutesIn = (int) minuteSpinnerIn.getValue();
-        int hoursOut = (int) hourSpinnerOut.getValue();
-        int minutesOut = (int) minuteSpinnerOut.getValue();
+        int hoursIn = (int) oraInizio.getValue();
+        int minutesIn = (int) minutiInizio.getValue();
+        int hoursOut = (int) oraFine.getValue();
+        int minutesOut = (int) minutiFine.getValue();
 
         // Creazione oggetti LocalTime
         LocalTime localTimeIn = LocalTime.of(hoursIn, minutesIn);
@@ -142,8 +138,8 @@ public class GestisciEventiControllerGrafico implements Initializable {
 
         Blob blob = null;
         // Convert0 l'immagine JavaFX in BufferedImage
-        if (imageView.getImage() != null) {
-            BufferedImage bufferedImage = SwingFXUtils.fromFXImage(imageView.getImage(), null);
+        if (immagineEvento.getImage() != null) {
+            BufferedImage bufferedImage = SwingFXUtils.fromFXImage(immagineEvento.getImage(), null);
 
             byte[] compressedImageData;
             try {
@@ -155,21 +151,21 @@ public class GestisciEventiControllerGrafico implements Initializable {
             }
         }
 
-        if (textArea.getText().equals("")) {
+        if (descrizioneEvento.getText().equals("")) {
             Utils.showErrorPopup("Mancato inserimento della descrizione dell'evento");
-        } else if (textField.getText().equals("")) {
+        } else if (indirizzoEvento.getText().equals("")) {
             Utils.showErrorPopup("Mancato inserimento dell'indirizzo dell'evento");
         } else if (dataEvento.getValue() == null) {
             Utils.showErrorPopup("Mancato inserimento della data dell'evento");
-        } else if (selectionComboBox.getValue() == null) {
+        } else if (tipologiaEvento.getValue() == null) {
             Utils.showErrorPopup("Mancato scelta della tipologia di evento");
-        } else if (comboBoxPersistenza.getValue() == null) {
+        } else if (persistenzaEvento.getValue() == null) {
             Utils.showErrorPopup("Mancato scelta della persistenza dell' evento");
         } else {
 
             BeanEvento beanEvento= null;
             try {
-                beanEvento = new BeanEvento(textArea.getText(), blob, textField.getText(), Date.valueOf(dataEvento.getValue()), timeIn, timeOut, selectionComboBox.getValue().toString(), selectionComboBox.getValue().toString());
+                beanEvento = new BeanEvento(descrizioneEvento.getText(), blob, indirizzoEvento.getText(), Date.valueOf(dataEvento.getValue()), timeIn, timeOut, tipologiaEvento.getValue().toString(), persistenzaEvento.getValue().toString());
 
                 if (gestEventi == null) {
                     gestEventi = new GestisciEventiController();
@@ -190,14 +186,14 @@ public class GestisciEventiControllerGrafico implements Initializable {
     }
 
     @FXML
-    private void loadImage() {
+    public void loadImage() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Seleziona un'immagine");
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
             try {
                 Image image = new Image(selectedFile.toURI().toString());
-                imageView.setImage(image);
+                immagineEvento.setImage(image);
             } catch (Exception e) {
 
                 showErrorAlert("Errore durante il caricamento dell'immagine.");
@@ -205,7 +201,7 @@ public class GestisciEventiControllerGrafico implements Initializable {
         }
     }
 
-    private void showErrorAlert(String message) {
+    public void showErrorAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Errore");
         alert.setHeaderText(null);
@@ -214,7 +210,7 @@ public class GestisciEventiControllerGrafico implements Initializable {
     }
 
     @FXML
-    protected void goHome() throws IOException{
+    public void goHome() throws IOException{
         FXMLLoader fxmlLoader;
         Stage stage = ApplicazioneStage.getStage();
         Scene scene;
@@ -240,7 +236,7 @@ public class GestisciEventiControllerGrafico implements Initializable {
     }
 
     @FXML
-    protected void goBack() throws IOException{
+    public void goBack() throws IOException{
         FXMLLoader fxmlLoader;
         Stage stage = ApplicazioneStage.getStage();
         Scene scene;
@@ -262,7 +258,7 @@ public class GestisciEventiControllerGrafico implements Initializable {
     }
 
     @FXML
-    protected void visualizzaEventi() throws IOException {
+    public void visualizzaEventi() throws IOException {
 
         FXMLLoader fxmlLoader;
         Stage stage = ApplicazioneStage.getStage();
@@ -283,7 +279,7 @@ public class GestisciEventiControllerGrafico implements Initializable {
         stage.show();
     }
 
-    private void caricaEventi() {
+    public void caricaEventi() {
 
         if (gestEventi == null) {
             gestEventi = new GestisciEventiController();

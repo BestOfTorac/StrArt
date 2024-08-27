@@ -2,7 +2,7 @@ package com.strart.model.bean;
 
 public class IndirizzoBeanAPI {
 
-        String indirizzo;
+        private String indirizzo;
 
 
         public IndirizzoBeanAPI(String indirizzo) {

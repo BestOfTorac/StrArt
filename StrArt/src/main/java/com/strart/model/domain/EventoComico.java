@@ -1,8 +1,14 @@
 package com.strart.model.domain;
 
+import java.util.List;
+
 public class EventoComico extends Evento {
 
-    String caratteristiche;
+    private String caratteristiche;
+    private String tipologiaUmorismo;
+    private Boolean interazionePubblico;
+    private List<String> temiTrattati;
+    private String fasciaEtaConsigliata;
 
     @Override
     public  String visualizzaEvento(){

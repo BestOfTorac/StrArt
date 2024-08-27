@@ -41,7 +41,7 @@
 
                 <!-- Prima riga -->
                 <Label text="Inserisci indirizzo:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                <TextField fx:id="textField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                <TextField fx:id="indirizzoEvento" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
                 <!-- Seconda riga -->
                 <Label text="Seleziona data:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
@@ -51,9 +51,9 @@
                 <Label text="Inserisci l'orario di inizio:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
                 <HBox GridPane.rowIndex="2" GridPane.columnIndex="1" spacing="10.0">
                     <children>
-                        <Spinner fx:id="hourSpinnerIn" editable="true" initialValue="0" max="23" min="0" />
+                        <Spinner fx:id="oraInizio" editable="true" initialValue="0" max="23" min="0" />
 
-                        <Spinner fx:id="minuteSpinnerIn" editable="true" initialValue="0" max="59" min="0" />
+                        <Spinner fx:id="minutiInizio" editable="true" initialValue="0" max="59" min="0" />
                     </children>
                 </HBox>
 
@@ -61,15 +61,15 @@
                 <Label text="Inserisci l'orario di fine:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
                 <HBox GridPane.rowIndex="3" GridPane.columnIndex="1" spacing="10.0" >
                     <children>
-                        <Spinner fx:id="hourSpinnerOut" editable="true" initialValue="0" max="23" min="0" />
+                        <Spinner fx:id="oraFine" editable="true" initialValue="0" max="23" min="0" />
 
-                        <Spinner fx:id="minuteSpinnerOut" editable="true" initialValue="0" max="59" min="0" />
+                        <Spinner fx:id="minutiFine" editable="true" initialValue="0" max="59" min="0" />
                     </children>
                 </HBox>
 
                 <!-- Quinta riga -->
                 <Label text="Seleziona tipologia evento:" GridPane.rowIndex="4" GridPane.columnIndex="0" />
-                <ComboBox fx:id="selectionComboBox" GridPane.rowIndex="4" GridPane.columnIndex="1" >
+                <ComboBox fx:id="tipologiaEvento" GridPane.rowIndex="4" GridPane.columnIndex="1" >
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="musicale" />
@@ -84,7 +84,7 @@
 
                 <!-- Sesta riga -->
                 <Label text="Dove memorizzare l'evento:" GridPane.rowIndex="5" GridPane.columnIndex="0" />
-                <ComboBox fx:id="comboBoxPersistenza" GridPane.rowIndex="5" GridPane.columnIndex="1">
+                <ComboBox fx:id="persistenzaEvento" GridPane.rowIndex="5" GridPane.columnIndex="1">
                     <items>
                         <FXCollections fx:factory="observableArrayList">
                             <String fx:value="Database" />
@@ -97,10 +97,10 @@
                 </ComboBox>
 
                 <Label text="Descrizione evento:" GridPane.rowIndex="6" GridPane.columnIndex="0" />
-                <TextArea fx:id="textArea" GridPane.rowIndex="6" GridPane.columnIndex="1" prefHeight="100.0" wrapText="true" />
+                <TextArea fx:id="descrizioneEvento" GridPane.rowIndex="6" GridPane.columnIndex="1" prefHeight="100.0" wrapText="true" />
 
                 <Button GridPane.rowIndex="7" GridPane.columnIndex="0" onAction="#loadImage" style="-fx-background-color: #0056b3;-fx-text-fill: white;" text="Carica Immagine" textFill="#1a1919" />
-                <ImageView GridPane.rowIndex="7" GridPane.columnIndex="1" fx:id="imageView" fitHeight="200" preserveRatio="true" />
+                <ImageView GridPane.rowIndex="7" GridPane.columnIndex="1" fx:id="immagineEvento" fitHeight="200" preserveRatio="true" />
 
             </GridPane>
 

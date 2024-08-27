@@ -10,21 +10,21 @@ import java.time.ZoneId;
 
 public class BeanEvento {
 
-    String nomeArtista;
-    String descrizione;
-    Blob immagine;
-    String latitudine;
-    String longitudine;
-    String indirizzo;
+    private String nomeArtista;
+    private String descrizione;
+    private Blob immagine;
+    private String latitudine;
+    private String longitudine;
+    private String indirizzo;
 
-    Date data;
-    Time orarioInizio;
-    Time orarioFine;
+    private Date data;
+    private Time orarioInizio;
+    private Time orarioFine;
 
-    String stato;
-    String tipoEvento;
+    private String stato;
+    private String tipoEvento;
 
-    String persistenza;
+    private String persistenza;
 
     public BeanEvento(String nomeArtista, String descrizione, Blob immagine,  Date data, Time orarioInizio, Time orarioFine, String stato, String tipoEvento, String latitudine, String longitudine){
 
