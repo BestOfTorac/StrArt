@@ -2,11 +2,11 @@ package com.strart.model.domain;
 
 public class Coordinate {
 
-    String indirizzo;
-    String longitudine;
-    String latitudine;
+    private String indirizzo;
+    private String longitudine;
+    private String latitudine;
 
-    String type;
+    private String type;
 
 
     public Coordinate(String indirizzo, String longitudine, String latitudine, String type) {

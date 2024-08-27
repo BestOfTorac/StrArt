@@ -11,7 +11,6 @@ import java.sql.SQLException;
 
 public class OttieniIndicazioniController {
 
-    String indirizzo;
     ListEvento listEvento;
 
     FacadeOttieniIndicazioni facadeOttieniIndicazioni;

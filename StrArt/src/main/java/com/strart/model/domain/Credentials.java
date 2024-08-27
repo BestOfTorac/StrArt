@@ -2,9 +2,9 @@ package com.strart.model.domain;
 
 public class Credentials {
 
-    static String username;
-    static String password;
-    static Role role;
+    private static String username;
+    private static String password;
+    private static Role role;
 
 
     private Credentials(){}

@@ -30,10 +30,10 @@ public class FacadeOttieniIndicazioni {
 
 
         //Recupera il username dal profilo
-        String usernmae= Credentials.getUsername();
+        String username= Credentials.getUsername();
 
         //Istanzia il dao di partecipazione all'evento
-        new PartecipaEventoDAO().execute(evento, usernmae);
+        new PartecipaEventoDAO().partecipaEventoToDb(evento, username);
     }
 
 

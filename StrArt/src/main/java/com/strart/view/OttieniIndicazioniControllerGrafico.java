@@ -36,9 +36,6 @@ public class OttieniIndicazioniControllerGrafico {
     @FXML
     private TextField cap;
 
-
-    private Marker markerClick;
-    private boolean setMarker = false;
     private static HashMap<Marker, HashMap<String, String>> markers = new HashMap<>();
 
     private OttieniIndicazioniController indicazioni = null;
@@ -49,17 +46,10 @@ public class OttieniIndicazioniControllerGrafico {
 
 
 
-    public OttieniIndicazioniControllerGrafico() {
-        // no position for click marker yet
-        markerClick = Marker.createProvided(Marker.Provided.ORANGE).setVisible(false);
-        MapLabel labelClick = new MapLabel("click!", 10, -10)
-                .setVisible(false)
-                .setCssClass("orange-label");
-        markerClick.attachLabel(labelClick);
-    }
+
 
     @FXML
-    protected void ottieniIndicazioni() {
+    public void ottieniIndicazioni() {
         removeMarkers();
         indicazioni = new OttieniIndicazioniController();
 
@@ -74,7 +64,7 @@ public class OttieniIndicazioniControllerGrafico {
     }
 
     @FXML
-    protected void ottieniIndicazioni2() {
+    public void ottieniIndicazioni2() {
         removeMarkers();
         indicazioni = new OttieniIndicazioniController();
         if(indirizzo.getText().equals("") || numCivico.getText().equals("") || cap.getText().equals("")){
