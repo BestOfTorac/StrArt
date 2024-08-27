@@ -11,17 +11,13 @@ import com.strart.model.bean.IndirizzoBean;
 import com.strart.model.domain.ApplicazioneStage;
 import com.strart.model.domain.Credentials;
 import com.strart.utils.Utils;
-import javafx.animation.Transition;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
