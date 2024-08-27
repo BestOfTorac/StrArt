@@ -60,7 +60,10 @@ public class GestisciEventiController {
         beanEventi = new BeanEventi();
 
         for(Evento evento: listEvento.getListaEvento()) {
-            BeanEvento beanEvento= new BeanEvento(evento.getNomeArtista(), evento.getDescrizione(), evento.getImmagine(), evento.getData(), evento.getOrarioInizio(), evento.getOrarioFine(),evento.getStato(), evento.getTipo(), evento.getLatitudine(), evento.getLongitudine());
+            BeanEvento beanEvento= new BeanEvento(evento.getNomeArtista(), evento.getDescrizione(), evento.getImmagine(), evento.getData(), evento.getOrarioInizio(),evento.getStato(), evento.getOrarioFine());
+            beanEvento.setTipoEvento(evento.getTipo());
+            beanEvento.setLatitudine(evento.getLatitudine());
+            beanEvento.setLongitudine(evento.getLongitudine());
             beanEventi.addEvento(beanEvento);
         }
 

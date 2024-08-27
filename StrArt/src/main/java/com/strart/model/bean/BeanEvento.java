@@ -26,7 +26,7 @@ public class BeanEvento {
 
     private String persistenza;
 
-    public BeanEvento(String nomeArtista, String descrizione, Blob immagine,  Date data, Time orarioInizio, Time orarioFine, String stato, String tipoEvento, String latitudine, String longitudine){
+    public BeanEvento(String nomeArtista, String descrizione, Blob immagine,  Date data, Time orarioInizio, String stato,Time orarioFine){
 
         this.nomeArtista=nomeArtista;
         this.descrizione=descrizione;
@@ -35,9 +35,6 @@ public class BeanEvento {
         this.orarioInizio=orarioInizio;
         this.orarioFine=orarioFine;
         this.stato=stato;
-        this.tipoEvento=tipoEvento;
-        this.latitudine=latitudine;
-        this.longitudine=longitudine;
 
     }
 
@@ -150,6 +147,17 @@ public class BeanEvento {
     // Getter per la persistenza
     public String getPersistenza() {
         return persistenza;
+    }
+
+    public void setTipoEvento(String tipoEvento) {
+        this.tipoEvento=tipoEvento;
+    }
+
+    public void setLatitudine(String latitudine) {
+        this.latitudine=latitudine;
+    }
+    public void setLongitudine(String longitudine) {
+        this.longitudine=longitudine;
     }
 
 

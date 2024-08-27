@@ -35,7 +35,11 @@ public class OttieniIndicazioniController {
         eventiB = new BeanEventi(cordinate.getLongitudine(), cordinate.getLatitudine(), cordinate.getType());
 
         for(Evento evento: listEvento.getListaEvento()) {
-            BeanEvento beanEvento= new BeanEvento(evento.getNomeArtista(), evento.getDescrizione(), evento.getImmagine(), evento.getData(), evento.getOrarioInizio(), evento.getOrarioFine(),evento.getStato(), evento.getTipo(), evento.getLatitudine(), evento.getLongitudine());
+            BeanEvento beanEvento= new BeanEvento(evento.getNomeArtista(), evento.getDescrizione(), evento.getImmagine(), evento.getData(), evento.getOrarioInizio(), evento.getStato(), evento.getOrarioFine());
+            beanEvento.setTipoEvento(evento.getTipo());
+            beanEvento.setLatitudine(evento.getLatitudine());
+            beanEvento.setLongitudine(evento.getLongitudine());
+
             eventiB.addEvento(beanEvento);
         }
 
@@ -69,10 +73,10 @@ public class OttieniIndicazioniController {
 
     }
 
-    public void indicazioniEvento(String lat, String lon) throws DAOException, SQLException, IOException {
+    public void indicazioniEvento(String lat, String lon) throws  IOException {
 
         ApiControllerGrafico api = new ApiControllerGrafico();
-        CoordinateBean coordinateB = api.routesEvento("12.5492675","41.9578954", lat, lon);
+        api.routesEvento("12.5492675","41.9578954", lat, lon);
 
 
 
