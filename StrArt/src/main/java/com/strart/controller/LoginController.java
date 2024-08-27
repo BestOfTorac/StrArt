@@ -40,7 +40,7 @@ public class LoginController{
         Scene scene;
         if(Credentials.getRole() == null) {
             fxmlLoader = new FXMLLoader(ApplicationStrArt.class.getResource("login.fxml"));
-            scene = new Scene(fxmlLoader.load(), Utils.sceneW, Utils.sceneH);
+            scene = new Scene(fxmlLoader.load(), Utils.getSceneW(), Utils.getSceneH());
         }else{
             String fxmlFile;
 
@@ -68,7 +68,7 @@ public class LoginController{
             Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
             final OttieniIndicazioniControllerGrafico controller = fxmlLoader.getController();
             controller.initMapAndControls("41.9028","12.4964","city");
-            scene = new Scene(rootNode, Utils.sceneW, Utils.sceneH);
+            scene = new Scene(rootNode, Utils.getSceneW(), Utils.getSceneH());
 
             // Rimuovere il focus dal TextField
             scene.getRoot().requestFocus();

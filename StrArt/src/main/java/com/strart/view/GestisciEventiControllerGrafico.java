@@ -113,7 +113,7 @@ public class GestisciEventiControllerGrafico implements Initializable {
         }
         fxmlLoader = new FXMLLoader();
         Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
-        scene = new Scene(rootNode, Utils.sceneW, Utils.sceneH);
+        scene = new Scene(rootNode, Utils.getSceneW(), Utils.getSceneH());
 
         stage.setTitle(NAMEAPP);
         stage.setScene(scene);
@@ -226,7 +226,7 @@ public class GestisciEventiControllerGrafico implements Initializable {
         Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
         final OttieniIndicazioniControllerGrafico controller = fxmlLoader.getController();
         controller.initMapAndControls("41.9028","12.4964","city");
-        scene = new Scene(rootNode, Utils.sceneW, Utils.sceneH);
+        scene = new Scene(rootNode, Utils.getSceneW(), Utils.getSceneH());
 
         // Rimuovere il focus dal TextField
         scene.getRoot().requestFocus();
@@ -250,7 +250,7 @@ public class GestisciEventiControllerGrafico implements Initializable {
         }
         fxmlLoader = new FXMLLoader();
         Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
-        scene = new Scene(rootNode, Utils.sceneW, Utils.sceneH);
+        scene = new Scene(rootNode, Utils.getSceneW(), Utils.getSceneH());
 
 
         stage.setTitle(NAMEAPP);
@@ -273,7 +273,7 @@ public class GestisciEventiControllerGrafico implements Initializable {
         }
         fxmlLoader = new FXMLLoader();
         Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
-        scene = new Scene(rootNode, Utils.sceneW, Utils.sceneH);
+        scene = new Scene(rootNode, Utils.getSceneW(), Utils.getSceneH());
 
         stage.setTitle(NAMEAPP);
         stage.setScene(scene);

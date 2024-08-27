@@ -348,7 +348,7 @@ public class OttieniIndicazioniControllerGrafico {
 
         fxmlLoader = new FXMLLoader();
         Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
-        scene = new Scene(rootNode, Utils.sceneW, Utils.sceneH);
+        scene = new Scene(rootNode, Utils.getSceneW(), Utils.getSceneH());
 
 
         stage.setTitle("StrArt");
@@ -384,7 +384,7 @@ public class OttieniIndicazioniControllerGrafico {
         Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
         final OttieniIndicazioniControllerGrafico controller = fxmlLoader.getController();
         controller.initMapAndControls("41.9028","12.4964","city");
-        scene = new Scene(rootNode, Utils.sceneW, Utils.sceneH);
+        scene = new Scene(rootNode, Utils.getSceneW(), Utils.getSceneH());
         scene.getRoot().requestFocus();
 
         stage.setTitle("StrArt");

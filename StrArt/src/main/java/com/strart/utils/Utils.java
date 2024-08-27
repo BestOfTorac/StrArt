@@ -28,8 +28,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Utils {
-    public static double sceneW = 414;
-    public static double sceneH = 695;
+    private static double sceneW = 414;
+    private static double sceneH = 695;
 
     private static final String SETTING1 = "-fx-alignment: center;";
 
@@ -248,6 +248,14 @@ public class Utils {
             sceneW = 414;
             sceneH = 695;
         }
+    }
+
+    public static double getSceneW(){
+        return sceneW;
+    }
+
+    public static double getSceneH(){
+        return sceneH;
     }
 
 }
