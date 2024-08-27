@@ -48,8 +48,8 @@ public class OttieniIndicazioniControllerGrafico {
     private OttieniIndicazioniController indicazioni = null;
 
     private static final String NOME_ARTISTA_PROPERTY = "nomeArtista";
-    private static String DATA_PROPERTY = "data";
-    private static String ORARIO_INIZIO_PROPERTY = "orarioInizio";
+    private static final String DATA_PROPERTY = "data";
+    private static final String ORARIO_INIZIO_PROPERTY = "orarioInizio";
 
     public static Insets paddingButtons = new Insets(10, 10.0, 10, 0.0);
 
