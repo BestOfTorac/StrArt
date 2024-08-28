@@ -18,9 +18,9 @@ public class EliminaPartecipazioneEventoDAO {
             Connection conn = ConnectionFactory.getConnection();
             cs = conn.prepareCall("{call eliminaPartecipazioneEvento(?,?,?,?)}");
             cs.setString(1, username);
-            cs.setString(2, evento.getNomeArtista());
             cs.setDate(3, evento.getData());
             cs.setTime(4, evento.getOrarioInizio());
+            cs.setString(2, evento.getNomeArtista());
             cs.executeQuery();
 
 
