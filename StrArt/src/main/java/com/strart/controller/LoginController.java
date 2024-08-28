@@ -31,13 +31,13 @@ public class LoginController {
             throw new IllegalArgumentException(e);
         }
 
-        FXMLLoader fxmlLoader;
+        FXMLLoader fxmlLoad;
         Stage stage = ApplicazioneStage.getStage();
         Scene scene;
 
         if (Credentials.getRole() == null) {
-            fxmlLoader = new FXMLLoader(ApplicationStrArt.class.getResource("login.fxml"));
-            scene = new Scene(fxmlLoader.load(), Utils.getSceneW(), Utils.getSceneH());
+            fxmlLoad = new FXMLLoader(ApplicationStrArt.class.getResource("login.fxml"));
+            scene = new Scene(fxmlLoad.load(), Utils.getSceneW(), Utils.getSceneH());
         } else {
             String fxmlFile;
 
@@ -61,9 +61,9 @@ public class LoginController {
                 fxmlFile = "/com/strart/utente-view.fxml";
             }
 
-            fxmlLoader = new FXMLLoader();
-            Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
-            final OttieniIndicazioniControllerGrafico controller = fxmlLoader.getController();
+            fxmlLoad = new FXMLLoader();
+            Parent rootNode = fxmlLoad.load(getClass().getResourceAsStream(fxmlFile));
+            final OttieniIndicazioniControllerGrafico controller = fxmlLoad.getController();
             controller.initMapAndControls("41.9028","12.4964","city");
             scene = new Scene(rootNode, Utils.getSceneW(), Utils.getSceneH());
 
