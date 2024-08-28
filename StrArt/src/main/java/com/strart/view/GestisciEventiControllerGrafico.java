@@ -107,12 +107,14 @@ public class GestisciEventiControllerGrafico implements Initializable {
         Scene scene;
 
         String fxmlFile;
+        fxmlLoader = new FXMLLoader();
+
         if(Utils.getGrafica()==0) {
             fxmlFile = "/com/strart/creaEvento.fxml";
         }else{
             fxmlFile = "/com/strart/creaEvento2.fxml";
         }
-        fxmlLoader = new FXMLLoader();
+
         Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
         scene = new Scene(rootNode, Utils.getSceneW(), Utils.getSceneH());
 
@@ -223,8 +225,10 @@ public class GestisciEventiControllerGrafico implements Initializable {
         }else{
             fxmlFile = "/com/strart/artistiview2.fxml";
         }
+
         fxmlLoader = new FXMLLoader();
         Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
+        //imposto la mappa alle coordinate iniziali
         final OttieniIndicazioniControllerGrafico controller = fxmlLoader.getController();
         controller.initMapAndControls("41.9028","12.4964","city");
         scene = new Scene(rootNode, Utils.getSceneW(), Utils.getSceneH());
