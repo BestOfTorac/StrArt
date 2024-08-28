@@ -51,15 +51,17 @@ public class Utils {
         Rectangle overlay = new Rectangle(owner.getWidth() - 5, owner.getHeight() - 5, Color.BLACK);
         overlay.setOpacity(0.3);
 
+        //testo che identifica che il pop up è una notifica
+        Text title = new Text("Notifica \t");
+        title.setFont(Font.font(SETTING3, FontWeight.BOLD, 18));
+        title.setStyle(SETTING1);
+
         // Crea il pulsante di chiusura
         Button closeButton = new Button("X");
         closeButton.setOnAction(e -> popup.hide());
         closeButton.setStyle(SETTING2);
 
-        //testo che identifica che il pop up è una notifica
-        Text title = new Text("Notifica \t");
-        title.setFont(Font.font(SETTING3, FontWeight.BOLD, 18));
-        title.setStyle(SETTING1);
+
 
         HBox header = new HBox(10, title, closeButton);
         header.setAlignment(Pos.CENTER);
