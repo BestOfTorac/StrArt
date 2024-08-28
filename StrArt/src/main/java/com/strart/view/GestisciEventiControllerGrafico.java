@@ -268,7 +268,7 @@ public class GestisciEventiControllerGrafico implements Initializable {
 
         FXMLLoader fxmlLoader;
         Stage stage = ApplicazioneStage.getStage();
-        Scene scene;
+        Scene scena;
 
         String fxmlFile;
         if( Utils.getGrafica() == 0) {
@@ -278,10 +278,10 @@ public class GestisciEventiControllerGrafico implements Initializable {
         }
         fxmlLoader = new FXMLLoader();
         Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
-        scene = new Scene(rootNode, Utils.getSceneW(), Utils.getSceneH());
+        scena = new Scene(rootNode, Utils.getSceneW(), Utils.getSceneH());
 
         stage.setTitle(NAMEAPP);
-        stage.setScene(scene);
+        stage.setScene(scena);
         stage.show();
     }
 
