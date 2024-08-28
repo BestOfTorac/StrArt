@@ -36,7 +36,7 @@ public class ProfileProcedureDAO  {
             }
 
         } catch (SQLException e) {
-            throw new DAOException("Listino eventi error: " + e.getMessage());
+            throw new DAOException("recupera profilo error: " + e.getMessage());
         } finally {
             if (cs != null) {
                 cs.close();

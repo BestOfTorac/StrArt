@@ -1,17 +1,25 @@
 package com.strart.dao;
 
+import com.strart.controller.GestisciEventiController;
 import com.strart.exception.DAOException;
 import com.strart.model.dao.LoginProcedureDAO;
 import com.strart.model.domain.Credentials;
+import com.strart.model.domain.FacadeEvento;
+import com.strart.model.domain.Profile;
 import com.strart.model.domain.Role;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+
 class LoginProcedureDAOTest {
+
+
 
     @Test
     void loginSuccessfullArtista() {
