@@ -36,7 +36,7 @@ class ProfileProcedureDAOTest {
     void profileUnsuccessfull() {
         Credentials.setUsername("UtenteProva2");
         Profile.setNome(null);
-        String cred=Credentials.getUsername();
+
         try {
             new ProfileProcedureDAO().execute();
         } catch(Exception e) {
