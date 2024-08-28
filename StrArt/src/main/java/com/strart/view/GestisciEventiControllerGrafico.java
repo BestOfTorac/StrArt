@@ -244,7 +244,7 @@ public class GestisciEventiControllerGrafico implements Initializable {
     @FXML
     public void goBack() throws IOException{
         FXMLLoader fxmlLoader;
-        Stage stage = ApplicazioneStage.getStage();
+        Stage stages = ApplicazioneStage.getStage();
         Scene scene;
 
         String fxmlFile;
@@ -258,9 +258,9 @@ public class GestisciEventiControllerGrafico implements Initializable {
         scene = new Scene(rootNode, Utils.getSceneW(), Utils.getSceneH());
 
 
-        stage.setTitle(NAMEAPP);
-        stage.setScene(scene);
-        stage.show();
+        stages.setTitle(NAMEAPP);
+        stages.setScene(scene);
+        stages.show();
     }
 
     @FXML
