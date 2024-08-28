@@ -2,35 +2,35 @@ package com.strart.model.bean;
 
 public class CoordinateBean {
 
-    private String indirizzo;
-    private String longitudine;
-    private String latitudine;
+    private String indirizzoB;
+    private String longitudineB;
+    private String latitudineB;
 
-    private String type;
+    private String typeB;
 
 
     public CoordinateBean(String indirizzo, String longitudine, String latitudine, String type) {
 
-        this.indirizzo = indirizzo;
-        this.longitudine = longitudine;
-        this.latitudine = latitudine;
-        this.type = type;
+        this.indirizzoB = indirizzo;
+        this.longitudineB = longitudine;
+        this.latitudineB = latitudine;
+        this.typeB = type;
     }
 
     public String getIndirizzo() {
-            return indirizzo;
+            return indirizzoB;
         }
 
     public String getLongitudine() {
-        return longitudine;
+        return longitudineB;
     }
 
     public String getLatitudine() {
-        return latitudine;
+        return latitudineB;
     }
 
     public String getType() {
-        return type;
+        return typeB;
     }
 
 }
