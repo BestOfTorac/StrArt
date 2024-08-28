@@ -67,9 +67,9 @@ public class ApiControllerGrafico {
         conn.setRequestMethod("GET");
 
         // Lettura della risposta
+        String line;
         BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
         StringBuilder response = new StringBuilder();
-        String line;
         while ((line = rd.readLine()) != null) {
             response.append(line);
             response.append('\n');
