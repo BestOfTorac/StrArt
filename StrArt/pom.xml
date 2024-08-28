@@ -59,11 +59,9 @@
 
         <!-- dipendenze per includere automaticamente il driver per la connessione al DB -->
         <dependency>
-            <groupId>com.strart</groupId>
-            <artifactId>mysql-connector-j-8.0.31</artifactId>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
             <version>8.0.31</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/libs/mysql-connector-j-8.0.31.jar</systemPath>
         </dependency>
 
         <!-- dipendenze per i test -->
