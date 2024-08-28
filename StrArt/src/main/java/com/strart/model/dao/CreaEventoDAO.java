@@ -31,7 +31,7 @@ public class CreaEventoDAO {
 
 
         } catch(SQLException e) {
-            throw new DAOException("Login error: " + e.getMessage());
+            throw new DAOException("creaEventoDao error: " + e.getMessage());
         }finally {
             if(cs!= null){
                 cs.close();

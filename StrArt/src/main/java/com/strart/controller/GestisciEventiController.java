@@ -71,5 +71,18 @@ public class GestisciEventiController {
         return beanEventi;
     }
 
+    public void eliminaEvento(BeanEvento beanEvento)throws DAOException, SQLException{
+
+        String persistenza= beanEvento.getPersistenza();
+        FactoryEvento factoryEvento= new FactoryEvento();
+        Evento evento= factoryEvento.createEvento(beanEvento.getTipoEvento());
+        evento.setData(beanEvento.getData());
+        evento.setOrarioInizio(beanEvento.getOrarioInizio());
+
+        //chiamo il facade per effettuare l'operazione di creazione dell'evento
+        facadeEvento.eliminaEvento(evento, persistenza);
+
+    }
+
 
 }

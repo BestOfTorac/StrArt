@@ -1,10 +1,7 @@
 package com.strart.model.domain;
 
 import com.strart.exception.DAOException;
-import com.strart.model.dao.CreaEventoDAO;
-import com.strart.model.dao.CreaEventoFileSystem;
-import com.strart.model.dao.VisualizzaEventiDAO;
-import com.strart.model.dao.VisualizzaEventiFileSystem;
+import com.strart.model.dao.*;
 
 import java.sql.SQLException;
 
@@ -42,6 +39,20 @@ public class FacadeEvento {
 
 
         return new VisualizzaEventiFileSystem().recuperaEventiDaFile(eventi,"EventiUtenti/"+Profile.getUsername()+"Eventi.dat");
+    }
+
+    public void eliminaEvento(Evento evento, String persistenza)throws DAOException, SQLException {
+
+        //Recupera il username dal profilo
+        String username= Profile.getUsername();
+
+        //Elimina evento dal db
+        new EliminaEventoDAO().eliminaEventoOnDB(username, evento);
+
+        //aggiorna il numero di eventi nel profilo
+        Profile.sottraiEvento(1);
+
+
     }
 
 

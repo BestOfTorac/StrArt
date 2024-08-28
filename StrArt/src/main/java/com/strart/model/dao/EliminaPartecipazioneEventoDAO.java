@@ -7,16 +7,16 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class PartecipaEventoDAO {
+public class EliminaPartecipazioneEventoDAO {
 
-    public void partecipaEventoToDb(Object... params) throws DAOException, SQLException {
+    public void eliminaPartecipazioneEventoToDb(Object... params) throws DAOException, SQLException {
         Evento evento= (Evento) params[0];
         String username= (String) params[1];
 
         CallableStatement cs = null;
         try {
             Connection conn = ConnectionFactory.getConnection();
-            cs = conn.prepareCall("{call partecipaEvento(?,?,?,?)}");
+            cs = conn.prepareCall("{call eliminaPartecipazioneEvento(?,?,?,?)}");
             cs.setString(1, username);
             cs.setString(2, evento.getNomeArtista());
             cs.setDate(3, evento.getData());
@@ -25,7 +25,7 @@ public class PartecipaEventoDAO {
 
 
         } catch(SQLException e) {
-            throw new DAOException("partecipaEvento: " + e.getErrorCode());
+            throw new DAOException("eliminaPartecipazioneEvento: " + e.getErrorCode());
         }finally {
             if(cs!= null){
                 cs.close();

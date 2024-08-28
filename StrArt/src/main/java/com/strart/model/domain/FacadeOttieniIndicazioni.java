@@ -2,6 +2,7 @@ package com.strart.model.domain;
 
 import com.strart.exception.DAOException;
 import com.strart.model.dao.CercaEventiDAO;
+import com.strart.model.dao.EliminaPartecipazioneEventoDAO;
 import com.strart.model.dao.PartecipaEventoDAO;
 
 import java.sql.SQLException;
@@ -34,6 +35,16 @@ public class FacadeOttieniIndicazioni {
 
         //Istanzia il dao di partecipazione all'evento
         new PartecipaEventoDAO().partecipaEventoToDb(evento, username);
+    }
+
+    public void eliminaPartecipazioneEvento(Evento evento)throws DAOException, SQLException {
+
+
+        //Recupera il username dal profilo
+        String username= Credentials.getUsername();
+
+        //Istanzia il dao di partecipazione all'evento
+        new EliminaPartecipazioneEventoDAO().eliminaPartecipazioneEventoToDb(evento, username);
     }
 
 
