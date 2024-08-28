@@ -153,15 +153,15 @@ public class Utils {
         overlay.setOpacity(0.3);
 
         // Crea il pulsante di chiusura
-        Button closeButton = new Button("X");
-        closeButton.setOnAction(e -> popup.hide());
-        closeButton.setStyle(SETTING2);
+        Button buttonClose = new Button("X");
+        buttonClose.setOnAction(e -> popup.hide());
+        buttonClose.setStyle(SETTING2);
 
         Text title = new Text("Dettagli Evento \t");
         title.setFont(Font.font(SETTING3, FontWeight.BOLD, 18));
         title.setStyle(SETTING1);
 
-        HBox header = new HBox(10, title, closeButton);
+        HBox header = new HBox(10, title, buttonClose);
         header.setAlignment(Pos.CENTER);
 
         HBox img = new HBox();
@@ -169,8 +169,8 @@ public class Utils {
 
         if(eventoBean.getImmagine() != null) {
             try {
-                InputStream inputStream = eventoBean.getImmagine().getBinaryStream();
-                Image image = new Image(inputStream);
+                InputStream input = eventoBean.getImmagine().getBinaryStream();
+                Image image = new Image(input);
 
                 ImageView imageView = new ImageView(image);
 
