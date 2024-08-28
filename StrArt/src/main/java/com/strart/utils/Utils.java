@@ -56,6 +56,7 @@ public class Utils {
         closeButton.setOnAction(e -> popup.hide());
         closeButton.setStyle(SETTING2);
 
+        //testo che identifica che il pop up è una notifica
         Text title = new Text("Notifica \t");
         title.setFont(Font.font(SETTING3, FontWeight.BOLD, 18));
         title.setStyle(SETTING1);
@@ -72,8 +73,8 @@ public class Utils {
         // Crea il contenuto del popup
         VBox popupContent = new VBox(header, vBoxContentBody);
         popupContent.setFillWidth(true);
-        popupContent.setMaxWidth(owner.getWidth() - 200);
         popupContent.setMaxHeight(owner.getHeight() - 600);
+        popupContent.setMaxWidth(owner.getWidth() - 200);
         popupContent.setStyle(SETTING4);
 
         // Aggiungi l'overlay e il contenuto al popup
