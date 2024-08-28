@@ -20,7 +20,7 @@ class OttieniIndicazioniControllerTest {
 
     @Test
     void cercaEventiSuccessfull() {
-        //TODO metti nel db una data lontana (2025)
+        
         IndirizzoBean indirizzoB = new IndirizzoBean("via dei pini 00013");
         BeanEventi eventi = null;
 

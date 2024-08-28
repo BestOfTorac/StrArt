@@ -45,12 +45,14 @@ public class FacadeEvento {
 
         //Recupera il username dal profilo
         String username= Profile.getUsername();
+        if(persistenza.equals("Database")){
+            //Elimina evento dal db
+            new EliminaEventoDAO().eliminaEventoOnDB(username, evento);
 
-        //Elimina evento dal db
-        new EliminaEventoDAO().eliminaEventoOnDB(username, evento);
+            //aggiorna il numero di eventi nel profilo
+            Profile.sottraiEvento(1);
+        }
 
-        //aggiorna il numero di eventi nel profilo
-        Profile.sottraiEvento(1);
 
 
     }

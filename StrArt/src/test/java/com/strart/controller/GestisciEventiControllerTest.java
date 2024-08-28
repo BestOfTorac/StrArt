@@ -62,9 +62,6 @@ class GestisciEventiControllerTest {
             fail();
         }
 
-        //assertNotEquals(null, eventi);
-
-
         IndirizzoBean indirizzoBean= new IndirizzoBean(beanEvento.getIndirizzo());
 
         //creao l'evento che voglio cercare ovvero quello inserito precedentemente
