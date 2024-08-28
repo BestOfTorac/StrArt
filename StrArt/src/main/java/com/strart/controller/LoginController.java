@@ -18,16 +18,12 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class LoginController{
-
-
+public class LoginController {
     public void start(CredentialsBean credB) throws DAOException, IOException {
-
 
         Credentials.setUsername(credB.getUsername());
         Credentials.setPassword(credB.getPassword());
         Credentials.setRole(null);
-
 
         try {
             new LoginProcedureDAO().execute();
@@ -38,10 +34,11 @@ public class LoginController{
         FXMLLoader fxmlLoader;
         Stage stage = ApplicazioneStage.getStage();
         Scene scene;
-        if(Credentials.getRole() == null) {
+
+        if (Credentials.getRole() == null) {
             fxmlLoader = new FXMLLoader(ApplicationStrArt.class.getResource("login.fxml"));
             scene = new Scene(fxmlLoader.load(), Utils.getSceneW(), Utils.getSceneH());
-        }else{
+        } else {
             String fxmlFile;
 
             try {
@@ -50,8 +47,7 @@ public class LoginController{
                 throw new IllegalArgumentException(e);
             }
 
-            if(Credentials.getRole().getId() == 1) {
-
+            if (Credentials.getRole().getId() == 1) {
 
                 try {
                     new ProfileProcedureDAO().execute();
@@ -60,10 +56,11 @@ public class LoginController{
                 }
 
                 fxmlFile = "/com/strart/artistiview.fxml";
-            }else{
+            } else {
 
                 fxmlFile = "/com/strart/utente-view.fxml";
             }
+
             fxmlLoader = new FXMLLoader();
             Parent rootNode = fxmlLoader.load(getClass().getResourceAsStream(fxmlFile));
             final OttieniIndicazioniControllerGrafico controller = fxmlLoader.getController();
@@ -77,7 +74,5 @@ public class LoginController{
         stage.setTitle("StrArt");
         stage.setScene(scene);
         stage.show();
-
     }
-
 }

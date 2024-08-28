@@ -1,9 +1,11 @@
 package com.strart.model.dao;
 
+import com.strart.ApplicationStrArt;
 import com.strart.model.domain.Role;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -16,8 +18,13 @@ public class ConnectionFactory {
 
 
     public static Connection getConnection(){
+
         if(connection == null){
-            try (InputStream input = new FileInputStream("resources/db.properties")) {
+
+            // Usa ClassLoader per ottenere l'InputStream del file nel classpath
+            ClassLoader classLoader = ApplicationStrArt.class.getClassLoader();
+
+            try (InputStream input = classLoader.getResourceAsStream("db.properties")) {
                 Properties properties = new Properties();
                 properties.load(input);
 
@@ -39,8 +46,10 @@ public class ConnectionFactory {
             connection.close();
         }
 
+        // Usa ClassLoader per ottenere l'InputStream del file nel classpath
+        ClassLoader classLoader = ApplicationStrArt.class.getClassLoader();
 
-        try (InputStream input = new FileInputStream("resources/db.properties")) {
+        try (InputStream input = classLoader.getResourceAsStream("db.properties")) {
             Properties properties = new Properties();
             properties.load(input);
 
