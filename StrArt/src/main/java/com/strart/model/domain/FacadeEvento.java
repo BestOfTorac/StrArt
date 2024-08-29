@@ -1,6 +1,5 @@
 package com.strart.model.domain;
 
-import com.strart.ApplicationStrArt;
 import com.strart.exception.DAOException;
 import com.strart.model.dao.*;
 
