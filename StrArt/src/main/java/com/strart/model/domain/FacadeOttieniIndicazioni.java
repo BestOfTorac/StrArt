@@ -18,7 +18,7 @@ public class FacadeOttieniIndicazioni {
 
 
         if (this.cordinate == null || (!this.cordinate.getLatitudine().equals(cordinate.getLatitudine()) || !this.cordinate.getLongitudine().equals(cordinate.getLongitudine()))) {
-            listEvento = new CercaEventiDAO().execute(cordinate);
+            listEvento = new CercaEventiDAO().cercaEventiToDb(cordinate);
         }
         this.cordinate=cordinate;
 
@@ -34,7 +34,7 @@ public class FacadeOttieniIndicazioni {
         String username= Credentials.getUsername();
 
         //Istanzia il dao di partecipazione all'evento
-        new PartecipaEventoDAO().partecipaEventoToDb(evento, username);
+        new PartecipaEventoDAO().partecipaEventoToDb(username, evento);
     }
 
     public void eliminaPartecipazioneEvento(Evento evento)throws DAOException, SQLException {
@@ -44,7 +44,7 @@ public class FacadeOttieniIndicazioni {
         String username= Credentials.getUsername();
 
         //Istanzia il dao di partecipazione all'evento
-        new EliminaPartecipazioneEventoDAO().eliminaPartecipazioneEventoToDb(evento, username);
+        new EliminaPartecipazioneEventoDAO().eliminaPartecipazioneEventoToDb(username,evento);
     }
 
 

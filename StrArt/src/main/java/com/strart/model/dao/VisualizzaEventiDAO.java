@@ -10,12 +10,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class VisualizzaEventiDAO implements GenericDAO<ListEvento> {
+public class VisualizzaEventiDAO{
 
-    @Override
-    public ListEvento execute(Object... params) throws DAOException, SQLException {
+    public ListEvento visualizzaEventoToDb(String username) throws DAOException, SQLException {
 
-        String username = (String) params[0];
         ListEvento listEvento= new ListEvento();
         CallableStatement cs = null;
         try {

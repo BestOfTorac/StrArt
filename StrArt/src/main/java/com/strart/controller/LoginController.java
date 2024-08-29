@@ -26,7 +26,7 @@ public class LoginController {
         Credentials.setRole(null);
 
         try {
-            new LoginProcedureDAO().execute();
+            new LoginProcedureDAO().login();
         } catch(DAOException | SQLException e) {
             throw new IllegalArgumentException(e);
         }
@@ -50,7 +50,7 @@ public class LoginController {
             if (Credentials.getRole().getId() == 1) {
 
                 try {
-                    new ProfileProcedureDAO().execute();
+                    new ProfileProcedureDAO().recuperaProfilo();
                 } catch(DAOException | SQLException e) {
                     throw new IllegalArgumentException(e);
                 }

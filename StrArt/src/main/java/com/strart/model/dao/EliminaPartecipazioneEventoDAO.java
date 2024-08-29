@@ -9,9 +9,7 @@ import java.sql.SQLException;
 
 public class EliminaPartecipazioneEventoDAO {
 
-    public void eliminaPartecipazioneEventoToDb(Object... params) throws DAOException, SQLException {
-        Evento evento= (Evento) params[0];
-        String username= (String) params[1];
+    public void eliminaPartecipazioneEventoToDb(String username, Evento evento) throws DAOException, SQLException {
 
         CallableStatement cs = null;
         try {

@@ -35,7 +35,7 @@ public class FacadeEvento {
         String usernmae= Profile.getUsername();
 
         //Istanzia il dao di visualizzazione dei miei eventi
-        ListEvento eventi=new VisualizzaEventiDAO().execute(usernmae);
+        ListEvento eventi=new VisualizzaEventiDAO().visualizzaEventoToDb(usernmae);
 
 
         return new VisualizzaEventiFileSystem().recuperaEventiDaFile(eventi,"EventiUtenti/"+Profile.getUsername()+"Eventi.dat");

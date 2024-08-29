@@ -17,6 +17,11 @@ public class CoordinateBean {
         this.typeB = type;
     }
 
+    public CoordinateBean(String longitudine, String latitudine) {
+        this.longitudineB = longitudine;
+        this.latitudineB = latitudine;
+    }
+
     public String getIndirizzo() {
             return indirizzoB;
         }

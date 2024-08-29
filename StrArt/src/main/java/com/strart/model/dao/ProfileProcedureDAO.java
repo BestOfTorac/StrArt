@@ -7,7 +7,7 @@ import java.sql.*;
 
 public class ProfileProcedureDAO  {
 
-    public void execute() throws DAOException, SQLException {
+    public void recuperaProfilo() throws DAOException, SQLException {
         CallableStatement cs = null;
         try {
             Connection conn = ConnectionFactory.getConnection();
@@ -27,10 +27,6 @@ public class ProfileProcedureDAO  {
                     Profile.setDescrizione(rs.getString(6));
                     Profile.setValutazione(rs.getFloat(7));
                     Profile.setNumEventi(rs.getInt(8));
-
-
-
-
 
                 }
             }

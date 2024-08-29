@@ -11,7 +11,7 @@ import java.sql.Types;
 
 public class LoginProcedureDAO{
 
-    public void execute() throws DAOException, SQLException {
+    public void login() throws DAOException, SQLException {
         int role;
         CallableStatement cs = null;
         try {

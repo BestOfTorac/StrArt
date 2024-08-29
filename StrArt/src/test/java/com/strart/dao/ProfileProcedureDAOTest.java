@@ -19,7 +19,7 @@ class ProfileProcedureDAOTest {
         Profile.setNome(null);
 
         try {
-            new ProfileProcedureDAO().execute();
+            new ProfileProcedureDAO().recuperaProfilo();
         } catch(DAOException | SQLException e) {
             fail();
         }
@@ -38,7 +38,7 @@ class ProfileProcedureDAOTest {
         Profile.setNome(null);
 
         try {
-            new ProfileProcedureDAO().execute();
+            new ProfileProcedureDAO().recuperaProfilo();
         } catch(Exception e) {
             fail();
         }

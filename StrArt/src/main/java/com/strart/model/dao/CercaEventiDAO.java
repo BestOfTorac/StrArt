@@ -11,12 +11,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CercaEventiDAO implements GenericDAO<ListEvento> {
+public class CercaEventiDAO {
 
-    @Override
-    public ListEvento execute(Object... params) throws DAOException, SQLException {
 
-        Coordinate coordinate = (Coordinate) params[0];
+    public ListEvento cercaEventiToDb(Coordinate coordinate) throws DAOException, SQLException {
+
         ListEvento listEvento= new ListEvento();
         CallableStatement cs = null;
         try {

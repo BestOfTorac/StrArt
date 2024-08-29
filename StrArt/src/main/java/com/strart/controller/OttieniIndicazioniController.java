@@ -72,10 +72,14 @@ public class OttieniIndicazioniController {
 
     }
 
-    public void indicazioniEvento(String lat, String lon) throws  IOException {
+    public void indicazioniEvento(BeanEvento beanEvento) throws  IOException {
 
         ApiControllerGrafico api = new ApiControllerGrafico();
-        api.routesEvento("12.5492675","41.9578954", lat, lon);
+        CoordinateBean coordinateBeanEvento = new CoordinateBean(beanEvento.getLongitudine(), beanEvento.getLatitudine());
+        CoordinateBean coordinateBeanMiaPosizione = new CoordinateBean("12.5492675", "41.9578954");
+
+
+        api.routesEvento(coordinateBeanEvento, coordinateBeanMiaPosizione);
 
 
 

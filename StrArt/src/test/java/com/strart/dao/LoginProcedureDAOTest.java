@@ -22,7 +22,7 @@ class LoginProcedureDAOTest {
         Credentials.setRole(null);
 
         try {
-            new LoginProcedureDAO().execute();
+            new LoginProcedureDAO().login();
         } catch(DAOException | SQLException e) {
             fail();
         }
@@ -37,7 +37,7 @@ class LoginProcedureDAOTest {
         Credentials.setRole(null);
 
         try {
-            new LoginProcedureDAO().execute();
+            new LoginProcedureDAO().login();
         } catch(DAOException | SQLException e) {
             fail();
         }
@@ -52,7 +52,7 @@ class LoginProcedureDAOTest {
         Credentials.setRole(null);
 
         try {
-            new LoginProcedureDAO().execute();
+            new LoginProcedureDAO().login();
         } catch(Exception e) {
            fail();
         }

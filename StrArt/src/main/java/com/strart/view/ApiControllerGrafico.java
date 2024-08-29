@@ -56,11 +56,11 @@ public class ApiControllerGrafico {
         return new CoordinateBean(indirizzo,lon,lat, tipo);
     }
 
-    public CoordinateBean routesEvento(String lat1, String long1, String lat2, String long2) throws IOException {
+    public CoordinateBean routesEvento(CoordinateBean coordinateBeanEvento, CoordinateBean coordinateBeanMiaPosizione) throws IOException {
 
         // URL a cui eseguire la richiesta GET
 
-        URL url = new URL("https://routing.openstreetmap.de/routed-car/route/v1/driving/" + lat1 + "," + long1 + ";" + long2 + "," + lat2 + "?overview=false&steps=true");
+        URL url = new URL("https://routing.openstreetmap.de/routed-car/route/v1/driving/" + coordinateBeanMiaPosizione.getLatitudine() + "," + coordinateBeanMiaPosizione.getLongitudine() + ";" + coordinateBeanEvento.getLatitudine() + "," + coordinateBeanEvento.getLongitudine() + "?overview=false&steps=true");
 
         // Apertura della connessione
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
