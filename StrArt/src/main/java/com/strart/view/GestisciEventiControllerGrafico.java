@@ -363,6 +363,12 @@ public class GestisciEventiControllerGrafico implements Initializable {
 
         Label descrizioneText = new Label(eventoBean.getDescrizione());
         descrizioneText.setWrapText(true);
+        if(Utils.getGrafica()==0){
+            descrizioneText.setMaxWidth(300);
+        }else{
+            descrizioneText.setMaxWidth(900);
+        }
+
 
         HBox descrizione = new HBox(descrizioneText);
 

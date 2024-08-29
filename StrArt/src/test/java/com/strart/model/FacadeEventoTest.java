@@ -42,7 +42,7 @@ class FacadeEventoTest {
         //creazione di un evento
         BeanEvento beanEvento = null;
         Date data= Date.valueOf("2030-07-17");
-        Time orarioIn=Time.valueOf("17:30:00");
+        Time orarioIn=Time.valueOf("17:29:00");
         Time orarioFine=Time.valueOf("21:00:00");
 
         try {

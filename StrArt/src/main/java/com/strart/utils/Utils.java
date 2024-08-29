@@ -223,8 +223,8 @@ public class Utils {
         // Crea il contenuto del popup
         VBox popupContent = new VBox(header, hBoxContentBody, descrizione, hBoxContentButtons);
         popupContent.setFillWidth(true);
-        popupContent.setMaxWidth(owner.getWidth() - 200);
-        popupContent.setMaxHeight(owner.getHeight() - 300);
+        popupContent.setMaxWidth(owner.getWidth() - 180);
+        popupContent.setMaxHeight(owner.getHeight() - 270);
         popupContent.setStyle(SETTING4);
 
         // Aggiungi l'overlay e il contenuto al popup

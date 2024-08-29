@@ -5,7 +5,7 @@
 
 /* Stile per il titolo */
 .title-label {
-    -fx-font-size: 30px; /* Dimensione del font del titolo */
+    -fx-font-size: 20px; /* Dimensione del font del titolo */
     -fx-font-weight: bold; /* Font in grassetto */
     -fx-text-fill: #333333; /* Colore del testo grigio scuro */
 
@@ -27,7 +27,7 @@
 /* Stile per le descrizioni */
 .label {
     -fx-text-fill: #333333; /* Colore del testo grigio scuro */
-    -fx-font-size: 17px; /* Dimensione del font */
+    -fx-font-size: 15px; /* Dimensione del font */
     -fx-padding: 10px 0; /* Margine superiore e inferiore */
     -fx-text-alignment: justify; /* Testo centrato */
     -fx-max-width: 400px; /* Larghezza massima */

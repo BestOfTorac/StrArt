@@ -1,10 +1,7 @@
 package com.strart.controller;
 
-import com.strart.exception.DAOException;
-import com.strart.model.bean.BeanEventi;
 import com.strart.model.bean.BeanEvento;
 import com.strart.model.bean.IndirizzoBean;
-import com.strart.model.dao.EliminaEventoDAO;
 import com.strart.model.domain.Profile;
 import javafx.fxml.LoadException;
 import org.junit.jupiter.api.BeforeAll;
@@ -12,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
 import java.sql.Date;
-import java.sql.SQLException;
 import java.sql.Time;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -39,7 +35,7 @@ class GestisciEventiControllerTest {
         BeanEvento beanEvento = null;
 
         Date data= Date.valueOf("2030-07-17");
-        Time orarioIn=Time.valueOf("17:30:00");
+        Time orarioIn=Time.valueOf("17:29:00");
         Time orarioFine=Time.valueOf("21:00:00");
 
         try {

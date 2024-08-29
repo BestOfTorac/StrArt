@@ -7,7 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.text.Text?>
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.strart.view.GestisciEventiControllerGrafico" stylesheets="/Styles2.css">
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.strart.view.GestisciEventiControllerGrafico" stylesheets="/StylesGestisciEventi2.css">
 
 
     <!-- Titolo centrale in alto -->
@@ -25,19 +25,19 @@
                 <!-- Primo blocco: Visualizza i miei Eventi -->
                 <VBox alignment="CENTER" spacing="10.0">
                     <!-- Descrizione -->
-                    <Label text="Accedi a una panoramica completa delle tue performance future, con la possibilità di visualizzare, modificare o avviare nuovi eventi in modo semplice. Che si tratti di un concerto, una performance teatrale o uno spettacolo comico, la nostra piattaforma intuitiva ti permette di mantenere tutto sotto controllo e condividere facilmente i dettagli con il tuo pubblico. Non perdere mai un’occasione per brillare!"
+                    <Label fx:id="textVisualizza" text="Accedi a una panoramica completa delle tue performance future, con la possibilità di visualizzare, modificare o avviare nuovi eventi in modo semplice. Che si tratti di un concerto, una performance teatrale o uno spettacolo comico, la nostra piattaforma intuitiva ti permette di mantenere tutto sotto controllo e condividere facilmente i dettagli con il tuo pubblico. Non perdere mai un’occasione per brillare!"
                            maxWidth="200" wrapText="true" />
                     <!-- Bottone -->
-                    <Button onAction="#visualizzaEventi" text="Visualizza i miei Eventi" />
+                    <Button fx:id="buttonVisualizza" onAction="#visualizzaEventi" text="Visualizza i miei Eventi" />
                 </VBox>
 
                 <!-- Secondo blocco: Crea un evento -->
                 <VBox alignment="CENTER" spacing="10.0">
                     <!-- Descrizione -->
-                    <Label text="Dai vita alle tue performance con un evento straordinario, in pochi semplici passaggi. Che tu stia pianificando uno spettacolo musicale, una performance teatrale o un'esibizione comica, qui puoi personalizzare ogni dettaglio per garantire che il tuo evento sia un successo clamoroso. Inizia ora e lascia che la tua arte illumini la gente!"
+                    <Label fx:id="textCrea" text="Dai vita alle tue performance con un evento straordinario, in pochi semplici passaggi. Che tu stia pianificando uno spettacolo musicale, una performance teatrale o un'esibizione comica, qui puoi personalizzare ogni dettaglio per garantire che il tuo evento sia un successo clamoroso. Inizia ora e lascia che la tua arte illumini la gente!"
                            maxWidth="200" wrapText="true" />
                     <!-- Bottone -->
-                    <Button onAction="#viewCreaEvento" text="Crea un evento" />
+                    <Button fx:id="buttonCrea" onAction="#viewCreaEvento" text="Crea un evento" />
                 </VBox>
             </children>
         </HBox>
@@ -64,8 +64,7 @@
                 </ImageView>
             </VBox>
 
-            <!-- Linea di separazione -->
-            <Separator orientation="vertical" styleClass="vertical-separator" />
+
         </HBox>
     </left>
 
