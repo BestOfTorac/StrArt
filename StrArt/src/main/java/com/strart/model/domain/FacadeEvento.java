@@ -2,8 +2,6 @@ package com.strart.model.domain;
 
 import com.strart.exception.DAOException;
 import com.strart.model.dao.*;
-
-import java.net.URL;
 import java.sql.SQLException;
 
 public class FacadeEvento {
