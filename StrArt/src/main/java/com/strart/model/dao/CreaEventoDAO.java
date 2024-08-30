@@ -9,6 +9,7 @@ import java.sql.SQLException;
 
 public class CreaEventoDAO {
 
+    //metodo per la creazione di un evento nel db
     public void creaEventoOnDB(String username, Evento evento) throws DAOException, SQLException {
 
         CallableStatement cs = null;

@@ -29,21 +29,19 @@ public class FacadeOttieniIndicazioni {
 
     public void partecipaEvento(Evento evento)throws DAOException, SQLException {
 
-
-        //Recupera il username dal profilo
+        //Recupero del username dal profilo
         String username= Credentials.getUsername();
 
-        //Istanzia il dao di partecipazione all'evento
+        //Istanziazione del dao di partecipazione all'evento
         new PartecipaEventoDAO().partecipaEventoToDb(username, evento);
     }
 
     public void eliminaPartecipazioneEvento(Evento evento)throws DAOException, SQLException {
 
-
-        //Recupera il username dal profilo
+        //Recupero del username dal profilo
         String username= Credentials.getUsername();
 
-        //Istanzia il dao di partecipazione all'evento
+        //Istanziazione del dao di partecipazione all'evento
         new EliminaPartecipazioneEventoDAO().eliminaPartecipazioneEventoToDb(username,evento);
     }
 

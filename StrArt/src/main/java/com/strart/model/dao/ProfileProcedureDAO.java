@@ -7,6 +7,7 @@ import java.sql.*;
 
 public class ProfileProcedureDAO  {
 
+    //metodo per recuperare il profilo dal db
     public void recuperaProfilo() throws DAOException, SQLException {
         CallableStatement cs = null;
         try {

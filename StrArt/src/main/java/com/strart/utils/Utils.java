@@ -41,6 +41,7 @@ public class Utils {
 
     private Utils(){}
 
+    //metodo per la visualizzazione del pop up di notifica
     public static void showNotify(String message) {
         // Crea il popup
         Popup popup = new Popup();
@@ -97,6 +98,7 @@ public class Utils {
         }, 3000);
     }
 
+    //metodo per la visualizzazione del pop up di errore
     public static void showErrorPopup(String message) {
         // Crea il popup
         Popup popup = new Popup();
@@ -141,6 +143,7 @@ public class Utils {
         popup.show(owner);
     }
 
+    //metodo per la creazione di un pop up con le caratteristiche specifiche di un evento
     public static void showEventDetailPopup(BeanEvento eventoBean, EventHandler partecipaHandler,
                                             EventHandler indicazioniHandler) {
         // Crea il popup
@@ -236,6 +239,7 @@ public class Utils {
         popup.show(owner);
     }
 
+    //Getter per recuperare la grrafica, ovvero per capire quale delle due grafiche caricare
     public static int getGrafica() {
         return grafica;
     }
@@ -244,6 +248,7 @@ public class Utils {
         Utils.grafica = grafica;
     }
 
+    //metodo per cambiare le caratteristiche della grafica
     public static void switchGrafica(){
         if(grafica==0){
             grafica=1;

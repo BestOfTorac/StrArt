@@ -99,7 +99,7 @@ public class GestisciEventiControllerGrafico implements Initializable {
         }
     }
 
-
+    //metodo per la visualizzazione della schermata di creazione dell'evento
     @FXML
     public void viewCreaEvento() throws IOException{
         FXMLLoader fxmlLoader;
@@ -123,6 +123,7 @@ public class GestisciEventiControllerGrafico implements Initializable {
         stage.show();
     }
 
+    //metodo per la creazione dell'evento recuperando i dati necessari dalla grafica
     @FXML
     public void creaEvento(){
 
@@ -189,6 +190,7 @@ public class GestisciEventiControllerGrafico implements Initializable {
         }
     }
 
+    //metodo che permette di caricare un immagine dal prorio sistema
     @FXML
     public void loadImage() {
         FileChooser fileChooser = new FileChooser();
@@ -213,6 +215,7 @@ public class GestisciEventiControllerGrafico implements Initializable {
         alert.showAndWait();
     }
 
+    //metodo per la visualizzazione della schermata home
     @FXML
     public void goHome() throws IOException{
         FXMLLoader fxmlLoader;
@@ -241,6 +244,7 @@ public class GestisciEventiControllerGrafico implements Initializable {
         stage.show();
     }
 
+    //metodo per tornare alla schermata gestisci eventi
     @FXML
     public void goBack() throws IOException{
         FXMLLoader fxmlLoader;
@@ -263,6 +267,7 @@ public class GestisciEventiControllerGrafico implements Initializable {
         stages.show();
     }
 
+    //metodo per avviare la schermata della visualizzazione dei propri (dell'artista) eventi
     @FXML
     public void visualizzaEventi() throws IOException {
 
@@ -285,6 +290,7 @@ public class GestisciEventiControllerGrafico implements Initializable {
         stage.show();
     }
 
+    //metodo per la ricerca degli eventi dell'artista
     public void caricaEventi() {
 
         if (gestEventi == null) {
@@ -299,6 +305,7 @@ public class GestisciEventiControllerGrafico implements Initializable {
         }
 
         if (!beanEventi.getListEvento().isEmpty()) {
+            //per ogni evento trovato va creato il componente grafico per aggiungerlo alla grafica
             for (BeanEvento evento : beanEventi.getListEvento()) {
                 BorderPane card = createCard(evento);
                 cardContainer.getChildren().add(card);
@@ -308,7 +315,7 @@ public class GestisciEventiControllerGrafico implements Initializable {
         }
     }
 
-    // Metodo per creare una card
+    // Metodo per creare una card, ovvero il componente grafico
     private BorderPane createCard(BeanEvento eventoBean) {
         BorderPane card = new BorderPane();
 

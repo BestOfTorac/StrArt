@@ -25,6 +25,7 @@ public class LoginController {
         Credentials.setPassword(credB.getPassword());
         Credentials.setRole(null);
 
+        //chiamata per effettuare il login
         try {
             new LoginProcedureDAO().login();
         } catch(DAOException | SQLException e) {
@@ -35,7 +36,9 @@ public class LoginController {
         Stage stage = ApplicazioneStage.getStage();
         Scene scene;
 
+        //se le credenziali non sono conformi ritorno alla schermata di login
         if (Credentials.getRole() == null) {
+            Utils.showErrorPopup("Credenziali non valide");
             fxmlLoad = new FXMLLoader(ApplicationStrArt.class.getResource("login.fxml"));
             scene = new Scene(fxmlLoad.load(), Utils.getSceneW(), Utils.getSceneH());
         } else {
@@ -47,6 +50,7 @@ public class LoginController {
                 throw new IllegalArgumentException(e);
             }
 
+            //caricamento della scena in base al ruolo dell'utente
             if (Credentials.getRole().getId() == 1) {
 
                 try {
@@ -67,7 +71,7 @@ public class LoginController {
             controller.initMapAndControls("41.9028","12.4964","city");
             scene = new Scene(rootNode, Utils.getSceneW(), Utils.getSceneH());
 
-            // Rimuovere il focus dal TextField
+            // Rimuovere il focus dal TextField dell'indirizzo
             scene.getRoot().requestFocus();
         }
 

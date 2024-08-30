@@ -12,7 +12,7 @@ public class EventoComico extends Evento {
 
     @Override
     public  String visualizzaEvento(){
-        return "Evento Comico: "+caratteristiche;
+        return "Evento comico: "+caratteristiche;
     }
 
     @Override

@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 
 public class CreaEventoFileSystem {
 
+    //metodo per la creazione di un evento nel file system
     public void salvaEventoSuFile(Evento evento, String nomeFile) {
         try (FileOutputStream fos = new FileOutputStream(nomeFile);
              ObjectOutputStream oos = new ObjectOutputStream(fos)) {

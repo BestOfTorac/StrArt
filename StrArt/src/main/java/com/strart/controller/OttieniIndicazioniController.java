@@ -19,15 +19,19 @@ public class OttieniIndicazioniController {
         facadeOttieniIndicazioni= new FacadeOttieniIndicazioni();
     }
 
+    //metodo per la ricerca degli eventi in base all'indirizzo inserito
     public BeanEventi cercaEventi(IndirizzoBean indirizzoB) throws DAOException, SQLException, IOException {
         BeanEventi eventiB;
         Coordinate cordinate;
 
+        //recupero delle cordinate dall'API di OpenStreetMap
         IndirizzoBeanAPI indirizzoBeanAPI = new IndirizzoBeanAPI(indirizzoB.getIndirizzo());
         ApiControllerGrafico api = new ApiControllerGrafico();
         CoordinateBean coordinateB = api.coordinateIndirizzo(indirizzoBeanAPI);
 
         cordinate = new Coordinate(coordinateB.getIndirizzo(),coordinateB.getLongitudine(), coordinateB.getLatitudine(), coordinateB.getType());
+
+        //ricerca degli eventi con le coordinate dell'indirizzo
         listEvento = facadeOttieniIndicazioni.cercaEventi(cordinate);
 
 
@@ -47,10 +51,11 @@ public class OttieniIndicazioniController {
         return eventiB;
     }
 
+
+    //metodo per il recupero di tutte le caratteristiche dell'evento selezionato dall'utente
     public BeanEvento ottieniEvento(BeanEvento propieta){
 
         BeanEvento beanEvento = null;
-
         for(Evento evento: listEvento.getListaEvento()) {
             if(propieta.getNomeArtista().equals(evento.getNomeArtista()) && propieta.getData().equals(evento.getData()) && propieta.getOrarioInizio().equals(evento.getOrarioInizio())){
                 beanEvento = new BeanEvento(evento.getNomeArtista(), evento.getDescrizione(), evento.getImmagine(), evento.getData(), evento.getOrarioInizio(), evento.getOrarioFine(), evento.getTipo());
@@ -60,6 +65,7 @@ public class OttieniIndicazioniController {
         return beanEvento;
     }
 
+    //metodo per la partecipazione ad un evento
     public void partecipaEvento(BeanEvento eventoBean)throws DAOException, SQLException{
 
         FactoryEvento factoryEvento= new FactoryEvento();
@@ -68,10 +74,12 @@ public class OttieniIndicazioniController {
         evento.setData(eventoBean.getData());
         evento.setOrarioInizio(eventoBean.getOrarioInizio());
 
+        //chiamata al facade per effettuare la partecipazione all'evento
         facadeOttieniIndicazioni.partecipaEvento(evento);
 
     }
 
+    //metodo per il recupero delle indicazioni, non implementato ma fatta la predisposizione
     public void indicazioniEvento(BeanEvento beanEvento) throws  IOException {
 
         ApiControllerGrafico api = new ApiControllerGrafico();
@@ -80,7 +88,6 @@ public class OttieniIndicazioniController {
 
 
         api.routesEvento(coordinateBeanEvento, coordinateBeanMiaPosizione);
-
 
 
     }

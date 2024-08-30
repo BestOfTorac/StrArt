@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 public class CercaEventiDAO {
 
-
+    //metodo per la ricerca degli eventi dal db
     public ListEvento cercaEventiToDb(Coordinate coordinate) throws DAOException, SQLException {
 
         ListEvento listEvento= new ListEvento();

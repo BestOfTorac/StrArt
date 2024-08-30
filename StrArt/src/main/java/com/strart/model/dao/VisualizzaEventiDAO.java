@@ -12,6 +12,7 @@ import java.sql.SQLException;
 
 public class VisualizzaEventiDAO{
 
+    //metodo per visualizzare eventi di un artista dal db
     public ListEvento visualizzaEventoToDb(String username) throws DAOException, SQLException {
 
         ListEvento listEvento= new ListEvento();

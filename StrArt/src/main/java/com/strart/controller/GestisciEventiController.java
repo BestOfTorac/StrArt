@@ -20,6 +20,8 @@ public class GestisciEventiController {
     public GestisciEventiController(){
         facadeEvento=new FacadeEvento();
     }
+
+    //medoto di creazione di un evento
     public void creaEvento(BeanEvento beanEvento) throws DAOException, SQLException, IOException {
 
         //verifica esistenza indirizzo e recupero delle coordinate
@@ -30,6 +32,7 @@ public class GestisciEventiController {
         //recupero della località della persistenza
         String persistenza= beanEvento.getPersistenza();
 
+        //istanziazione dell'evento
         FactoryEvento factoryEvento= new FactoryEvento();
         Evento evento= factoryEvento.createEvento(beanEvento.getTipoEvento());
         evento.setDescrizione(beanEvento.getDescrizione());
@@ -40,18 +43,23 @@ public class GestisciEventiController {
         evento.setOrarioFine(beanEvento.getOrarioFine());
         evento.setImmagine(beanEvento.getImmagine());
 
-        //chiamo il facade per effettuare l'operazione di creazione dell'evento
+        //chiamata al facade per effettuare l'operazione di creazione dell'evento
         facadeEvento.creaEvento(evento, persistenza);
 
+        //l'evento creato lo aggiungo solo se la lista non è vuota
         if(listEvento!=null){
             listEvento.addEvento(evento);
         }
 
     }
 
+
+    //metodo per la visualizzazione degli eventi creati dall'artista
     public BeanEventi visualizzaEventi()throws DAOException, SQLException {
 
         BeanEventi beanEventi;
+
+        //se la lista è vuota richiedo al facade di recuperare gli eventi
         if(listEvento==null) {
             listEvento = facadeEvento.visualizzaEventi();
         }
@@ -59,6 +67,7 @@ public class GestisciEventiController {
 
         beanEventi = new BeanEventi();
 
+        //per ogni evento della lista recuperata verrà istanziato un beanEvento
         for(Evento evento: listEvento.getListaEvento()) {
             BeanEvento beanEvento= new BeanEvento(evento.getNomeArtista(), evento.getDescrizione(), evento.getImmagine(), evento.getData(), evento.getOrarioInizio(),evento.getStato(), evento.getOrarioFine());
             beanEvento.setTipoEvento(evento.getTipo());
@@ -71,6 +80,7 @@ public class GestisciEventiController {
         return beanEventi;
     }
 
+    //metodo per l'eliminazione di un evento
     public void eliminaEvento(BeanEvento beanEvento)throws DAOException, SQLException{
 
         String persistenza= beanEvento.getPersistenza();
@@ -79,7 +89,7 @@ public class GestisciEventiController {
         evento.setData(beanEvento.getData());
         evento.setOrarioInizio(beanEvento.getOrarioInizio());
 
-        //chiamo il facade per effettuare l'operazione di creazione dell'evento
+        //chiamata al facade per effettuare l'operazione di eliminazione dell'evento
         facadeEvento.eliminaEvento(evento, persistenza);
 
     }

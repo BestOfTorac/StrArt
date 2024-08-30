@@ -11,6 +11,7 @@ import java.sql.Types;
 
 public class LoginProcedureDAO{
 
+    //metodo per la validazione delle credenziali
     public void login() throws DAOException, SQLException {
         int role;
         CallableStatement cs = null;

@@ -7,6 +7,7 @@ import java.io.*;
 
 public class VisualizzaEventiFileSystem {
 
+    //metodo per recuperare gli eventi di un artista dal file system
     public ListEvento recuperaEventiDaFile(ListEvento eventi, String nomeFile) {
 
 

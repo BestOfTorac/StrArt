@@ -148,17 +148,22 @@ public class BeanEvento {
         return persistenza;
     }
 
+    // Setter per il tipo evento
     public void setTipoEvento(String tipoEvento) {
         this.tipoEvento=tipoEvento;
     }
 
+    // Setter per la latitudine
     public void setLatitudine(String latitudine) {
         this.latitudine=latitudine;
     }
+
+    // Setter per la longitudine
     public void setLongitudine(String longitudine) {
         this.longitudine=longitudine;
     }
 
+    // Setter per la persistenza
     public void setPersistenza(String persistenza) {
         this.persistenza=persistenza;
     }

@@ -14,12 +14,12 @@ public class ConnectionFactory {
 
     private ConnectionFactory() {}
 
-
+    // metodo per la gestione della connessione al db (pattern Singleton)
     public static Connection getConnection(){
 
         if(connection == null){
 
-            // Usa ClassLoader per ottenere l'InputStream del file nel classpath
+            // Uso del ClassLoader per ottenere l'InputStream del file nel classpath
             ClassLoader classLoader = ApplicationStrArt.class.getClassLoader();
 
             try (InputStream input = classLoader.getResourceAsStream("db.properties")) {
@@ -44,7 +44,7 @@ public class ConnectionFactory {
             connection.close();
         }
 
-        // Usa ClassLoader per ottenere l'InputStream del file nel classpath
+        // Uso del ClassLoader per ottenere l'InputStream del file nel classpath
         ClassLoader classLoader = ApplicationStrArt.class.getClassLoader();
 
         try (InputStream input = classLoader.getResourceAsStream("db.properties")) {

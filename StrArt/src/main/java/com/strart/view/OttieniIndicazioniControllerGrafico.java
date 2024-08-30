@@ -47,7 +47,7 @@ public class OttieniIndicazioniControllerGrafico {
 
 
 
-
+    //metodo per ottenere le indicazione dalla prima grafica
     @FXML
     public void ottieniIndicazioni() {
         removeMarkers();
@@ -63,6 +63,7 @@ public class OttieniIndicazioniControllerGrafico {
 
     }
 
+    //metodo per ottenere le indicazione dalla seconda grafica
     @FXML
     public void ottieniIndicazioni2() {
         removeMarkers();
@@ -79,10 +80,12 @@ public class OttieniIndicazioniControllerGrafico {
 
     }
 
+    //metodo effettivo per ottenere indicazioni
     public void ottieniIndicazioniGen(IndirizzoBean indirizzoB){
 
         BeanEventi eventiB = null;
 
+        //ricerca degli eventi nell'indirizzo inserito nella grafica
         try {
             eventiB = indicazioni.cercaEventi(indirizzoB);
         } catch (IllegalArgumentException e){
@@ -94,6 +97,7 @@ public class OttieniIndicazioniControllerGrafico {
         // condizione di controllo per evitare NPE
         if (eventiB == null) return;
 
+        //per ogni evento creato si andrà ad inserire il marker dell'evento
         for (BeanEvento evento: eventiB.getListEvento()){
             Coordinate cord = new Coordinate(
                     Double.valueOf(evento.getLatitudine()),
@@ -101,10 +105,12 @@ public class OttieniIndicazioniControllerGrafico {
 
             Marker marker;
             if(evento.getStato().equals("iniziato")) {
+                //marker rosso per eventi iniziati
                 marker= Marker.createProvided(Marker.Provided.RED)
                         .setPosition(cord)
                         .setVisible(true);
             }else{
+                //marker blue per eventi programmati
                 marker = Marker.createProvided(Marker.Provided.BLUE)
                         .setPosition(cord)
                         .setVisible(true);
@@ -120,13 +126,14 @@ public class OttieniIndicazioniControllerGrafico {
             addMarker(mapView, marker, properties);
         }
 
+        //inserimeto delle cordinate sulla mappa
         refreshMapAndControls(
                 eventiB.getLatitudine(),
                 eventiB.getLongitudine(),
                 eventiB.getType());
     }
 
-
+    //inizializzazione della mappa
     public void initMapAndControls(String lat, String lon, String type) {
 
         Coordinate coordinate = new Coordinate(Double.valueOf(lat), Double.valueOf(lon));
@@ -146,15 +153,17 @@ public class OttieniIndicazioniControllerGrafico {
 
         mapView.addEventHandler(MapViewEvent.MAP_POINTER_MOVED, event -> updateMarkers(mapView));
 
-        // Aggiungi un EventHandler per il click sul Marker
+        // Aggiungi un EventHandler per il click sul Marker così da visualizzare il pop up con i dettagli dell'evento
         mapView.addEventHandler(MarkerEvent.MARKER_CLICKED, event -> {
             if (markers.get(event.getMarker()) != null) {
                 HashMap<String, String> markerProperty = markers.get(event.getMarker());
 
                 BeanEvento propieta= new BeanEvento(markerProperty.get(NOME_ARTISTA_PROPERTY), Date.valueOf(markerProperty.get(DATA_PROPERTY)), Time.valueOf(markerProperty.get(ORARIO_INIZIO_PROPERTY)));
 
+                //richiesta dello specifico evento
                 BeanEvento eventoBean = indicazioni.ottieniEvento(propieta);
 
+                //eventHendler per i bottoni nel pup up così offrire la funzionalità di indicazioni e participazione all'evento
                 EventHandler partecipaHandler = (partecipaEvent) -> {
                     try {
                         indicazioni.partecipaEvento(eventoBean);
@@ -169,6 +178,7 @@ public class OttieniIndicazioniControllerGrafico {
                         Utils.showErrorPopup("Metodo non ancora implementato");
                 };
 
+                //chiamata effettiva per mostrare il pop up
                 Utils.showEventDetailPopup(eventoBean, partecipaHandler, indicazioniHandler);
             } else {
                 Utils.showErrorPopup("Errore nell'ottenere informazioni dell'evento");
@@ -209,6 +219,7 @@ public class OttieniIndicazioniControllerGrafico {
         markers.clear();
     }
 
+    //metodo per avviare la schermata gestisci eventi
     public void gestisciEventi() throws IOException {
 
 
@@ -234,6 +245,8 @@ public class OttieniIndicazioniControllerGrafico {
         stage.show();
 
     }
+
+    //metodo per  cambiare la grafica
     public void cambiaGrafica()throws IOException{
 
         Utils.switchGrafica();
@@ -271,6 +284,8 @@ public class OttieniIndicazioniControllerGrafico {
         stage.show();
     }
 
+    //metodi per permettere all'utende di fare la ricerca dell'indirizo anche con il pilsante enter
+    // e non essere obbligato ad usare il bottone di ricerca
 
     public void handleEnter(){
         ottieniIndicazioni();

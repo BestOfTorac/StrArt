@@ -9,6 +9,7 @@ import java.sql.SQLException;
 
 public class PartecipaEventoDAO {
 
+    //metodo per la partecipazione ad un evento nel db
     public void partecipaEventoToDb(String username, Evento evento) throws DAOException, SQLException {
 
         CallableStatement cs = null;
