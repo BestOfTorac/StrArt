@@ -10,11 +10,8 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
-
+//Realizzato da Valerio Torac
 class LoginProcedureDAOTest {
-
-
-
     @Test
     void loginSuccessfullArtista() {
         Credentials.setUsername("Momo");
