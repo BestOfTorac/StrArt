@@ -1,8 +1,11 @@
 ## Come impostare correttamente il db
 
 **1** - Scaricare db.sql e caricarlo sul vostro db (in esso è compreso la creazione delle tabelle, store procedure ed i dati in esso)
+
 **2** - Creare due user specifici: 'artista' e 'spettatore'
+
 **3** - Dare a questi due user il permesso per visualizzare il db 'strart' (che si è caricato precedentemente), solo privilegio di SELECT
+
 **4** - Configurazione dei Permessi delle Stored Procedures: Eseguire i seguenti comandi SQL per concedere i permessi di esecuzione delle stored procedures a ciascun utente:
 	
 	GRANT EXECUTE ON PROCEDURE recuperaProfilo TO 'artista'@'localhost';
